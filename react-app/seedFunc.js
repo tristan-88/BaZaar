@@ -16,8 +16,7 @@ const randomNumber = (num) => Math.floor(Math.random() * Math.floor(num) + 1)
 //       email: faker.internet.email(),
 //       username: faker.internet.userName(),
 //       address: faker.address.streetAddress(true),
-//       hashedPass: bcrypt.hashSync(faker.internet.password()),
-//       imageUrl: faker.image.avatar()
+//       hashed_password: bcrypt.hashSync(faker.internet.password()),
 //     }
 
 //     console.log(user)
@@ -52,7 +51,6 @@ const randomNumber = (num) => Math.floor(Math.random() * Math.floor(num) + 1)
 //     const product = {
 //       name: faker.commerce.productName(),
 //       storeId: randomNumber(19),
-
 //       price: faker.commerce.price(1, 250, 2),
 //       quantity: randomNumber(20),
 //       description: faker.lorem.paragraphs(3),
