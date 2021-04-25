@@ -1,6 +1,4 @@
 from .db import db
-from models import User
-
 
 
 class Store(db.Model):
@@ -11,4 +9,4 @@ class Store(db.Model):
     user_id = db.Column(db.Integer, nullable=False db.foreign_key('users.id'))
     description = db.Column(db.String(2000))
 
-    user_relationship = db.relationship("User")
+    store_user = db.relationship("User", back_populates='user_store')

@@ -11,8 +11,8 @@ const randomNumber = (num) => Math.floor(Math.random() * Math.floor(num) + 1)
 //   while (i < num) {
 
 //     const user = {
-//       firstName: faker.name.firstName(),
-//       lastName: faker.name.lastName(),
+//       first_name: faker.name.firstName(),
+//       last_name: faker.name.lastName(),
 //       email: faker.internet.email(),
 //       username: faker.internet.userName(),
 //       address: faker.address.streetAddress(true),
@@ -33,7 +33,7 @@ const randomNumber = (num) => Math.floor(Math.random() * Math.floor(num) + 1)
 //   while (i < 0) {
 //     const store = {
 //       location: faker.address.streetAddress(true),
-//       userId: randomNumber(99),
+//       user_id: randomNumber(99),
 //       description: faker.lorem.paragraphs(2)
 //     }
 
@@ -50,7 +50,7 @@ const randomNumber = (num) => Math.floor(Math.random() * Math.floor(num) + 1)
 
 //     const product = {
 //       name: faker.commerce.productName(),
-//       storeId: randomNumber(19),
+//       store_id: randomNumber(19),
 //       price: faker.commerce.price(1, 250, 2),
 //       quantity: randomNumber(20),
 //       description: faker.lorem.paragraphs(3),
@@ -68,8 +68,8 @@ const randomNumber = (num) => Math.floor(Math.random() * Math.floor(num) + 1)
 //   let i = 0
 //   while (i < num) {
 //     const tag = {
-//       productId: randomNumber(100),
-//       tagId: randomNumber(5)
+//       product_id: randomNumber(100),
+//       tag_id: randomNumber(5)
 //     }
 //     console.log(tag)
 //     i++
@@ -82,8 +82,8 @@ const randomNumber = (num) => Math.floor(Math.random() * Math.floor(num) + 1)
 //   let i = 0
 //   while (i < num) {
 //     const review = {
-//       productId: randomNumber(100),
-//       userId: randomNumber(100),
+//       product_id: randomNumber(100),
+//       user_id: randomNumber(100),
 //       content: faker.lorem.paragraph(randomNumber(5)),
 //       createdAt: faker.date.past()
 //     }
@@ -98,8 +98,9 @@ const randomNumber = (num) => Math.floor(Math.random() * Math.floor(num) + 1)
 //   let i = 0
 //   while (i < num) {
 //     const favorite = {
-//       productId: randomNumber(100),
-//       userId: randomNumber(100)
+//       product_id: randomNumber(100),
+//       user_id: randomNumber(100)
+//       created_at: faker.date.past()
 //     }
 //     console.log(favorite)
 //     i++
