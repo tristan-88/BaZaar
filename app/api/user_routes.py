@@ -29,7 +29,7 @@ def user(id):
     user = User.query.get(id)
     return user.to_dict()
 
-#http://localhost:5000/api/users/:id
+#---DELETE--- http://localhost:5000/api/users/:id ---UNTESTED---
 # @user_routes.route('/<int:id>', methods=['DELETE'])
 # @login_required
 # def delete_user(id):

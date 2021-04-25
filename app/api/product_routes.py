@@ -7,17 +7,17 @@ product_routes = Blueprint('products', __name__)
 #for route testing
 tests = {'Message':'Hello'}
 
-#http://localhost:5000/api/products
+#---GET--- http://localhost:5000/api/products/ ---UNTESTED---
 @product_routes.route('/')
 def all_products():
     return jsonify(tests)
 
-#http://localhost:5000/api/products
+#---POST--- http://localhost:5000/api/products ---UNTESTED---
 @product_routes.route('/', methods=['POST'])
 def create_product():
     return jsonify(tests)
 
-#http://localhost:5000/api/products/id
+#---GET--- http://localhost:5000/api/products/id ---UNTESTED---
 @product_routes.route('/<int.id>')
 def single_product(id):
    product_query = db.session.query(Product, User).join(User, User.id == current_user.id).filter(Product.id == id).first()
