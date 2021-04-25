@@ -7,9 +7,8 @@ user_routes = Blueprint('users', __name__)
 
 
 tests = {'Message':'Hello'}
+
 #http://localhost:5000/api/users
-
-
 @user_routes.route('/')
 @login_required
 def users():
