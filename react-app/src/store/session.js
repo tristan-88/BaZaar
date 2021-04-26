@@ -22,7 +22,7 @@ export const authenticate = () => async (dispatch) => {
   });
   const data = await response.json();
   if (data.ok) {
-    dispatch(setUser, data)
+    dispatch(setUser(data))
   }
 }
 
@@ -72,7 +72,7 @@ export const signUp = (username, email, password) => async (dispatch) => {
 
   const data = await response.json();
   if (data.ok) {
-    dispatch(setUser, data)
+    dispatch(setUser(data))
   }
 }
 
