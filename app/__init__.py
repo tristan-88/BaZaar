@@ -38,7 +38,7 @@ app.register_blueprint(product_routes, url_prefix='/api/products')
 app.register_blueprint(search_routes, url_prefix='/api/search')
 app.register_blueprint(user_routes, url_prefix='/api/users')
 db.init_app(app)
-migrate = Migrate(app, db, compare_type=True)
+migrate = Migrate(app, db)
 
 # Application Security
 CORS(app)
