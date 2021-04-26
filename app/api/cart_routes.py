@@ -24,7 +24,7 @@ cart_routes = Blueprint('carts', __name__)
 # ---GET--- http://localhost:5000/api/carts/:id
 
 
-@cart_routes.route('/<int.id>')
+@cart_routes.route('/<int:id>')
 def single_cart(id):
     cart = Cart.get(id)
     return cart.to_dict()
@@ -32,7 +32,7 @@ def single_cart(id):
 # ---PATCH--- http://localhost:5000/api/carts/:id
 
 
-@cart_routes.route('/<int.id>', methods=["PATCH"])
+@cart_routes.route('/<int:id>', methods=["PATCH"])
 def edit_cart(id):
     cart = Cart.get(id)
     # too tired to think
@@ -46,7 +46,7 @@ def edit_cart(id):
 # ---DELETE --- http://localhost:5000/api/cart/:id
 
 
-@cart_routes.route('/<int.id>', methods=["Post"])
+@cart_routes.route('/<int:id>', methods=["Post"])
 def delete_cart(id):
     remove_cart = Cart.query.filter(Cart.id == id).delete()
     db.session.commit()
