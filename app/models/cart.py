@@ -19,5 +19,5 @@ class Cart(db.Model):
             "order_id": self.order_id
         }
 
-    cart_user = db.relationship("User", back_populates="user_cart")
-    cart_order = db.relationship("Order", back_populates="order_cart")
+    cart_user = db.relationship("User", back_populates="user_cart", cascade="all, delete")
+    cart_order = db.relationship("Order", back_populates="order_cart", cascade="all, delete")
