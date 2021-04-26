@@ -4,47 +4,47 @@ const faker = require('faker')
 // call with num 1 less than max
 const randomNumber = (num) => Math.floor(Math.random() * Math.floor(num) + 1)
 
-// const seed_user = (num) => {
+const seed_user = (num) => {
 
-//   let i = 1
-//   console.log(`
-// def seed_users(): `
-//   )
+  let i = 1
+  console.log(`
+def seed_users(): `
+  )
 
-//   while (i <= num) {
-//     const string = `
-//     user${i} = User(
-//         first_name= "${faker.name.firstName()}",
-//         last_name= "${faker.name.lastName()}",
-//         email= "${faker.internet.email()}",
-//         username= "${faker.internet.userName()}",
-//         address= "${faker.address.streetAddress(true)}",
-//         hashed_password= "${faker.internet.password()}",
-//     )`
+  while (i <= num) {
+    const string = `
+    user${i} = User(
+        first_name= "${faker.name.firstName()}",
+        last_name= "${faker.name.lastName()}",
+        email= "${faker.internet.email()}",
+        username= "${faker.internet.userName()}",
+        address= "${faker.address.streetAddress(true)}",
+        password= "${faker.internet.password()}",
+    )`
 
-//     console.log(string)
-//     console.log("")
-//     console.log(`
-//     db.session.add(user${i})`
-//     )
-//     console.log("")
-//     console.log("")
+    console.log(string)
+    console.log("")
+    console.log(`
+    db.session.add(user${i})`
+    )
+    console.log("")
+    console.log("")
 
-//     i++
-//   }
-//   console.log(`
-//     db.session.commit()`)
-//   console.log("")
-//   console.log("")
-//   console.log(`
+    i++
+  }
+  console.log(`
+    db.session.commit()`)
+  console.log("")
+  console.log("")
+  console.log(`
 
-// def undo_users():
-//     db.session.execute('TRUNCATE users RESTART IDENTITY CASCADE;')
-//     db.session.commit()
-// `)
-// }
+def undo_users():
+    db.session.execute('TRUNCATE users RESTART IDENTITY CASCADE;')
+    db.session.commit()
+`)
+}
 
-// seed_user(5)
+seed_user(5)
 
 // const seed_store = (num) => {
 //   let i = 1

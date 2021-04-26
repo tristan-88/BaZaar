@@ -7,12 +7,28 @@ product_routes = Blueprint('products', __name__)
 # for route testing
 tests = {'Message': 'Hello'}
 
-# ---GET--- http://localhost:5000/api/products/ ---UNTESTED---
+# ---GET--- http://localhost:5000/api/products/ ---TESTED---
 
 
 @product_routes.route('/')
 def all_products():
-    return jsonify(tests)
+    products = Product.query.all()
+    return jsonify([product.to_dict() for product in products])
+
+
+# ---GET--- http://localhost:5000/api/products/id ---TESTED---
+
+
+@product_routes.route('/<int:id>')
+def single_product(id):
+    product = Product.query.get(id)
+    return product.to_dict()
+
+
+# @product_routes.route('/<int:id>/photos')
+# def product_photos(id):
+#     photo_urls = Photo.
+
 
 # ---POST--- http://localhost:5000/api/products ---UNTESTED---
 
@@ -20,14 +36,6 @@ def all_products():
 @product_routes.route('/', methods=['POST'])
 def create_product():
     return jsonify(tests)
-
-# ---GET--- http://localhost:5000/api/products/id ---UNTESTED---
-
-
-@product_routes.route('/<int:id>')
-def single_product(id):
-    product = Product.get(id)
-    return product.to_dict()
 
 
 # ---PATCH--- http://localhost:5000/api/products/id ---UNTESTED---
@@ -50,5 +58,3 @@ def delete_product(id):
     remove_product = Product.query.filter(Product.id == id).delete()
     db.session.commit()
     return jsonify('Product was successfully deleted!' if remove_product else "Could not delete product")
-
-# ---GET --- http://localhost:5000/api/products/:id/reviews #! ??
