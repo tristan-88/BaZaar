@@ -10,6 +10,7 @@ const SignUpForm = () => {
   const [lastname, setLastname] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+  const [address, setAddress] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [photo, setPhoto] = useState("");
@@ -17,7 +18,7 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      await dispatch(signUp(firstname, lastname, username, email, photo, password));
+      await dispatch(signUp(firstname, lastname, username, email, photo, password, address));
     }
   };
 
@@ -43,6 +44,10 @@ const SignUpForm = () => {
 
   const updateLastname = (e) => {
     setLastname(e.target.value)
+  }
+
+  const updateAddress = (e) => {
+    setAddress(e.target.value)
   }
 
   const updatePhotourl = (e) => {
@@ -71,6 +76,15 @@ const SignUpForm = () => {
           name="last_name"
           onChange={updateLastname}
           value={lastname}
+        ></input>
+      </div>
+      <div>
+        <label>Address</label>
+        <input
+          type="text"
+          name="address"
+          onChange={updateAddress}
+          value={address}
         ></input>
       </div>
       <div>
