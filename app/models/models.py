@@ -41,8 +41,6 @@ cart_product = db.Table(
 )
 
 
-
-
 # Classes
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -70,8 +68,8 @@ class User(db.Model, UserMixin):
     def to_dict(self):
         return {
             "id": self.id,
-            "first_name": self.firstName,
-            "last_name": self.lastName,
+            "first_name": self.first_name,
+            "last_name": self.last_name,
             "username": self.username,
             "email": self.email,
             "address": self.address
@@ -94,6 +92,15 @@ class Cart(db.Model):
     updated_at = db.Column(Date)
     order_id = db.Column(db.Integer, nullable=True)
 
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at,
+            "order_id": self.order_id
+        }
+
     cart_user = db.relationship("User", back_populates="user_cart")
     cart_order = db.relationship("Order", back_populates="order_cart")
 
@@ -105,6 +112,16 @@ class Order(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     cart_id = db.Column(db.Integer, db.ForeignKey("carts.id"), nullable=False)
     purchase_date = db.Column(Date)
+    shipping_address = db.Column(db.String(500))
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "cart_id": self.cart_id,
+            "purchase_date" = self.purchase_date,
+            "shipping_address" = self.shipping_address
+        }
 
     order_user = db.relationship("User", back_populates="user_order")
     order_cart = db.relationship("Cart", back_populates="cart_order")
@@ -120,13 +137,24 @@ class Product(db.Model):
     quantity = db.Column(db.Integer, nullable=False)
     description = db.Column(db.String(2000), nullable=False)
 
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "store_id": self.store_id,
+            "price": self.price,
+            "quantity": self.quantity,
+            "description": self.description,
+        }
+
     product_store = db.relationship(
         "Store", back_populates="store_product")
     product_review = db.relationship("Review", back_populates="review_product")
     product_user = db.relationship(
         "User", secondary=favorites, back_populates="user_product")
-    product_tag = db.relationship("Tag", secondary=product_tag, back_populates="tag_product")
-    product_photo = db.relationship("Photo", back_populates="photo_product", secondary=product_photo)
+    product_tag = db.relationship(
+        "Tag", secondary=product_tag, back_populates="tag_product")
+    product_photo = db.relationship(
+        "Photo", back_populates="photo_product", secondary=product_photo)
 
 
 class Review(db.Model):
@@ -138,6 +166,15 @@ class Review(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     content = db.Column(db.String(2000), nullable=False)
     created_at = db.Column(Date)
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "product_id": self.product_id,
+            "user_id": self.user_id,
+            "content": self.content,
+            "created_at": self.created_at,
+        }
 
     review_user = db.relationship("User", back_populates="user_review")
     review_product = db.relationship(
@@ -152,13 +189,29 @@ class Store(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     description = db.Column(db.String(2000))
 
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "address": self.address,
+            "user_id": self.user_id,
+            "description": self.description,
+        }
+
     store_user = db.relationship("User", back_populates='user_store')
     store_product = db.relationship("Product", back_populates="product_store")
+
 
 class Tag(db.Model):
     __tablename__ = "tags"
     id = db.Column(db.Integer, primary_key=True)
     tag = db.Column(db.String(30), nullable=False)
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "tag": self.tag,
+        }
 
     tag_product = db.relationship(
         "Product", secondary=product_tag, back_populates='product_tag')
@@ -170,5 +223,12 @@ class Photo(db.Model):
     product_id = db.Column(db.Integer, db.ForeignKey("products.id"))
     photo_url = db.Column(db.String(2000))
 
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "product_id": self.product_id,
+            "photo_url": self.photo_url,
+        }
+
     photo_product = db.relationship(
-        "Product", back_populates="product_photo",secondary=product_photo)
+        "Product", back_populates="product_photo", secondary=product_photo)
