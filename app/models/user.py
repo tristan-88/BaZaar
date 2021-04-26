@@ -39,8 +39,8 @@ class User(db.Model, UserMixin):
 
     user_store = db.relationship(
         "Store", back_populates="store_user", uselist=False)
-    user_cart = db.relationship("Cart", back_populates="cart_user")
-    user_review = db.relationship("Review", back_populates="review_user")
+    user_cart = db.relationship("Cart", back_populates="cart_user", cascade="all, delete")
+    user_review = db.relationship("Review", back_populates="review_user", cascade="all, delete")
     user_product = db.relationship(
-        "Product", back_populates="product_user", secondary=favorites)
-    user_order = db.relationship("Order", back_populates="order_user")
+        "Product", back_populates="product_user", secondary=favorites, cascade="all, delete")
+    user_order = db.relationship("Order", back_populates="order_user", cascade="all, delete")

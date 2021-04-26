@@ -21,11 +21,11 @@ class Product(db.Model):
         }
 
     product_store = db.relationship(
-        "Store", back_populates="store_product")
-    product_review = db.relationship("Review", back_populates="review_product")
+        "Store", back_populates="store_product", cascade="all, delete")
+    product_review = db.relationship("Review", back_populates="review_product", cascade="all, delete" )
     product_user = db.relationship(
-        "User", secondary=favorites, back_populates="user_product")
+        "User", secondary=favorites, back_populates="user_product", cascade="all, delete")
     product_tag = db.relationship(
-        "Tag", secondary=product_tag, back_populates="tag_product")
+        "Tag", secondary=product_tag, back_populates="tag_product", cascade="all, delete")
     product_photo = db.relationship(
-        "Photo", back_populates="photo_product", secondary=product_photo)
+        "Photo", back_populates="photo_product", secondary=product_photo, cascade="all, delete")
