@@ -24,7 +24,7 @@ def create_product():
 # ---GET--- http://localhost:5000/api/products/id ---UNTESTED---
 
 
-@product_routes.route('/<int.id>')
+@product_routes.route('/<int:id>')
 def single_product(id):
     product = Product.get(id)
     return product.to_dict()
@@ -33,7 +33,7 @@ def single_product(id):
 # ---PATCH--- http://localhost:5000/api/products/id ---UNTESTED---
 
 
-# @product_routes.route('/<int.id>', methods=['PATCH'])
+# @product_routes.route('/<int:id>', methods=['PATCH'])
 # def edit_product(id):
 #     product = Product.query.get(id)
 
@@ -45,7 +45,7 @@ def single_product(id):
 #         db.session.commit()
 
 # ---DELETE --- http://localhost:5000/api/products/id ---untested---
-@product_routes.route('/<int.id>', methods=["Delete"])
+@product_routes.route('/<int:id>', methods=["Delete"])
 def delete_product(id):
     remove_product = Product.query.filter(Product.id == id).delete()
     db.session.commit()

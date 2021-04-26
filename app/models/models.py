@@ -32,6 +32,17 @@ product_photo = db.Table(
 )
 
 
+cart_product = db.Table(
+    "cart_product",
+    db.Column("product_id", db.Integer, db.ForeignKey(
+        'products.id'), primary_key=True),
+    db.Column("cart_id", db.Integer, db.ForeignKey(
+        "carts.id"), primary_key=True)
+)
+
+
+
+
 # Classes
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -62,7 +73,7 @@ class User(db.Model, UserMixin):
             "first_name": self.firstName,
             "last_name": self.lastName,
             "username": self.username,
-            "email": self.email
+            "email": self.email,
             "address": self.address
         }
 
@@ -71,14 +82,14 @@ class User(db.Model, UserMixin):
     user_cart = db.relationship("Cart", back_populates="cart_user")
     user_review = db.relationship("Review", back_populates="review_user")
     user_product = db.relationship(
-        "Product", secondary=favorites, back_populates="product_user")
+        "Product", back_populates="product_user", secondary=favorites)
     user_order = db.relationship("Order", back_populates="order_user")
 
 
 class Cart(db.Model):
     __tablename__ = "carts"
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, nullable=False db.ForeignKey("users.id"))
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     created_at = db.Column(Date)
     updated_at = db.Column(Date)
     order_id = db.Column(db.Integer, nullable=True)
@@ -114,8 +125,8 @@ class Product(db.Model):
     product_review = db.relationship("Review", back_populates="review_product")
     product_user = db.relationship(
         "User", secondary=favorites, back_populates="user_product")
-    product_tag = db.relationship("Tag", secondary=product_tag back_populates="tag_product")
-    product_photo = db.relationship("Photo", secondary=product_photo, back_populates("photo_product"))
+    product_tag = db.relationship("Tag", secondary=product_tag, back_populates="tag_product")
+    product_photo = db.relationship("Photo", back_populates="photo_product", secondary=product_photo)
 
 
 class Review(db.Model):
@@ -138,11 +149,11 @@ class Store(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
     address = db.Column(db.String(500))
-    user_id = db.Column(db.Integer, nullable=False db.ForeignKey('users.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     description = db.Column(db.String(2000))
 
     store_user = db.relationship("User", back_populates='user_store')
-
+    store_product = db.relationship("Product", back_populates="product_store")
 
 class Tag(db.Model):
     __tablename__ = "tags"
@@ -156,8 +167,8 @@ class Tag(db.Model):
 class Photo(db.Model):
     __tablename__ = "photos"
     id = db.Column(db.Integer, primary_key=True)
-    product_id = db.Column(db.Integer, db.ForeignKey("product.id"))
+    product_id = db.Column(db.Integer, db.ForeignKey("products.id"))
     photo_url = db.Column(db.String(2000))
 
     photo_product = db.relationship(
-        "Product", secondary=product_photo, back_populates="product_photo")
+        "Product", back_populates="product_photo",secondary=product_photo)
