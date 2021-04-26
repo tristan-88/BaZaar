@@ -1,5 +1,5 @@
 from .db import db
-from .tables import favorites, product_tag, product_photo
+from .tables import favorites, product_tag
 
 
 class Product(db.Model):
@@ -7,7 +7,7 @@ class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(90), nullable=False)
     store_id = db.Column(db.Integer, db.ForeignKey("stores.id"))
-    price = db.Column(db.Numeric(6, 2), nullable=False)
+    price = db.Column(db.String(10), nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
     description = db.Column(db.String(2000), nullable=False)
 
@@ -22,10 +22,11 @@ class Product(db.Model):
 
     product_store = db.relationship(
         "Store", back_populates="store_product", cascade="all, delete")
-    product_review = db.relationship("Review", back_populates="review_product", cascade="all, delete" )
+    product_review = db.relationship(
+        "Review", back_populates="review_product", cascade="all, delete")
     product_user = db.relationship(
         "User", secondary=favorites, back_populates="user_product", cascade="all, delete")
     product_tag = db.relationship(
         "Tag", secondary=product_tag, back_populates="tag_product", cascade="all, delete")
     product_photo = db.relationship(
-        "Photo", back_populates="photo_product", secondary=product_photo, cascade="all, delete")
+        "Photo", back_populates="photo_product", cascade="all, delete")

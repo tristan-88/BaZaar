@@ -1,5 +1,4 @@
 from .db import db
-from .tables import product_photo
 
 
 class Photo(db.Model):
@@ -16,4 +15,4 @@ class Photo(db.Model):
         }
 
     photo_product = db.relationship(
-        "Product", back_populates="product_photo", secondary=product_photo, cascade="all, delete")
+        "Product", back_populates="product_photo", cascade="all, delete")

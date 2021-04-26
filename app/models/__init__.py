@@ -7,4 +7,4 @@ from .order import Order
 from .photo import Photo
 from .review import Review
 from .product import Product
-from .tables import cart_product, favorites, product_tag, product_photo
+from .tables import cart_product, favorites, product_tag

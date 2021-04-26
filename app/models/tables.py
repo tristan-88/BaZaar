@@ -19,13 +19,13 @@ product_tag = db.Table(
 )
 
 
-product_photo = db.Table(
-    "product_photo",
-    db.Column("product_id", db.Integer, db.ForeignKey(
-        'products.id'), primary_key=True),
-    db.Column("photo_id", db.Integer, db.ForeignKey(
-        "photos.id"), primary_key=True)
-)
+# product_photo = db.Table(
+#     "product_photo",
+#     db.Column("product_id", db.Integer, db.ForeignKey(
+#         'products.id'), primary_key=True),
+#     db.Column("photo_id", db.Integer, db.ForeignKey(
+#         "photos.id"), primary_key=True)
+# )
 
 
 cart_product = db.Table(
