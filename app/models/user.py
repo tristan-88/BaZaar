@@ -1,6 +1,7 @@
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from .tables import favorites
 
 
 class User(db.Model, UserMixin):
@@ -12,6 +13,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
     address = db.Column(db.String(500))
+    photo_url = db.Column(db.String(500))
     hashed_password = db.Column(db.String(255), nullable=False)
 
     @property
@@ -28,10 +30,10 @@ class User(db.Model, UserMixin):
     def to_dict(self):
         return {
             "id": self.id,
-            "first_name": self.firstName,
-            "last_name": self.lastName,
+            "first_name": self.first_name,
+            "last_name": self.last_name,
             "username": self.username,
-            "email": self.email
+            "email": self.email,
             "address": self.address
         }
 
@@ -40,5 +42,5 @@ class User(db.Model, UserMixin):
     user_cart = db.relationship("Cart", back_populates="cart_user")
     user_review = db.relationship("Review", back_populates="review_user")
     user_product = db.relationship(
-        "Product", secondary=favorites, back_populates="product_user")
+        "Product", back_populates="product_user", secondary=favorites)
     user_order = db.relationship("Order", back_populates="order_user")

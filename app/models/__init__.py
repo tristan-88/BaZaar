@@ -1,2 +1,10 @@
 from .db import db
-from .models import User, Store, Product, Order, Tag, Photo, Review, Cart, cart_product, favorites, product_tag
+from .tag import Tag
+from .user import User
+from .cart import Cart
+from .store import Store
+from .order import Order
+from .photo import Photo
+from .review import Review
+from .product import Product
+from .tables import cart_product, favorites, product_tag, product_photo
