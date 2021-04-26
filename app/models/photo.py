@@ -16,4 +16,4 @@ class Photo(db.Model):
         }
 
     photo_product = db.relationship(
-        "Product", back_populates="product_photo", secondary=product_photo)
+        "Product", back_populates="product_photo", secondary=product_photo, cascade="all, delete")

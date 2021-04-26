@@ -18,5 +18,5 @@ class Store(db.Model):
             "description": self.description,
         }
 
-    store_user = db.relationship("User", back_populates='user_store')
-    store_product = db.relationship("Product", back_populates="product_store")
+    store_user = db.relationship("User", back_populates='user_store', cascade="all, delete")
+    store_product = db.relationship("Product", back_populates="product_store", cascade="all, delete")
