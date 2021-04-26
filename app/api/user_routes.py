@@ -30,9 +30,9 @@ def user(id):
 # ---DELETE--- http://localhost:5000/api/users/:id ---UNTESTED---
 
 
-# @user_routes.route('/<int:id>', methods=['DELETE'])
+@user_routes.route('/<int:id>', methods=['DELETE'])
 # @login_required
-# def delete_user(id):
-#     remove_user = User.query.filter(User.id == id).delete()
-#     db.session.commit()
-#     return jsonify('User succefully deleted!' if remove_user else 'Could not delete user.')
+def delete_user(id):
+    remove_user = User.query.filter(User.id == id).delete()
+    db.session.commit()
+    return jsonify('User succefully deleted!' if remove_user else 'Could not delete user.')
