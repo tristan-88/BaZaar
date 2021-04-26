@@ -1,111 +1,205 @@
 const faker = require('faker')
 const bcrypt = require('bcryptjs')
-
+const fs = require('fs')
 
 // call with num 1 less than max
 const randomNumber = (num) => Math.floor(Math.random() * Math.floor(num) + 1)
 
 // const seed_user = (num) => {
 
-//   let i = 0
-//   while (i < num) {
+//     let i = 1
+//     console.log(`
+// def seed_users(): `
+//     )
 
-//     const user = {
-//       firstName: faker.name.firstName(),
-//       lastName: faker.name.lastName(),
-//       email: faker.internet.email(),
-//       username: faker.internet.userName(),
-//       address: faker.address.streetAddress(true),
-//       hashedPass: bcrypt.hashSync(faker.internet.password()),
-//       imageUrl: faker.image.avatar()
+//     while (i <= num) {
+//         const string = `
+//     user${i} = {
+//         first_name: "${faker.name.firstName()}",
+//         last_name: "${faker.name.lastName()}",
+//         email: "${faker.internet.email()}",
+//         username: "${faker.internet.userName()}",
+//         address: "${faker.address.streetAddress(true)}",
+//         hashed_password: "${bcrypt.hashSync(faker.internet.password())}",
+//     }`
+
+//         console.log(string)
+//         console.log("")
+//         console.log(`
+//     db.session.add(user${i})`
+//         )
+//         console.log("")
+//         console.log("")
+
+//         i++
 //     }
+//     console.log(`
+//     db.session.commit()`)
+//     console.log("")
+//     console.log("")
+//     console.log(`
 
-//     console.log(user)
-//     i++
-//   }
-
+// def undo_users():
+//     db.session.execute('TRUNCATE users RESTART IDENTITY CASCADE;')
+//     db.session.commit()
+// `)
 // }
 
-// seed_user(100)
-
+// seed_user(3)
 
 // const seed_store = (num) => {
-//   let i = 0
-//   while (i < 0) {
-//     const store = {
-//       location: faker.address.streetAddress(true),
-//       userId: randomNumber(99),
-//       description: faker.lorem.paragraphs(2)
+//     let i = 0
+//     console.log(`
+// def seed_stores():`)
+//     while (i <= num) {
+//         const string = `
+//     store${i} = {
+//         name: "${faker.company.companyName()}",
+//         location: "${faker.address.streetAddress(true)}",
+//         userId: ${randomNumber(99)},
+//         description: "${faker.lorem.paragraphs(2)}"
+//     }`
+//         console.log(string)
+//         console.log("")
+//         console.log(`
+//     db.session.add(store${i})`)
+//         console.log("")
+//         console.log("")
+//         i++
 //     }
-
-//     console.log(store)
-//     i++
-//   }
+//     console.log(`
+//     db.session.commit()`)
+//     console.log("")
+//     console.log("")
+//     console.log(`
+// def undo_store():
+//     db.session.execute('TRUNCATE stores RESTART IDENTITY CASCADE;')
+//     db.session.commit()
+// `)
 // }
 
-// seed_store(100)
+// seed_store(3)
 
 // const seed_product = (num) => {
-//   let i = 0
-//   while (i < num) {
-
-//     const product = {
-//       name: faker.commerce.productName(),
-//       storeId: randomNumber(19),
-
-//       price: faker.commerce.price(1, 250, 2),
-//       quantity: randomNumber(20),
-//       description: faker.lorem.paragraphs(3),
+//     let i = 0
+//     while (i <= num) {
+//         const string = `
+//     product${i} = {
+//         name: "${faker.commerce.productName()}",
+//         storeId: ${randomNumber(19)},
+//         price: ${faker.commerce.price(1, 250, 2)},
+//         quantity: ${randomNumber(20)},
+//         description: "${faker.lorem.paragraphs(3)}",
+//     }`
+//         console.log(string)
+//         console.log("")
+//         console.log(`
+//     db.session.add(product${i})`)
+//         console.log("")
+//         console.log("")
+//         i++
 //     }
-
-//     console.log(product)
-//     i++
-//   }
-
+//     console.log(`
+//     db.session.commit()`)
+//     console.log("")
+//     console.log("")
+//     console.log(`
+// def undo_store():
+//     db.session.execute('TRUNCATE stores RESTART IDENTITY CASCADE;')
+//     db.session.commit()
+//     `)
 // }
 
-// seed_product(100)
+// seed_product(5)
 
 // const seed_product_tag = (num) => {
-//   let i = 0
-//   while (i < num) {
-//     const tag = {
-//       productId: randomNumber(100),
-//       tagId: randomNumber(5)
+//     let i = 0
+//     console.log(`
+// def seed_tags():`)
+//     while (i <= num) {
+//         const string = `
+//     tag${i} = {
+//         productId: ${randomNumber(100)},
+//         tagId: ${randomNumber(5)}
+//     }`
+//         console.log(string)
+//         console.log("")
+//         console.log(`
+//     db.session.add(tag${i})`)
+//         console.log("")
+//         console.log("")
+//         i++
 //     }
-//     console.log(tag)
-//     i++
-//   }
+//     console.log(`
+//     db.session.commit()`)
+//     console.log("")
+//     console.log("")
+//     console.log(`
+// def undo_tag():
+//     db.session.execute('TRUNCATE tag RESTART IDENTITY CASCADE;')
+//     db.session.commit()`)
 // }
 
-// seed_product_tag(200)
+// seed_product_tag(5)
 
 // const seed_review = (num) => {
-//   let i = 0
-//   while (i < num) {
-//     const review = {
-//       productId: randomNumber(100),
-//       userId: randomNumber(100),
-//       content: faker.lorem.paragraph(randomNumber(5)),
-//       createdAt: faker.date.past()
+//     let i = 0
+//     console.log(`
+// def seed_reviews():`)
+//     while (i <= num) {
+//         const string = `
+//     review${i} = {
+//         productId: ${randomNumber(100)},
+//         userId: ${randomNumber(100)},
+//         content: "${faker.lorem.paragraph(randomNumber(5))}",
+//         createdAt: ${faker.date.past()}
+//     }`
+//         console.log(string)
+//         console.log("")
+//         console.log(`
+//     db.session.add(review${i})`)
+//         console.log("")
+//         console.log("")
+//         i++
 //     }
-
-//     i++
-//   }
+//     console.log(`
+//     db.session.commit()`)
+//     console.log("")
+//     console.log("")
+//     console.log(`
+// def undo_review():
+//     db.session.execute('TRUNCATE review RESTART IDENTITY CASCADE;')
+//     db.session.commit()`)
 // }
 
-// seed_review(300)
+// seed_review(5)
 
 // const seed_favorite = (num) => {
-//   let i = 0
-//   while (i < num) {
-//     const favorite = {
-//       productId: randomNumber(100),
-//       userId: randomNumber(100)
+//     let i = 0
+//     console.log(`
+// def seed_favorites()`)
+//     while (i <= num) {
+//         const string = `
+//     favorite${i} = {
+//         productId: ${randomNumber(100)},
+//         userId: ${randomNumber(100)}
+//     }`
+//         console.log(string)
+//         console.log("")
+//         console.log(`
+//     db.session.add(favorite${i})`)
+//         console.log("")
+//         console.log("")
+//         i++
 //     }
-//     console.log(favorite)
-//     i++
-//   }
+//     console.log(`
+//     db.session.commit()`)
+//     console.log("")
+//     console.log("")
+//     console.log(`
+// def undo_favorite():
+//     db.session.execute('TRUNCATE favorite RESTART IDENTITY CASCADE;')
+//     db.session.commit()`)
 // }
 
-// seed_favorite(500)
+// seed_favorite(5)
