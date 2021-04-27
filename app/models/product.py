@@ -30,3 +30,5 @@ class Product(db.Model):
         "Photo", back_populates="photo_product", cascade="all, delete")
     product_favorite = db.relationship(
         "Favorites", back_populates="favorite_product", cascade="all, delete")
+    product_productTag = db.relationship("Product_Tag", back_populates="productTag_product")
+    product_cartProduct = db.relationship("Cart_Product", back_populates="cartProduct_product")

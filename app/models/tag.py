@@ -15,3 +15,5 @@ class Tag(db.Model):
 
     tag_product = db.relationship(
         "Product", secondary=product_tag, back_populates='product_tag', cascade="all, delete")
+
+    tag_productTag = db.relationship("Product_Tag", back_populates="productTag_tag")

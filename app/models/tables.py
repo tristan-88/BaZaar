@@ -30,18 +30,37 @@ class Favorites(db.Model):
         "Product", back_populates="product_favorite")
 
 
-product_tag = db.Table(
-    "product_tag",
-    db.Column("product_id", db.Integer, db.ForeignKey(
-        'products.id'), primary_key=True),
-    db.Column("tag_id", db.Integer, db.ForeignKey("tags.id"), primary_key=True)
-)
+class Product_Tag(db.Model):
+    __tablename__ = "product_tags"
+
+    id = db.Column(db.Integer, primary_key=True)
+    product_id = db.Column(db.Integer, db.ForeignKey('products.id'), nullable=False)
+    tag_id = db.Column(db.Integer, db.ForeignKey('tags.id'), nullable=False)
+
+    def to_dict(self):
+         return {
+            "id": self.id,
+            "product_id": self.product_id,
+            "tag_id": self.tag_id,
+        }
+
+    productTag_tag = db.relationship("Tag", back_populates="tag_productTag")
+    productTag_product = db.relationship("Product", back_populates="product_productTag")
 
 
-cart_product = db.Table(
-    "cart_product",
-    db.Column("product_id", db.Integer, db.ForeignKey(
-        'products.id'), primary_key=True),
-    db.Column("cart_id", db.Integer, db.ForeignKey(
-        "carts.id"), primary_key=True)
-)
+class Cart_Product(db.Model):
+    __tablename__ = "cart_products"
+
+    id = db.Column(db.Integer, primary_key=True)
+    product_id = db.Column(db.Integer, nullable=False)
+    cart_id = db.Column(db.Integer, nullable=False)
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "product_id": self.product_id,
+            "cart_id": self.cart_id,
+        }
+
+    cartProduct_cart = db.relationship("Cart", back_populates="cart_cartProduct")
+    cartProduct_product = db.relationship("Product", back_populates="product_cartProduct")
