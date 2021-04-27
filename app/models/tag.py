@@ -1,5 +1,5 @@
 from .db import db
-from .tables import product_tag
+from .tables import Product_Tag
 
 
 class Tag(db.Model):
@@ -13,5 +13,4 @@ class Tag(db.Model):
             "tag": self.tag,
         }
 
-    tag_product = db.relationship(
-        "Product", secondary=product_tag, back_populates='product_tag', cascade="all, delete")
+    tag_productTag = db.relationship("Product_Tag", back_populates="productTag_tag")

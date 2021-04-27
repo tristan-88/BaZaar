@@ -1,18 +1,18 @@
 from faker import Faker
-from app.models.tables import (db, cart_product)
+from app.models import (db, Cart_Product)
 import random
+
 
 faker = Faker()
 
 
-def seed_cart_products():
+def seed_Cart_Products():
     for i in range(5):
-        db.session.execute(f'''INSERT INTO cart_product (product_id, cart_id)
-                VALUES({faker.pyint(min_value=1, max_value=51)},
-                {faker.pyint(min_value=1, max_value=6)})''')
-        db.session.commit()
-        
-        
-def undo_cart_products():
-    db.session.execute('''TRUNCATE cart_product RESTART IDENTITY CASCADE;''')
+        demo = Cart_Product(product_id=faker.pyint(min_value=1, max_value=51), cart_id=faker.pyint(min_value=1, max_value=6))
+        db.session.add(demo)
+    db.session.commit()
+
+
+def undo_Cart_Products():
+    db.session.execute('''TRUNCATE cart_products RESTART IDENTITY CASCADE;''')
     db.session.commit()

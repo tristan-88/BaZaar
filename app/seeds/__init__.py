@@ -4,10 +4,10 @@ from .stores import seed_stores, undo_stores
 from .products import seed_products, undo_products
 from .tags import seed_tags, undo_tags
 from .reviews import seed_reviews, undo_reviews
-from .product_tags import seed_product_tags, undo_product_tags
+from .product_tags import seed_Product_Tags, undo_Product_Tags
 from .favorites import seed_Favorites, undo_Favorites
 from .carts import seed_carts, undo_carts
-from .cart_products import seed_cart_products, undo_cart_products
+from .cart_products import seed_Cart_Products, undo_Cart_Products
 from .photos import seed_photos, undo_photos
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
@@ -25,9 +25,9 @@ def seed():
     seed_tags()
     seed_reviews()
     seed_Favorites()
-    seed_product_tags()
+    seed_Product_Tags()
     seed_carts()
-    seed_cart_products()
+    seed_Cart_Products()
     seed_photos()
 # Creates the `flask seed undo` command
 
@@ -35,13 +35,13 @@ def seed():
 @seed_commands.command('undo')
 def undo():
     # Add undo functions here
+    undo_Product_Tags()
+    undo_Cart_Products()
+    undo_Favorites()
     undo_users()
     undo_stores()
     undo_products()
     undo_tags()
     undo_reviews()
-    undo_Favorites()
-    undo_product_tags()
     undo_carts()
-    undo_cart_products()
     undo_photos()
