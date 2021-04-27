@@ -14,5 +14,5 @@ def seed_tags():
 
 
 def undo_tags():
-    db.session.execute('TRUNCATE stores RESTART IDENTITY CASCADE;')
+    db.session.execute('TRUNCATE tags RESTART IDENTITY CASCADE;')
     db.session.commit()
