@@ -2,7 +2,7 @@ from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .stores import seed_stores, undo_stores
 from .products import seed_products, undo_products
-
+from .favorites import seed_Favorites, undo_Favorites
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
 seed_commands = AppGroup('seed')
@@ -16,6 +16,7 @@ def seed():
     seed_users()
     seed_stores()
     seed_products()
+    seed_Favorites()
 # Creates the `flask seed undo` command
 
 
@@ -25,3 +26,4 @@ def undo():
     undo_users()
     undo_stores()
     undo_products()
+    undo_Favorites()

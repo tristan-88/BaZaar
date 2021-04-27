@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request, redirect
 from flask_login import login_required, login_user, current_user
-from app.models import db, User, Product, favorites
+from app.models import db, User, Product, Favorites
 from app.forms import SignUpForm
 
 user_routes = Blueprint('users', __name__)
@@ -12,6 +12,8 @@ tests = {'Message': 'Hello'}
 # http://localhost:5000/api/users --- WORKS
 
 # this route will return all users
+
+
 @user_routes.route('/')
 @login_required
 def users():
@@ -30,6 +32,8 @@ def user(id):
 # ---DELETE--- http://localhost:5000/api/users/:id ---WORKS---
 
 # this route will detele a user by their unique id
+
+
 @user_routes.route('/', methods=['DELETE'])
 @login_required
 def del_user():
@@ -46,10 +50,44 @@ def del_user():
 
 # still working on this route
 
-# @user_routes.route('/<int:id>/favorites')
-# def get_favorites(id):
-#     """
-#     Return a users favorite products
-#     """
-#     favorites = favorites.query.filter_by(user_id=id).all()
-#     return favorites
+@user_routes.route('/<int:id>/favorites')
+def get_Favorites(id):
+    """
+    Return a users favorite products' ids as a list
+    """
+    favorites = Favorites.query.filter_by(user_id=id).all()
+    favs_list = [favorite.to_dict() for favorite in favorites]
+    product_ids = [fav["product_id"] for fav in favs_list]
+
+    return jsonify(product_ids)
+
+
+@user_routes.route('/<int:id>/favorites/<int:fav_id>', methods=['DELETE'])
+# @login_required
+def delete_favorite(id, fav_id):
+    favorite = Favorites.query.filter_by(user_id=id, product_id=fav_id).first()
+    db.session.delete(favorite)
+    db.session.commit()
+    return jsonify(favorite.to_dict())
+
+
+@user_routes.route('/<int:id>/favorites/<int:fav_id>', methods=['POST'])
+# @login_required
+def add_favorite(id, fav_id):
+    new_favorite = Favorites(
+        user_id=id,
+        product_id=fav_id
+    )
+
+    db.session.add(new_favorite)
+    db.session.commit()
+    return jsonify(new_favorite.to_dict())
+
+
+@user_routes.route('/update')
+@login_required
+def updat_user(id):
+    user = User.query.get(current_user.id)
+    update_form = SignUpForm()
+    update_form.populate_obj(user)
+    return user.to_dict()

@@ -1,7 +1,7 @@
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from .tables import favorites
+from .tables import Favorites
 
 
 class User(db.Model, UserMixin):
@@ -39,8 +39,11 @@ class User(db.Model, UserMixin):
 
     user_store = db.relationship(
         "Store", back_populates="store_user", uselist=False)
-    user_cart = db.relationship("Cart", back_populates="cart_user", cascade="all, delete")
-    user_review = db.relationship("Review", back_populates="review_user", cascade="all, delete")
-    user_product = db.relationship(
-        "Product", back_populates="product_user", secondary=favorites, cascade="all, delete")
-    user_order = db.relationship("Order", back_populates="order_user", cascade="all, delete")
+    user_cart = db.relationship(
+        "Cart", back_populates="cart_user", cascade="all, delete")
+    user_review = db.relationship(
+        "Review", back_populates="review_user", cascade="all, delete")
+    user_order = db.relationship(
+        "Order", back_populates="order_user", cascade="all, delete")
+    user_favorite = db.relationship(
+        "Favorites", back_populates="favorite_user", cascade="all, delete")
