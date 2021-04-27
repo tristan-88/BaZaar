@@ -22,3 +22,4 @@ class Cart(db.Model):
 
     cart_user = db.relationship("User", back_populates="user_cart", cascade="all, delete")
     cart_order = db.relationship("Order", back_populates="order_cart", cascade="all, delete")
+    cart_cartProduct = db.relationship("Cart_Product", back_populates="cartProduct_cart")
