@@ -8,6 +8,7 @@ from flask_login import LoginManager
 from .models import db, User
 from .api.auth_routes import auth_routes
 from .api.cart_routes import cart_routes
+from .api.store_routes import store_routes
 from .api.product_routes import product_routes
 from .api.search_routes import search_routes
 from .api.user_routes import user_routes
@@ -33,6 +34,7 @@ app.cli.add_command(seed_commands)
 
 app.config.from_object(Config)
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
+app.register_blueprint(store_routes, url_prefix='/api/store')
 app.register_blueprint(cart_routes, url_prefix='/api/cart')
 app.register_blueprint(product_routes, url_prefix='/api/products')
 app.register_blueprint(search_routes, url_prefix='/api/search')
