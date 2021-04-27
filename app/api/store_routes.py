@@ -9,13 +9,16 @@ store_routes = Blueprint('stores', __name__)
 @store_routes.route('/')
 def get_stores():
     stores = Store.query.all()
-    return {"stores": [stores.to_dict() for store in stores]}
+    return {"stores": [store.to_dict() for store in stores]}
+
+
+@store_routes.route('/<int:id>')
+def get_store(id):
+    store = Store.query.get(id)
+    return store.to_dict()
 
 
 @store_routes.route('/<int:id>/products')
 def get_products(id):
     products = Product.query.filter_by(store_id=id).all()
     return {"products": [product.to_dict() for product in products]}
-
-
-@store_routes.route('/<int:id>/')
