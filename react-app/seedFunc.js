@@ -4,47 +4,47 @@ const faker = require('faker')
 // call with num 1 less than max
 const randomNumber = (num) => Math.floor(Math.random() * Math.floor(num) + 1)
 
-const seed_user = (num) => {
+// const seed_user = (num) => {
 
-  let i = 1
-  console.log(`
-def seed_users(): `
-  )
+//   let i = 1
+//   console.log(`
+// def seed_users(): `
+//   )
 
-  while (i <= num) {
-    const string = `
-    user${i} = User(
-        first_name= "${faker.name.firstName()}",
-        last_name= "${faker.name.lastName()}",
-        email= "${faker.internet.email()}",
-        username= "${faker.internet.userName()}",
-        address= "${faker.address.streetAddress(true)}",
-        password= "${faker.internet.password()}",
-    )`
+//   while (i <= num) {
+//     const string = `
+//     user${i} = User(
+//         first_name= "${faker.name.firstName()}",
+//         last_name= "${faker.name.lastName()}",
+//         email= "${faker.internet.email()}",
+//         username= "${faker.internet.userName()}",
+//         address= "${faker.address.streetAddress(true)}",
+//         password= "${faker.internet.password()}",
+//     )`
 
-    console.log(string)
-    console.log("")
-    console.log(`
-    db.session.add(user${i})`
-    )
-    console.log("")
-    console.log("")
+//     console.log(string)
+//     console.log("")
+//     console.log(`
+//     db.session.add(user${i})`
+//     )
+//     console.log("")
+//     console.log("")
 
-    i++
-  }
-  console.log(`
-    db.session.commit()`)
-  console.log("")
-  console.log("")
-  console.log(`
+//     i++
+//   }
+//   console.log(`
+//     db.session.commit()`)
+//   console.log("")
+//   console.log("")
+//   console.log(`
 
-def undo_users():
-    db.session.execute('TRUNCATE users RESTART IDENTITY CASCADE;')
-    db.session.commit()
-`)
-}
+// def undo_users():
+//     db.session.execute('TRUNCATE users RESTART IDENTITY CASCADE;')
+//     db.session.commit()
+// `)
+// }
 
-seed_user(5)
+// seed_user(5)
 
 // const seed_store = (num) => {
 //   let i = 1
@@ -79,38 +79,38 @@ seed_user(5)
 
 // seed_store(6)
 
-const seed_product = (num) => {
-  let i = 0
+// const seed_product = (num) => {
+//   let i = 0
 
-  while (i <= num) {
-    const string = `
-    product${i} = Product(
-        name= "${faker.commerce.productName()}",
-        storeId= ${randomNumber(5)},
-        price= ${faker.commerce.price(1, 250, 2)},
-        quantity= ${randomNumber(20)},
-        description= """${faker.lorem.paragraphs(3)}""",
-    )`
-    console.log(string)
-    console.log("")
-    console.log(`
-    db.session.add(product${i})`)
-    console.log("")
-    console.log("")
-    i++
-  }
-  console.log(`
-    db.session.commit()`)
-  console.log("")
-  console.log("")
-  console.log(`
-def undo_store():
-    db.session.execute('TRUNCATE stores RESTART IDENTITY CASCADE;')
-    db.session.commit()
-    `)
-}
+//   while (i <= num) {
+//     const string = `
+//     product${i} = Product(
+//         name= "${faker.commerce.productName()}",
+//         storeId= ${randomNumber(5)},
+//         price= ${faker.commerce.price(1, 250, 2)},
+//         quantity= ${randomNumber(20)},
+//         description= """${faker.lorem.paragraphs(3)}""",
+//     )`
+//     console.log(string)
+//     console.log("")
+//     console.log(`
+//     db.session.add(product${i})`)
+//     console.log("")
+//     console.log("")
+//     i++
+//   }
+//   console.log(`
+//     db.session.commit()`)
+//   console.log("")
+//   console.log("")
+//   console.log(`
+// def undo_store():
+//     db.session.execute('TRUNCATE stores RESTART IDENTITY CASCADE;')
+//     db.session.commit()
+//     `)
+// }
 
-seed_product(50)
+// seed_product(50)
 
 // const seed_product_tag = (num) => {
 //     let i = 0
@@ -174,32 +174,32 @@ seed_product(50)
 
 // seed_review(5)
 
-// const seed_favorite = (num) => {
-//     let i = 0
-//     console.log(`
-// def seed_favorites()`)
-//     while (i <= num) {
-//         const string = `
-//     favorite${i} = {
-//         productId: ${randomNumber(100)},
-//         userId: ${randomNumber(100)}
-//     }`
-//         console.log(string)
-//         console.log("")
-//         console.log(`
-//     db.session.add(favorite${i})`)
-//         console.log("")
-//         console.log("")
-//         i++
-//     }
-//     console.log(`
-//     db.session.commit()`)
-//     console.log("")
-//     console.log("")
-//     console.log(`
-// def undo_favorite():
-//     db.session.execute('TRUNCATE favorite RESTART IDENTITY CASCADE;')
-//     db.session.commit()`)
-// }
+const seed_favorite = (num) => {
+  let i = 0
+  console.log(`
+def seed_Favorites():`)
+  while (i <= num) {
+    const string = `
+    favorite${i} = Favorites(
+        product_id= ${randomNumber(49)},
+        user_id= ${randomNumber(5)}
+    )`
+    console.log(string)
+    console.log("")
+    console.log(`
+    db.session.add(favorite${i})`)
+    console.log("")
+    console.log("")
+    i++
+  }
+  console.log(`
+    db.session.commit()`)
+  console.log("")
+  console.log("")
+  console.log(`
+def undo_Favorites():
+    db.session.execute('TRUNCATE favorite RESTART IDENTITY CASCADE;')
+    db.session.commit()`)
+}
 
-// seed_favorite(5)
+seed_favorite(50)
