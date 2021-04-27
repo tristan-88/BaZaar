@@ -8,6 +8,7 @@ class Store(db.Model):
     address = db.Column(db.String(500))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     description = db.Column(db.String(2000))
+    photo_url = db.Column(db.String(1000))
 
     def to_dict(self):
         return {
@@ -16,7 +17,10 @@ class Store(db.Model):
             "address": self.address,
             "user_id": self.user_id,
             "description": self.description,
+            "photo_url": self.photo_url
         }
 
-    store_user = db.relationship("User", back_populates='user_store', cascade="all, delete")
-    store_product = db.relationship("Product", back_populates="product_store", cascade="all, delete")
+    store_user = db.relationship(
+        "User", back_populates='user_store', cascade="all, delete")
+    store_product = db.relationship(
+        "Product", back_populates="product_store", cascade="all, delete")
