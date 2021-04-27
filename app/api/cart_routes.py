@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import current_user
-from app.models import db, Product, Store, User, Order, Cart
+from app.models import db, Product, Store, User, Order, Cart, cart_product
 
 cart_routes = Blueprint('carts', __name__)
 
@@ -26,8 +26,12 @@ cart_routes = Blueprint('carts', __name__)
 
 @cart_routes.route('/<int:id>')
 def single_cart(id):
-    cart = Cart.get(id)
-    return cart.to_dict()
+    # Getting the cart so we have the userId, createdAt, updatedAt, and empty order_id
+    cart = Cart.query.get(id)
+    # get the cartProducts id's so we have the products associated with their cart
+    # cartProducts = Session.query(cart_product).filter(cart_product.c.cart_id==id).all()
+    # return jsonify({'cart': cart.to_dict()})
+    return jsonify(cart.to_dict())
 
 # ---PATCH--- http://localhost:5000/api/carts/:id
 
