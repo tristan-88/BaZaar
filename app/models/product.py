@@ -1,5 +1,5 @@
 from .db import db
-from .tables import Favorites, product_tag
+from .tables import Favorites, Product_Tag
 
 
 class Product(db.Model):
@@ -24,11 +24,9 @@ class Product(db.Model):
         "Store", back_populates="store_product", cascade="all, delete")
     product_review = db.relationship(
         "Review", back_populates="review_product", cascade="all, delete")
-    product_tag = db.relationship(
-        "Tag", secondary=product_tag, back_populates="tag_product", cascade="all, delete")
     product_photo = db.relationship(
         "Photo", back_populates="photo_product", cascade="all, delete")
     product_favorite = db.relationship(
         "Favorites", back_populates="favorite_product", cascade="all, delete")
-    product_productTag = db.relationship("Product_Tag", back_populates="productTag_product")
-    product_cartProduct = db.relationship("Cart_Product", back_populates="cartProduct_product")
+    product_productTag = db.relationship("Product_Tag", back_populates="productTag_product", cascade="all, delete")
+    product_cartProduct = db.relationship("Cart_Product", back_populates="cartProduct_product", cascade="all, delete")
