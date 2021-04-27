@@ -1,5 +1,6 @@
 from .db import db
-from sqlalchemy import Date
+from sqlalchemy import Date, DateTime
+import datetime
 
 
 class Review(db.Model):
@@ -10,7 +11,7 @@ class Review(db.Model):
         "products.id"), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     content = db.Column(db.String(2000), nullable=False)
-    created_at = db.Column(Date)
+    created_at = db.Column(DateTime, default=datetime.datetime.utcnow)
 
     def to_dict(self):
         return {

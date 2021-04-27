@@ -7,15 +7,12 @@ faker = Faker()
 
 def seed_product_tags():
     for i in range(20):
-        demo = product_tag(
-            product_id=faker.pyint(min_value=1, max_value=51),
-            tag_id=faker.pyint(min_value=1, max_value=11),
-        )
-        db.session.add(demo)
-    db.session.commit()
+        db.session.execute(f'''INSERT INTO product_tag (product_id, tag_id)
+                VALUES({faker.pyint(min_value=1, max_value=51)}, {faker.pyint(min_value=1, max_value=11)})           ''')
+        db.session.commit()
 
 
 
 def undo_product_tags():
-    db.session.execute('TRUNCATE stores RESTART IDENTITY CASCADE;')
+    db.session.execute('''TRUNCATE product_tag RESTART IDENTITY CASCADE;''')
     db.session.commit()

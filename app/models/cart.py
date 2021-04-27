@@ -1,13 +1,14 @@
 from .db import db
-from sqlalchemy import Date
+from sqlalchemy import Date, DateTime
+import datetime
 
 
 class Cart(db.Model):
     __tablename__ = "carts"
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    created_at = db.Column(Date)
-    updated_at = db.Column(Date)
+    created_at = db.Column(DateTime, default=datetime.datetime.utcnow)
+    updated_at = db.Column(DateTime, default=datetime.datetime.utcnow)
     order_id = db.Column(db.Integer, nullable=True)
 
     def to_dict(self):

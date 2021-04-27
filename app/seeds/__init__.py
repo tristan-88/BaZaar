@@ -6,6 +6,8 @@ from .tags import seed_tags, undo_tags
 from .reviews import seed_reviews, undo_reviews
 from .product_tags import seed_product_tags, undo_product_tags
 from .favorites import seed_Favorites, undo_Favorites
+from .carts import seed_carts, undo_carts
+from .cart_products import seed_cart_products, undo_cart_products
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
 seed_commands = AppGroup('seed')
@@ -23,6 +25,8 @@ def seed():
     seed_reviews()
     seed_Favorites()
     seed_product_tags()
+    seed_carts()
+    seed_cart_products()
 # Creates the `flask seed undo` command
 
 
@@ -36,3 +40,5 @@ def undo():
     undo_reviews()
     undo_Favorites()
     undo_product_tags()
+    undo_carts()
+    undo_cart_products()
