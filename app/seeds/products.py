@@ -619,5 +619,5 @@ Saepe omnis eaque numquam recusandae. Cupiditate perspiciatis dolorem optio cons
 
 
 def undo_products():
-    db.session.execute('TRUNCATE stores RESTART IDENTITY CASCADE;')
+    db.session.execute('TRUNCATE products RESTART IDENTITY CASCADE;')
     db.session.commit()

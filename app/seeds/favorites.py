@@ -364,5 +364,5 @@ def seed_Favorites():
 
 
 def undo_Favorites():
-    db.session.execute('TRUNCATE favorite RESTART IDENTITY CASCADE;')
+    db.session.execute('TRUNCATE favorites RESTART IDENTITY CASCADE;')
     db.session.commit()
