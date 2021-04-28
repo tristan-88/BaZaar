@@ -3,8 +3,9 @@
 // products are a component
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { loadProducts } from '../store/product';
-
+import { loadProducts } from '../../store/product';
+import ProductCard from '../ProductCard/ProductCard'
+import './HomePage.css'
 
 function HomePage() {
     const dispatch = useDispatch()
@@ -16,6 +17,7 @@ function HomePage() {
     return (
         <>
             <h1>You are in the home page component</h1>
+            <ProductCard />
         </>
     )
 }
