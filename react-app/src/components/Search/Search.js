@@ -1,8 +1,8 @@
-import * as searchActions from '../store/search';
+import * as searchActions from '../../store/search';
 import React, { useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
-
+import './Search.css';
 
 function Search() {
     const dispatch = useDispatch();
