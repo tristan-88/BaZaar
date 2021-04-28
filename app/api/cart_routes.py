@@ -1,25 +1,19 @@
 from flask import Blueprint, jsonify, request
 from flask_login import current_user
 from app.models import db, Product, Store, User, Order, Cart, Cart_Product
+from sqlalchemy import desc
 
 cart_routes = Blueprint('carts', __name__)
 
 # ---POST--- http://localhost:/5000 api/carts
-# @cart_routes.route('/', methods=["POST"])
-# def create_cart():
-#     #form = CartForm()
-#     if form.validate_on_submit():
-#         cart = Cart(
-#             user_id=current_user.id,
-#             created_at=  # ,
-#             upated_at=  # ,
-#             order_id=  # some query here
-#         )
-#         db.session.add(cart)
-#         db.session.commit()
-#     return jsonify({'cart': cart.to_dict()} if cart else 'Error fetching cart')
+@cart_routes.route('', methods=["POST"])
+def create_cart():
+    # need to check if user has a cart, if so we don't need to create a new one and can just grab the one in database
+    carts = Cart.query.order_by(desc(Cart.created_at))
+    #THIS IS NOT COMPLETE
+    userCarts = {"carts": [cart.to_dict() for cart in carts]}
 
-#
+    return jsonify(userCarts)
 
 # ---GET--- http://localhost:5000/api/carts/:id
 
