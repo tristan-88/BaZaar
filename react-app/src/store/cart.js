@@ -7,7 +7,7 @@ const setCart = (cart) => ({
     payload: cart
 })
 
-const removeCart = (cart) => ({
+const deleteCart = () => ({
     type: REMOVE_CART
 })
 
@@ -27,6 +27,9 @@ export const createCart = () => async (dispatch) => {
     dispatch(setCart(data))
 }
 
+export const removeCart = () => async (dispatch) => {
+    dispatch(deleteCart())
+}
 
 const initialState = {}
 
