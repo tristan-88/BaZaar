@@ -2,11 +2,12 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/session";
 import { removeCart } from "../../store/cart"
+import { removeProducts } from "../../store/product";
 
 const LogoutButton = () => {
   const dispatch = useDispatch()
   const onLogout = async (e) => {
-    await dispatch(removeCart())
+    await dispatch(removeCart());
     await dispatch(logout());
   };
 
