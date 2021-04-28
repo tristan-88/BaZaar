@@ -33,6 +33,12 @@ def product_photos(id):
     return product_photos
     
 
+# ---GET--- http://localhost:5000/api/products/id/reviews ---TESTED---
+@product_routes.route('/<int:id>/reviews')
+def product_reviews(id):
+    reviews = Review.query.filter_by(product_id=id).all()
+    return {"reviews": [review.to_dict() for review in reviews]}
+
 
 
 # ---POST--- http://localhost:5000/api/products ---UNTESTED---
