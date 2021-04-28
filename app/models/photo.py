@@ -14,5 +14,5 @@ class Photo(db.Model):
             "photo_url": self.photo_url,
         }
 
-    photo_product = db.relationship(
-        "Product", back_populates="product_photo", cascade="all, delete")
+    products = db.relationship(
+        "Product", back_populates="photos", cascade="all, delete")

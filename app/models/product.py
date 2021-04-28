@@ -17,16 +17,20 @@ class Product(db.Model):
             "store_id": self.store_id,
             "price": self.price,
             "quantity": self.quantity,
-            "description": self.description
+            "description": self.description,
+            "reviews": [review.to_dict() for review in self.reviews],
+            "photos": [photo.to_dict() for photo in self.photos],
+            "favorite": [favorite.to_dict() for favorite in self.favorites],
+            "tag": [tag.to_dict() for tag in self.tags]
         }
 
-    product_store = db.relationship(
-        "Store", back_populates="store_product", cascade="all, delete")
-    product_review = db.relationship(
-        "Review", back_populates="review_product", cascade="all, delete")
-    product_photo = db.relationship(
-        "Photo", back_populates="photo_product", cascade="all, delete")
-    product_favorite = db.relationship(
-        "Favorites", back_populates="favorite_product", cascade="all, delete")
-    product_productTag = db.relationship("Product_Tag", back_populates="productTag_product", cascade="all, delete")
-    product_cartProduct = db.relationship("Cart_Product", back_populates="cartProduct_product", cascade="all, delete")
+    stores = db.relationship(
+        "Store", back_populates="products", cascade="all, delete")
+    reviews = db.relationship(
+        "Review", back_populates="products", cascade="all, delete")
+    photos = db.relationship(
+        "Photo", back_populates="products", cascade="all, delete")
+    favorites = db.relationship(
+        "Favorites", back_populates="products", cascade="all, delete")
+    tags = db.relationship("Product_Tag", back_populates="products", cascade="all, delete")
+    carts = db.relationship("Cart_Product", back_populates="products", cascade="all, delete")

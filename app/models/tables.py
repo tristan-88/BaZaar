@@ -25,9 +25,9 @@ class Favorites(db.Model):
             "product_id": self.product_id,
         }
 
-    favorite_user = db.relationship("User", back_populates="user_favorite")
-    favorite_product = db.relationship(
-        "Product", back_populates="product_favorite")
+    users = db.relationship("User", back_populates="favorites")
+    products = db.relationship(
+        "Product", back_populates="favorites")
 
 
 class Product_Tag(db.Model):
@@ -44,8 +44,8 @@ class Product_Tag(db.Model):
             "tag_id": self.tag_id,
         }
 
-    productTag_tag = db.relationship("Tag", back_populates="tag_productTag")
-    productTag_product = db.relationship("Product", back_populates="product_productTag")
+    tags = db.relationship("Tag", back_populates="")
+    products = db.relationship("Product", back_populates="tags")
 
 
 class Cart_Product(db.Model):
@@ -62,5 +62,5 @@ class Cart_Product(db.Model):
             "cart_id": self.cart_id,
         }
 
-    cartProduct_cart = db.relationship("Cart", back_populates="cart_cartProduct", cascade="all, delete")
-    cartProduct_product = db.relationship("Product", back_populates="product_cartProduct", cascade="all, delete")
+    carts = db.relationship("Cart", back_populates="products", cascade="all, delete")
+    products = db.relationship("Product", back_populates="carts", cascade="all, delete")

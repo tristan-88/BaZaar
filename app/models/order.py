@@ -19,5 +19,5 @@ class Order(db.Model):
             "shipping_address": self.shipping_address
         }
 
-    order_user = db.relationship("User", back_populates="user_order", cascade="all, delete")
-    order_cart = db.relationship("Cart", back_populates="cart_order", cascade="all, delete")
+    users = db.relationship("User", back_populates="orders", cascade="all, delete")
+    carts = db.relationship("Cart", back_populates="orders", cascade="all, delete")
