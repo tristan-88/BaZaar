@@ -25,6 +25,8 @@ def check_create_cart(id):
 @login_required
 def assign_cart():
     return check_create_cart(current_user.id)
+
+    
 # ---GET--- http://localhost:5000/api/carts/:id
 
 # @cart_routes.route('/<int:id>')
