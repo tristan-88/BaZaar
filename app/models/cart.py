@@ -17,9 +17,10 @@ class Cart(db.Model):
             "user_id": self.user_id,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
-            "order_id": self.order_id
+            "order_id": self.order_id,
+            "products": [product.to_dict() for product in self.products]
         }
 
-    cart_user = db.relationship("User", back_populates="user_cart", cascade="all, delete")
-    cart_order = db.relationship("Order", back_populates="order_cart", cascade="all, delete")
-    cart_cartProduct = db.relationship("Cart_Product", back_populates="cartProduct_cart")
+    users = db.relationship("User", back_populates="carts", cascade="all, delete")
+    orders = db.relationship("Order", back_populates="carts", cascade="all, delete")
+    products = db.relationship("Cart_Product", back_populates="carts")

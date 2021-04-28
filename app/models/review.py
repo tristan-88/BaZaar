@@ -22,6 +22,6 @@ class Review(db.Model):
             "created_at": self.created_at,
         }
 
-    review_user = db.relationship("User", back_populates="user_review", cascade="all, delete")
-    review_product = db.relationship(
-        "Product", back_populates="product_review", cascade="all, delete")
+    users = db.relationship("User", back_populates="reviews", cascade="all, delete")
+    products = db.relationship(
+        "Product", back_populates="reviews", cascade="all, delete")

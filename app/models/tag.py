@@ -13,4 +13,4 @@ class Tag(db.Model):
             "tag": self.tag,
         }
 
-    tag_productTag = db.relationship("Product_Tag", back_populates="productTag_tag")
+    product_tags = db.relationship("Product_Tag", back_populates="tags")
