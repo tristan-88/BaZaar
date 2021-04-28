@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import { createCart } from '../../store/cart';
 
 const SignUpForm = () => {
   const dispatch = useDispatch()
@@ -19,6 +20,7 @@ const SignUpForm = () => {
     e.preventDefault();
     if (password === repeatPassword) {
       await dispatch(signUp(firstname, lastname, username, email, photo, password, address));
+      await dispatch(createCart())
     }
   };
 
