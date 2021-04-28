@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request
 from flask_login import current_user, login_required
 from app.models import db, Product, Store, User, Order, Cart, Cart_Product
 from sqlalchemy import desc
+import datetime
 
 cart_routes = Blueprint('carts', __name__)
 
@@ -24,6 +25,8 @@ def check_create_cart(id):
 @login_required
 def assign_cart():
     return check_create_cart(current_user.id)
+
+    
 # ---GET--- http://localhost:5000/api/carts/:id
 
 # @cart_routes.route('/<int:id>')

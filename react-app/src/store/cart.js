@@ -31,9 +31,9 @@ export const createCart = () => async (dispatch) => {
 const initialState = {}
 
 export default function cartReducer(state = initialState, action) {
-    switch(action.type) {
+    switch (action.type) {
         case SET_CART:
-            return {...action.payload}
+            return { ...action.payload }
         case REMOVE_CART:
             return {};
         default:

@@ -86,7 +86,7 @@ def add_favorite(id, fav_id):
 
 @user_routes.route('/update')
 @login_required
-def updat_user(id):
+def update_user(id):
     user = User.query.get(current_user.id)
     update_form = SignUpForm()
     update_form.populate_obj(user)

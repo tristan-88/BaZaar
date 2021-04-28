@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 from flask_login import current_user
-from app.models import db, Product, Store, Review
+from app.models import db, Product, Store, Review, Photo
 
 product_routes = Blueprint('products', __name__)
 
@@ -25,9 +25,20 @@ def single_product(id):
     return product.to_dict()
 
 
-# @product_routes.route('/<int:id>/photos')
-# def product_photos(id):
-#     photo_urls = Photo.
+@product_routes.route('/<int:id>/photos')
+def product_photos(id):
+    photos = Photo.query.filter_by(product_id=id).all()
+    product_photos = {"product_photos": [photo.to_dict() for photo in photos]}
+    # photo_urls = [k: v for k, v in product_photos.["product_photos"].items() if k == "photo_url"]
+    return product_photos
+    
+
+# ---GET--- http://localhost:5000/api/products/id/reviews ---TESTED---
+@product_routes.route('/<int:id>/reviews')
+def product_reviews(id):
+    reviews = Review.query.filter_by(product_id=id).all()
+    return {"reviews": [review.to_dict() for review in reviews]}
+
 
 
 # ---POST--- http://localhost:5000/api/products ---UNTESTED---
