@@ -6,12 +6,14 @@ import App from './App';
 import configureStore from './store';
 import * as searchActions from './store/search';
 import * as sessionActions from './store/session';
+import * as cartActions from './store/cart';
 
 const store = configureStore();
 
 if (process.env.NODE_ENV !== 'production') {
   window.searchActions = searchActions;
   window.sessionActions = sessionActions;
+  window.cartActions = cartActions;
 }
 
 ReactDOM.render(
