@@ -7,15 +7,19 @@ import './FeatureProductTile.css'
 
 const FeatureProductContainer = ({ products }) => {
 
+  let keys;
+
+  if (products) {
+    keys = Object.keys(products).slice(0, 3)
+  }
+
   return (
     <>
-      {products["0"] &&
-        <div className='fpt-container-div'>
-          <FeatureProductTile product={products["0"]} />
-          <FeatureProductTile product={products["1"]} />
-          <FeatureProductTile product={products["33"]} />
-        </div>
-      }
+      {keys && (
+        keys.map(key => (
+          <FeatureProductTile product={products[key]} key={key} />
+        )
+        ))}
     </>
   )
 }

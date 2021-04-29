@@ -37,6 +37,7 @@ faker-commerce = "*"
 Faker = "*"
 Dumper = "*"
 DateTime = "*"
+requests = "*"
 flask-db = "*"
 
 [dev-packages]
