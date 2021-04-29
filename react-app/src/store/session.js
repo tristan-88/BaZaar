@@ -60,13 +60,13 @@ export const logout = () => async (dispatch) => {
 
 export const signUp = (firstname, lastname, username, email, image, password, address) => async (dispatch) => {
   const formData = new FormData();
-  formData.append('first_name', firstname)
-  formData.append('last_name', lastname)
-  formData.append('username', username)
-  formData.append('email', email)
-  formData.append('image', image)
-  formData.append('password', password)
-  formData.append('address', address)
+    formData.append('first_name', firstname)
+    formData.append('last_name', lastname)
+    formData.append('username', username)
+    formData.append('email', email)
+    formData.append('image', image)
+    formData.append('password', password)
+    formData.append('address', address)
 
 
     const response = await fetch('/api/auth/signup', {
