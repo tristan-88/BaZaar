@@ -1,0 +1,32 @@
+
+.fpt-container-div {
+  display: flex;
+  justify-content: space-around;
+  background-color: aliceblue;
+  margin-top: 18px;
+  margin-bottom: 18px
+}
+
+.fpt-wrapper {
+  max-width: 248px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.small-img-div {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.fpt-small-img {
+  box-sizing: border-box;
+  margin-left: 2px;
+  max-width: 60px;
+  max-height: 60px;
+}
+
+.fpt-main-img {
+  box-sizing: border-box;
+  max-width: 240px;
+  max-height: 240px;
+}
