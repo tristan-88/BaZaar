@@ -34,7 +34,8 @@ class User(db.Model, UserMixin):
             "last_name": self.last_name,
             "username": self.username,
             "email": self.email,
-            "address": self.address
+            "address": self.address,
+            "photo_url": self.photo_url
         }
 
     stores = db.relationship(
