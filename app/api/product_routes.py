@@ -15,6 +15,16 @@ def all_products():
     products = Product.query.all()
     return jsonify([product.to_dict() for product in products])
 
+#Using Association routes
+# @product_routes.route('/joshy')
+# def all_something():
+#     products = Product.query.get(1)
+#     return products.to_dict()
+
+# @product_routes.route('/')
+# def all_something():
+#     products = Product.query.get(1)
+#     return {"message":products.reviews[0].users.username}
 
 # ---GET--- http://localhost:5000/api/products/id ---TESTED---
 
