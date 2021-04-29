@@ -19,7 +19,7 @@ function Search() {
     return (
         <div>
             <form method="get" action="localhost:5000/api/search" onSubmit={(e) => handleSubmit(e)}>
-                <button onClick={(e) => handleSubmit(e)} type='submit'>Search</button>
+                <button onClick={(e) => handleSubmit(e)} type='submit'><i class="fas fa-telescope"></i></button>
                 <input
                     value={search}
                     name='search'
