@@ -21,7 +21,7 @@ const NavBar = () => {
           <i class="fad fa-users fa-4x"></i>
           </NavLink>
           <LogoutButton />
-          <div>
+          <div className="search-bar">
           <Search />
           </div>
         </div>

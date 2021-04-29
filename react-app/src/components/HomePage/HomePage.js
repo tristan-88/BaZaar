@@ -21,14 +21,23 @@ function HomePage() {
     }
 
     return (
-        <>
-            <h1>You are in the home page component</h1>
-            <div className='fpt-container'>
-                {products["0"] && <FeatureProductContainer products={products} />}
-            </div>
-            <ProductCard />
-        </>
-    )
+			<>
+				<div className="banner-div">
+					<img
+						src="https://api.genstore.info/photos/banner-shopping.jpg"
+						alt="👽"
+						className="banner-img"
+					/>
+				</div>
+				<div className="fpt-container">
+					{products["0"] && <FeatureProductContainer products={products} />}
+				</div>
+				<div className="tags-div">
+					<h1>TAGS AND CATEGORIES WILL BE HERE</h1>
+				</div>
+				<ProductCard />
+			</>
+		);
 }
 
 

@@ -13,8 +13,8 @@ function ProductCard() {
 
     return (
         //we may want to limit on the display
-        <div className="product-card-container" style={{display:"flex", flexWrap:'wrap', width:'fit-content'}}>
-            <div className="product-list"style={{display:'flex',flexDirection: 'row'}}>
+        <div className="product-card-container" >
+            <div className="product-list">
                 {Object.values(products).map((product,i) => (
                   <SmallProductTile product={product} key={i} />
                 ))}
