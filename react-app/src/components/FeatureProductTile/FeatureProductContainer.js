@@ -11,7 +11,6 @@ const FeatureProductContainer = ({ products }) => {
 
   if (products) {
     keys = Object.keys(products).slice(0, 3)
-    console.log(keys)
   }
 
   return (

@@ -1,47 +1,64 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { NavLink, useParams } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import './SingleProductPage.css'
+// import { useDispatch } from 'react-redux'
 
 
 const SingleProductPage = () => {
 
-  dispatch = useDispatch()
+  // const dispatch = useDispatch()
+
   const { id } = useParams()
+  const p_id = parseInt(id)
+  const product = useSelector(state => state.product[p_id - 1])
 
-  const product = useSelector(state => state.product[`${id - 1}`])
+  if (product) {
+    const url_list = product.photos.map(photo => photo.photo_url)
 
-  return (
-    <>
-      <div className='product-page-wrapper'>
-        <div className='photo-galery'>
-          <div>
-            <img src={product.photos.photo_url[0]} className="main-photo" alt="nope"></img>
-          </div>
-          <div>
-            {product.photos.map((photo, i) => (
-              <img src={photo.photo_url} alt="nah" key={i}></img>
-            ))}
-          </div>
-        </div>
-        <div className='product-description'>
-          {<p>{product.description}</p>}
-        </div>
-        <br></br>
-        <div>STORE DIV</div>
-        <br></br>
-        <div className='reviews-container'>
-          {product.revews.map((review, i) => (
-            <div className='single-review'>
+
+
+    return (
+      <>
+
+        { url_list.length && (
+          <div className='product-page-wrapper'>
+            <div className='photo-galery'>
               <div>
-                <span>{review.user_id}</span>
-                <span>{review.created_at}</span>
+                <img src={url_list[0]} className="main-photo" alt="nope"></img>
+              </div>
+              <div>
+                {url_list.map(url => (
+                  <img src={url} className='small-img'></img>
+                ))}
               </div>
             </div>
-          ))}
-        </div>
-      </div >
-    </>
-  )
+            <div className='product-description'>
+              {<p>{product.description}</p>}
+            </div>
+            <br></br>
+            <div>STORE DIV</div>
+            <br></br>
+            <div className='reviews-container'>
+              {product.reviews.length && product.revews.map((review, i) => (
+                <div className='single-review'>
+                  <div>
+                    <span>{review.user_name}</span>
+                    <span>{review.created_at}</span>
+                  </div>
+                  <div>
+                    {review.content}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div >
+        )}
+      </>
+    )
+  }
+
+  return null
 
 }
 
