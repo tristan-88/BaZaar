@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import LogoutButton from './../auth/LogoutButton/LogoutButton';
 import Search from '../Search/Search';
 import './NavBar.css'
@@ -7,34 +7,24 @@ import './NavBar.css'
 const NavBar = () => {
   return (
     <nav>
-      <ul>
-        <li>
-          <NavLink to="/" exact={true} activeClassName="active">
-            Home
+        <div className='navigation-bar-container'>
+          <NavLink to="/" exact={true} >
+          <i class="fad fa-home-lg fa-4x"></i>
           </NavLink>
-        </li>
-        <li>
           <NavLink to="/login" exact={true} activeClassName="active">
-            Login
+          <i class="fad fa-sign-in fa-4x"></i>
           </NavLink>
-        </li>
-        <li>
           <NavLink to="/sign-up" exact={true} activeClassName="active">
-            Sign Up
+          <i class="fad fa-user-plus fa-4x" ></i>
           </NavLink>
-        </li>
-        <li>
           <NavLink to="/users" exact={true} activeClassName="active">
-            Users
+          <i class="fad fa-users fa-4x"></i>
           </NavLink>
-        </li>
-        <li>
           <LogoutButton />
-        </li>
-        <li>
+          <div>
           <Search />
-        </li>
-      </ul>
+          </div>
+        </div>
     </nav>
   );
 }
