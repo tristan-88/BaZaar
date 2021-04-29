@@ -33,6 +33,7 @@ faker-commerce = "*"
 Faker = "*"
 Dumper = "*"
 DateTime = "*"
+requests = "*"
 
 [dev-packages]
 psycopg2-binary = "==2.8.6"

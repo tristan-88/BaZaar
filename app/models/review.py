@@ -20,6 +20,7 @@ class Review(db.Model):
             "user_id": self.user_id,
             "content": self.content,
             "created_at": self.created_at,
+            "username": self.users.username,
         }
 
     users = db.relationship("User", back_populates="reviews", cascade="all, delete")
