@@ -1,0 +1,19 @@
+.product-page-wrapper {
+  box-sizing: border-box;
+  display: flex;
+}
+
+.photo-gallery {
+  margin: 27px;
+  max-width: 40vw;
+  max-width: 40vw;
+}
+
+.main-img {
+  max-width: 40vw;
+}
+
+.small-img {
+  max-width: 160px;
+  max-height: 160px;
+}
