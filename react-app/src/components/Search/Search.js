@@ -17,10 +17,11 @@ function Search() {
     }
 
     return (
-        <div>
+        <div className='search-bar'>
             <form method="get" action="localhost:5000/api/search" onSubmit={(e) => handleSubmit(e)}>
-                <button onClick={(e) => handleSubmit(e)} type='submit'><i class="fas fa-telescope"></i></button>
+                <button onClick={(e) => handleSubmit(e)} style={{background:'white', borderRadius:'50%', height:'30px', width:'30px'}}type='submit'><i class="fas fa-telescope"></i></button>
                 <input
+                    style={{width:'20rem', background:'#f2f1f9', border:'none', padding:'0.5rem'}}
                     value={search}
                     name='search'
                     placeholder='Search...'

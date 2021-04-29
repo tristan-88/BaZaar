@@ -1,3 +1,13 @@
 .navigation-bar-container {
     display: flex;
+    justify-content: center;
+}
+
+.home-page-button {
+    display: flex;
+    flex: auto;
+}
+
+.search-bar-container {
+    display: flex;
 }

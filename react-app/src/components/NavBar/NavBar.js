@@ -8,12 +8,19 @@ const NavBar = () => {
   return (
     <nav>
         <div className='navigation-bar-container'>
+        <div className='home-page-button'>
           <NavLink to="/" exact={true} >
           <i class="fad fa-home-lg fa-4x"></i>
           </NavLink>
-          <NavLink to="/login" exact={true} activeClassName="active">
+        </div>
+          <div className='search-bar-container'>
+          <Search />
+          </div>
+        <div>
+        <NavLink to="/login" exact={true} activeClassName="active">
           <i class="fad fa-sign-in fa-4x"></i>
           </NavLink>
+        </div>
           <NavLink to="/sign-up" exact={true} activeClassName="active">
           <i class="fad fa-user-plus fa-4x" ></i>
           </NavLink>
@@ -21,9 +28,6 @@ const NavBar = () => {
           <i class="fad fa-users fa-4x"></i>
           </NavLink>
           <LogoutButton />
-          <div>
-          <Search />
-          </div>
         </div>
     </nav>
   );
