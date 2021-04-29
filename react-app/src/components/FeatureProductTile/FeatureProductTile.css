@@ -8,10 +8,14 @@
 }
 
 .fpt-wrapper {
-  max-width: 248px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border: 1px outset;
+  width: 400px;
+  height: 400px;
+  margin: 5px;
+  padding: 30px;
 }
 .small-img-div {
   display: flex;
@@ -21,12 +25,14 @@
 .fpt-small-img {
   box-sizing: border-box;
   margin-left: 2px;
-  max-width: 60px;
-  max-height: 60px;
+  max-width: 50px;
+  max-height: 50px;
+  padding: 2px;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .fpt-main-img {
-  box-sizing: border-box;
   max-width: 240px;
   max-height: 240px;
 }
+

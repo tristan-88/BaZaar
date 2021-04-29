@@ -24,16 +24,16 @@ const FeatureProductTile = ({ product }) => {
             {product.photos.map(photo => (
               <img src={photo.photo_url} key={photo.id} className="fpt-small-img" alt='nope'></img>
             )).slice(0, 4)}
-          </div>
-          <div>
-            {product_synopsis}
-          </div>
-          {product.name}
-          <NavLink to={`/products/${product.id}`}>
-            {product.price}
-          </NavLink>
+        </div>
+        {/* <div className="synopsis">{`Synopsis: ${product_synopsis}`}</div> */}
+        <div>{`Product: ${product.name}`}</div>
+        <div><NavLink to={`/products/${product.id}`}>
+            {`$${product.price}`}
+          </NavLink></div>
         </div>
       }
+
+      
     </>
   )
 }

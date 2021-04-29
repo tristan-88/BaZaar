@@ -7,8 +7,8 @@ function SmallProductTile({ product }) {
     return (
 			<div className="product-card" key={`${product.id}`}>
 				<NavLink to={`/products/${product.id}`}>
-					<img src={product.photos[0]?.photo_url} alt={"default photo"} />
-					<div>{`$${product.price}0`}</div>
+					<img src={product.photos[0]?.photo_url} alt={"default photo"} className="product-img"/>
+					<div>{`$${product.price}`}</div>
 				</NavLink>
 			</div>
 		);

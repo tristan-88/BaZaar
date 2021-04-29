@@ -1,3 +1,22 @@
 body{
     background-color: aliceblue;
 }
+
+.product-img{
+    height: 180px;
+    width: 180px;
+    padding: 5px;
+}
+
+.product-card{
+    border: 3px outset white;
+    margin: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    max-width: 250px;
+    position: relative;
+    padding: 3px;
+    border-radius: 15px;
+}
