@@ -17,6 +17,7 @@ const FeatureProductTile = ({ product }) => {
         <div className='fpt-wrapper'>
           <div>
             <NavLink to={`/products/${product.id}`}>
+              {product.name}
               <img src={product.photos[0]?.photo_url} className='fpt-main-img' alt='nope'></img>
             </NavLink>
           </div>
