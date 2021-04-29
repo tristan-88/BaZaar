@@ -40,11 +40,11 @@ const SingleProductPage = () => {
             <div>STORE DIV</div>
             <br></br>
             <div className='reviews-container'>
-              {product.reviews.length && product.revews.map((review, i) => (
+              {product.reviews.length && product.reviews.map((review, i) => (
                 <div className='single-review'>
                   <div>
-                    <span>{review.user_name}</span>
-                    <span>{review.created_at}</span>
+                    <span key={i}>{review.user_name}</span>
+                    <span key={i + 1}>{review.created_at}</span>
                   </div>
                   <div>
                     {review.content}
