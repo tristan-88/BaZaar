@@ -5,6 +5,9 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { loadFeatureProducts, loadProducts } from '../../store/product';
 import ProductCardContainer from '../ProductCardContainer/ProductCardContainer'
+import { gettingStore } from '../../store/store'
+import { createCart } from '../../store/cart'
+import ProductCard from '../ProductCard/ProductCard'
 import FeatureProductContainer from '../FeatureProductTile/FeatureProductContainer'
 import './HomePage.css'
 import ProductForm from '../ProductForm/ProductForm';
@@ -15,7 +18,9 @@ function HomePage() {
 	const [loaded, setLoaded] = useState(false)
 
 	useEffect(() => {
+		dispatch(gettingStore())
 		dispatch(loadProducts())
+		dispatch(createCart())
 		setLoaded(true)
 	}, [dispatch, setLoaded])
 

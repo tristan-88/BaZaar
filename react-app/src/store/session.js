@@ -20,8 +20,9 @@ export const authenticate = () => async (dispatch) => {
       'Content-Type': 'application/json'
     }
   });
-  const data = await response.json();
-  if (data.ok) {
+ 
+  if (response.ok) {
+    const data = await response.json();
     dispatch(setUser(data))
   }
 
