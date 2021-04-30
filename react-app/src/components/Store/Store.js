@@ -9,7 +9,7 @@ const Store = () => {
     return (
         <>
             <div>
-                
+                {store.name}
             </div>
             </>
     )
