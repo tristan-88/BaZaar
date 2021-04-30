@@ -8,7 +8,6 @@ const setCart = (cart) => ({
 })
 
 
-
 const deleteCart = () => ({
     type: REMOVE_CART
 })
