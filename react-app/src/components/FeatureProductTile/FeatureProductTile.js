@@ -4,8 +4,6 @@ import './FeatureProductTile.css'
 
 const FeatureProductTile = ({ product }) => {
 
-  console.log(product)
-
   let product_synopsis;
 
   if (Object.entries(product).length) {
