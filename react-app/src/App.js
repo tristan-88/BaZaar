@@ -11,6 +11,7 @@ import User from "./components/User/User";
 import Cart from "./components/Cart/Cart"
 import HomePage from "./components/HomePage/HomePage";
 import { authenticate } from "./store/session";
+import Store from './components/Store/Store'
 
 function App() {
   const dispatch = useDispatch()
@@ -50,8 +51,12 @@ function App() {
           <HomePage />
         </Route>
         <ProtectedRoute>
+          <Store path='/store' exact={true}/>
+          </ProtectedRoute>
+        <ProtectedRoute>
           <Cart path='/cart' exact={true}/>
-        </ProtectedRoute>
+        </ProtectedRoute >
+       
       </Switch>
     </BrowserRouter>
   );

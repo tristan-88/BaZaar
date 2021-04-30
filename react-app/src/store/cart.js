@@ -7,7 +7,6 @@ const setCart = (cart) => ({
     payload: cart
 })
 
-
 const deleteCart = () => ({
     type: REMOVE_CART
 })

@@ -5,7 +5,7 @@ const ADD_PHOTOS = 'products/ADD_PHOTOS'
 const GET_PHOTOS = 'products/GET_PHOTOS'
 const FEATURE_PRODUCTS = 'product/FEATURE_PRODUCTS'
 
-//Actions
+//Action
 const setProducts = (products) => ({
     type: SET_PRODUCTS,
     payload: products
