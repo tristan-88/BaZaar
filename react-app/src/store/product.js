@@ -58,9 +58,6 @@ export const addProductPhotos = (image, product_id) => async (dispatch) => {
     }
 }
 
-
-
-
 export const loadProducts = () => async (dispatch) => {
     const response = await fetch('/api/products')
     const data = await response.json();
