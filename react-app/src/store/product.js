@@ -1,6 +1,8 @@
 const SET_PRODUCTS = 'product/SET_PRODUCTS'
 const REMOVE_PRODUCTS = 'product/REMOVE_PRODUCTS'
-
+const ADD_PRODUCTS = 'products/ADD_PRODUCTS'
+const ADD_PHOTOS = 'products/ADD_PHOTOS'
+const GET_PHOTOS = 'products/GET_PHOTOS'
 
 //Actions
 const setProducts = (products) => ({
@@ -12,8 +14,46 @@ const clearProducts = () => ({
     type: REMOVE_PRODUCTS
 })
 
+const createProduct = (product) => ({
+    type: ADD_PRODUCTS,
+    payload: product
+})
+
+const addPhotos = (photos) => ({
+    type: ADD_PHOTOS,
+    payload: photos
+})
+
+const getPhotos = (photos) => ({
+    type: GET_PHOTOS,
+    payload: photos
+})
+
+
+//we need to get all photos of one product
+//we need a thunk to store photos for one product
 
 //Thunks
+export const addProductPhotos = (image, product_id) => async (dispatch) => {
+    console.log(image)
+    const formData = new FormData();
+        formData.append('image', image)
+        formData.append('product_id', product_id)
+
+        const response = await fetch('/api/photos', {
+            method: "POST",
+            body: formData
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            dispatch(addPhotos(data))
+        }
+    }
+
+
+
+
 export const loadProducts = () => async (dispatch) => {
     const response = await fetch('/api/products')
     const data = await response.json();
@@ -23,16 +63,50 @@ export const loadProducts = () => async (dispatch) => {
     dispatch(setProducts(data))
 }
 
+export const addProduct = (name, store_id, price, quantity, description, image) => async (dispatch) => {
+    const formData = new FormData();
+        formData.append('name', name)
+        formData.append('store_id', store_id)
+        formData.append('price', price)
+        formData.append('quantity', quantity)
+        formData.append('description', description)
+
+    const response = await fetch('/api/products', {
+        method: "POST",
+        body: formData
+    })
+
+    if (response.ok) {
+        const data = await response.json();
+        let product_id = data.id
+        dispatch(addProductPhotos(image, product_id))
+        dispatch(createProduct(data))
+    }
+}
+
+
+
 export const removeProducts = () => async (dispatch) => {
     dispatch(clearProducts())
 }
 
-const initialState = {}
+const initialState = {
+    products: [],
+    newProduct: []
+}
 
 export default function cartReducer(state = initialState, action) {
     switch (action.type) {
         case SET_PRODUCTS:
-            return { ...action.payload }
+            return {
+                ...state,
+                products: [...action.payload]
+             }
+        case ADD_PRODUCTS:
+            return {
+                ...state,
+                newProduct: [action.payload]
+            }
         case REMOVE_PRODUCTS:
             return {};
         default:

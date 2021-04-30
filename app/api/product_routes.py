@@ -1,9 +1,20 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import current_user
 from app.models import db, Product, Store, Review, Photo
+from app.forms import ProductForm
+from sqlalchemy import desc, asc
 
 product_routes = Blueprint('products', __name__)
 
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f"{field} : {error}")
+    return errorMessages
 # for route testing
 tests = {'Message': 'Hello'}
 
@@ -41,7 +52,7 @@ def product_photos(id):
     product_photos = {"product_photos": [photo.to_dict() for photo in photos]}
     # photo_urls = [k: v for k, v in product_photos.["product_photos"].items() if k == "photo_url"]
     return product_photos
-    
+
 
 # ---GET--- http://localhost:5000/api/products/id/reviews ---TESTED---
 @product_routes.route('/<int:id>/reviews')
@@ -54,10 +65,24 @@ def product_reviews(id):
 # ---POST--- http://localhost:5000/api/products ---UNTESTED---
 
 
-@product_routes.route('/', methods=['POST'])
+@product_routes.route('', methods=['POST'])
 def create_product():
-    return jsonify(tests)
-
+    form = ProductForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        product = Product(
+            name=form.data["name"],
+            store_id=form.data["store_id"],
+            price=form.data["price"],
+            quantity=form.data["quantity"],
+            description=form.data["description"]
+        )
+        db.session.add(product)
+        db.session.commit()
+        # products = Product.query.order_by(desc(product_id)).all()
+        # newProduct = products[-1]
+        return product.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 # ---PATCH--- http://localhost:5000/api/products/id ---UNTESTED---
 

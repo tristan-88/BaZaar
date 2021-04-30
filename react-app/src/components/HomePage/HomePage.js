@@ -7,6 +7,7 @@ import { loadProducts } from '../../store/product';
 import ProductCard from '../ProductCard/ProductCard'
 import FeatureProductContainer from '../FeatureProductTile/FeatureProductContainer'
 import './HomePage.css'
+import ProductForm from '../ProductForm/ProductForm';
 
 function HomePage() {
     const dispatch = useDispatch()
@@ -14,14 +15,28 @@ function HomePage() {
         dispatch(loadProducts())
     }, [dispatch])
 
-    const products = useSelector(state => state.product)
-
+    const products = useSelector(state => state.product.products)
+	const user = useSelector(state => state.session.user)
+	console.log(user)
     if (!products) {
         return null
     }
 
+	let sessionLinks;
+	if (user) {
+	  sessionLinks = (
+		<ProductForm />
+	  )
+	  } else {
+		sessionLinks = (
+		  <>
+		  </>
+	  )
+	}
+
     return (
 			<>
+				{sessionLinks}
 				<div className="banner-div">
 					<img
 						src="https://api.genstore.info/photos/banner-shopping.jpg"
