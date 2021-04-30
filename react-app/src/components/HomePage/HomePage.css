@@ -19,9 +19,19 @@
 }
 
 .tags-div{
+  display: flex;
+  justify-content: space-around;
   margin-top: 10px;
   margin-bottom: 50px;
   width: 100%;
   height: 200px;
   border: 2px solid black;
+}
+
+.tags-div div {
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  border: 1px solid black;
 }

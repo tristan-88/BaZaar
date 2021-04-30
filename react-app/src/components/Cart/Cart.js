@@ -1,33 +1,42 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import './Cart.css'
+import { loadProducts } from '../../store/product'
 import SmallProductTile from '../SmallProductTile/SmallProductTile'
+import './Cart.css'
 
 
 function Cart() {
     const dispatch = useDispatch()
-    //got the state
-    const cartProducts = useSelector(state => state.cart?.products)
-    const  [products, setProducts] = useState([])
+
+    const cartProducts = useSelector(state => state.cart.products)
+        .map(product => product.id)
+    const products = useSelector(state => state.products.products)
+
     //look at when ever something here changes reload this component
     useEffect(() => {
-     setProducts(cartProducts)
-    }, [cartProducts.length, setProducts])
+        dispatch(loadProducts())
+        console.log(cartProducts)
+    }, [dispatch])
 
+    let myCart;
+    if (products) {
+        myCart = products.map(product => (cartProducts.includes(product.id) ? product : ''))
+            .filter(product => product !== "")
+    }
 
     return (
         <>
-            {products.length &&
-            <div>
-                <div className="cart-card">
-                    <h1>{`CART(${products.length})`}</h1>
-                </div>
+            {myCart.length &&
                 <div>
-                {products.map(product=>(
-                    <SmallProductTile product={product}/>
-                ))}
+                    <div className="cart-card">
+                        <h1>{`CART(${myCart.length})`}</h1>
+                    </div>
+                    <div>
+                        {myCart.map(product => (
+                            <SmallProductTile product={product} />
+                        ))}
+                    </div>
                 </div>
-            </div>
             }
         </>
     )

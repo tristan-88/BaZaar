@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link, NavLink } from "react-router-dom"
 import SmallProductTile from '../SmallProductTile/SmallProductTile.js'
-import "./ProductCard.css"
+import "./ProductCardContainer.css"
 
-function ProductCard() {
+function ProductCardContainer() {
     // const dispatch = useDispatch()
     const products = useSelector(state => {
         return state.products.products
@@ -33,4 +33,4 @@ function ProductCard() {
 
 }
 
-export default ProductCard;
+export default ProductCardContainer;
