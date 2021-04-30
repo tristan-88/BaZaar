@@ -51,12 +51,14 @@ function App() {
           <HomePage />
         </Route>
         <ProtectedRoute>
-          <Store path='/store' exact={true}/>
-          </ProtectedRoute>
+          <Store path='/store' exact={true} />
+        </ProtectedRoute>
         <ProtectedRoute>
-          <Cart path='/cart' exact={true}/>
+          <Cart path='/cart' exact={true} />
         </ProtectedRoute >
-       
+        <Route exact path >
+          <SearchResultPage />
+        </Route>
       </Switch>
     </BrowserRouter>
   );
