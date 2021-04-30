@@ -1,25 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { loadProducts } from '../../store/product';
+import { useSelector, useDispatch } from 'react-redux'
+import { loadFeatureProducts } from '../../store/product';
 import FeatureProductTile from './FeatureProductTile'
 import './FeatureProductTile.css'
 
-const FeatureProductContainer = ({ products }) => {
+const FeatureProductContainer = () => {
 
-  let keys;
+  const dispatch = useDispatch()
 
-  if (products) {
-    keys = Object.keys(products).slice(0, 3)
-  }
+  const [topProducts, setTopProducts] = useState(null)
+
+  useEffect(() => {
+    dispatch(loadFeatureProducts())
+  }, [dispatch])
+
+  const featuredProducts = useSelector(state => state.products.featureProducts)
+
+  useEffect(() => {
+    if (featuredProducts.length) {
+      setTopProducts(featuredProducts)
+    }
+  }, [featuredProducts, setTopProducts])
 
   return (
     <>
-      {keys && (
-        keys.map(key => (
-          <FeatureProductTile product={products[key]} key={key} />
-        )
-        ))}
+      {topProducts &&
+        topProducts.map(product => (
+          <FeatureProductTile product={product} key={product.id} />
+        ))
+      }
     </>
   )
 }

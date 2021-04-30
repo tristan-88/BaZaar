@@ -1,9 +1,15 @@
 .product-page-wrapper {
   box-sizing: border-box;
-  display: flex;
+  display: grid;
+  grid-template-columns: 40% 1fr 40%;
+  grid-template-rows: 3fr 40px 60px 500px;
+  
 }
 
 .photo-gallery {
+  grid-column: 1 / 4;
+  grid-row: 1/2;
+  display: flex;
   margin: 27px;
   max-width: 40vw;
   max-width: 40vw;
@@ -16,4 +22,19 @@
 .small-img {
   max-width: 160px;
   max-height: 160px;
+}
+
+.product-description {
+  grid-column: 4 / 5;
+  grid-row: 1;
+}
+
+.store-div {
+  grid-row: 3;
+  grid-column: 1 / 4;
+}
+
+.reviews-container {
+  grid-row: 4;
+  grid-column: 1 / 4;
 }

@@ -62,5 +62,5 @@ class Cart_Product(db.Model):
             "cart_id": self.cart_id,
         }
 
-    carts = db.relationship("Cart", back_populates="products", cascade="all, delete")
-    products = db.relationship("Product", back_populates="carts", cascade="all, delete")
+    carts = db.relationship("Cart", back_populates="products")
+    products = db.relationship("Product", back_populates="carts")

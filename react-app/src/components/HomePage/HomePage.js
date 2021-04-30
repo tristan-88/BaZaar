@@ -3,41 +3,47 @@
 // products are a component
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { loadProducts } from '../../store/product';
+import { loadFeatureProducts, loadProducts } from '../../store/product';
 import ProductCard from '../ProductCard/ProductCard'
 import FeatureProductContainer from '../FeatureProductTile/FeatureProductContainer'
 import './HomePage.css'
 
 function HomePage() {
-    const dispatch = useDispatch()
-    useEffect(() => {
-        dispatch(loadProducts())
-    }, [dispatch])
+	const dispatch = useDispatch()
 
-    const products = useSelector(state => state.product)
+	const [loaded, setLoaded] = useState(false)
 
-    if (!products) {
-        return null
-    }
+	useEffect(() => {
+		dispatch(loadProducts())
+		setLoaded(true)
+	}, [dispatch, setLoaded])
 
-    return (
-			<>
-				<div className="banner-div">
-					<img
-						src="https://api.genstore.info/photos/banner-shopping.jpg"
-						alt="👽"
-						className="banner-img"
-					/>
-				</div>
-				<div className="fpt-container">
-					{products["0"] && <FeatureProductContainer products={products} />}
-				</div>
-				<div className="tags-div">
-					<h1>TAGS AND CATEGORIES WILL BE HERE</h1>
-				</div>
-				<ProductCard />
-			</>
-		);
+	const products = useSelector(state => state.products)
+
+	if (!products) {
+		return null
+	}
+
+
+
+	return (
+		<>
+			<div className="banner-div">
+				<img
+					src="https://api.genstore.info/photos/banner-shopping.jpg"
+					alt="👽"
+					className="banner-img"
+				/>
+			</div>
+			<div className="fpt-container">
+				{products && <FeatureProductContainer products={products} />}
+			</div>
+			<div className="tags-div">
+				<h1>TAGS AND CATEGORIES WILL BE HERE</h1>
+			</div>
+			<ProductCard />
+		</>
+	);
 }
 
 
