@@ -7,6 +7,7 @@ import { loadFeatureProducts, loadProducts } from '../../store/product';
 import ProductCard from '../ProductCard/ProductCard'
 import FeatureProductContainer from '../FeatureProductTile/FeatureProductContainer'
 import './HomePage.css'
+import ProductForm from '../ProductForm/ProductForm';
 
 function HomePage() {
 	const dispatch = useDispatch()

@@ -7,7 +7,7 @@ import "./ProductCard.css"
 function ProductCard() {
     // const dispatch = useDispatch()
     const products = useSelector(state => {
-        return state.products.products
+        return state.product.products
     })
 
     if (!products) return null

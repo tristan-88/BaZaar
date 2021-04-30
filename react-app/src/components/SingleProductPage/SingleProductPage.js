@@ -18,7 +18,6 @@ const SingleProductPage = () => {
 
   if (product.length) {
     product = product[0]
-    console.log(product.photos[0].photo_url)
   }
 
   return (
