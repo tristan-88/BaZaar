@@ -15,8 +15,14 @@ def get_stores():
 @store_routes.route('/<int:id>')
 def get_store(id):
     store = Store.query.get(id)
-    return store.to_dict()
+    return [store.to_dict()]
 
+@store_routes.route('/mystore')
+def getting_store():
+    store = Store.query.filter_by(user_id = current_user.id).first()
+    if store:
+        return store.to_dict()
+    return None
 
 @store_routes.route('/<int:id>/products')
 def get_products(id):
