@@ -11,12 +11,16 @@ import ProductForm from '../ProductForm/ProductForm';
 
 function HomePage() {
     const dispatch = useDispatch()
-    useEffect(() => {
+	const products = useSelector(state => state.product.products)
+	const user = useSelector(state => state.session.user)
+
+	useEffect(() => {
+		if (user) {
+
+		}
         dispatch(loadProducts())
     }, [dispatch])
 
-    const products = useSelector(state => state.product.products)
-	const user = useSelector(state => state.session.user)
 	console.log(user)
     if (!products) {
         return null
