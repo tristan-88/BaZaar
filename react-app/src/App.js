@@ -32,33 +32,30 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-        <Route path="/login" exact={true}>
+        <Route exact path="/login" >
           <LoginForm />
         </Route>
-        <Route path="/sign-up" exact={true}>
+        <Route exact path="/sign-up" >
           <SignUpForm />
         </Route>
-        <Route path="/products/:id">
+        <Route exact path="/products/:id">
           <SingleProductPage />
         </Route>
-        <ProtectedRoute path="/users" exact={true}>
+        <ProtectedRoute exact path="/users" >
           <UsersList />
         </ProtectedRoute>
-        <ProtectedRoute path="/users/:userId" exact={true}>
+        <ProtectedRoute exact path="/users/:userId" >
           <User />
         </ProtectedRoute>
-        <Route path="/" exact={true}>
+        <Route exact path="/" >
           <HomePage />
         </Route>
-        <ProtectedRoute>
-          <Store path='/store' exact={true} />
+        <ProtectedRoute exact path='/store'>
+          <Store />
         </ProtectedRoute>
-        <ProtectedRoute>
-          <Cart path='/cart' exact={true} />
+        <ProtectedRoute exact path='/cart'>
+          <Cart />
         </ProtectedRoute >
-        <Route exact path >
-          <SearchResultPage />
-        </Route>
       </Switch>
     </BrowserRouter>
   );

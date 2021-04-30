@@ -15,13 +15,12 @@ function Cart() {
     //look at when ever something here changes reload this component
     useEffect(() => {
         dispatch(loadProducts())
-        console.log(cartProducts)
     }, [dispatch])
 
     let myCart;
     if (products) {
         myCart = products.map(product => (cartProducts.includes(product.id) ? product : ''))
-            .filter(product => product !== "")
+            .filter(product => product !== '')
     }
 
     return (
