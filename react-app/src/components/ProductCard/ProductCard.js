@@ -7,7 +7,7 @@ import "./ProductCard.css"
 function ProductCard() {
     // const dispatch = useDispatch()
     const products = useSelector(state => {
-        return state.product.products
+        return state.products.products
     })
 
     if (!products) return null
@@ -16,11 +16,17 @@ function ProductCard() {
         //we may want to limit on the display
         <div className="product-card-container" >
             <div className="product-list">
-                {products.map((product, i) => (
+                {products.slice(0, 10).map((product, i) => (
                     <SmallProductTile product={product} key={i} />
                 ))}
             </div>
-
+            <br></br>
+            <h1>next 10</h1>
+            <div className="product-list">
+                {products.slice(10, 20).map((product, i) => (
+                    <SmallProductTile product={product} key={i} />
+                ))}
+            </div>
 
         </div>
     );
