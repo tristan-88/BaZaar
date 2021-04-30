@@ -1,44 +1,65 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { NavLink, useParams } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useParams, Redirect } from 'react-router-dom'
+import { loadSingleProduct } from '../../store/product'
+import { addToCart } from '../../store/cart'
 import './SingleProductPage.css'
 // import { useDispatch } from 'react-redux'
 
 
 const SingleProductPage = () => {
-
-  // const dispatch = useDispatch()
-
+  const dispatch = useDispatch()
+  let buttonText = 'Add to Cart!'
   const { id } = useParams()
-  const p_id = parseInt(id)
-  const product = useSelector(state => state.product[p_id - 1])
+  const product_id = parseInt(id)
+  let cart = useSelector(state => state.cart)
+  let product = useSelector(state => state.products.products)
 
-  if (product) {
-    const url_list = product.photos.map(photo => photo.photo_url)
+  useEffect(() => {
+    dispatch(loadSingleProduct(product_id))
+  }, [dispatch, product.length])
 
+  if (product.length) {
+    product = product[0]
+  }
 
+  const addOneToCart = () => {
+    console.log('click!')
+    if (cart?.id) {
+      console.log('GO TO CART')
+      let btn = window.document.getElementById('add-btn')
+      btn.innerText = "Thank you!"
+      console.log(btn)
+      dispatch(addToCart(cart.id, product_id))
+      return <Link to='/cart' />
+    }
 
-    return (
-      <>
+    console.log('GO TO LOGIN')
+    return <Link to='/login/' />
+  }
 
-        { url_list.length && (
+  return (
+    <>
+      {product.name &&
+        (
           <div className='product-page-wrapper'>
-            <div className='photo-galery'>
+            <div className='photo-gallery'>
               <div>
-                <img src={url_list[0]} className="main-photo" alt="nope"></img>
+                <img src={product.photos[0].photo_url} className="main-img" alt="nope"></img>
               </div>
               <div>
-                {url_list.map(url => (
-                  <img src={url} className='small-img'></img>
+                {product.photos.map(photo => (
+                  <img src={photo.photo_url} className='small-img'></img>
                 ))}
               </div>
             </div>
             <div className='product-description'>
               {<p>{product.description}</p>}
             </div>
-            <br></br>
-            <div>STORE DIV</div>
-            <br></br>
+            <div>
+              <button id='add-btn' onClick={addOneToCart}>{buttonText}</button>
+            </div>
+            <div className='store-div'>STORE DIV</div>
             <div className='reviews-container'>
               {product.reviews.length && product.reviews.map((review, i) => (
                 <div className='single-review'>
@@ -54,11 +75,8 @@ const SingleProductPage = () => {
             </div>
           </div >
         )}
-      </>
-    )
-  }
-
-  return null
+    </>
+  )
 
 }
 

@@ -60,3 +60,26 @@ def delete_cart(id):
     remove_cart = Cart.query.filter(Cart.id == id).delete()
     db.session.commit()
     return jsonify('Cart was succefully deleted!' if remove_cart else "Could not delete cart")
+
+
+@cart_routes.route('/<int:cart_id>/add/<int:product_id>')
+@login_required
+def add_item(cart_id, product_id):
+    
+    cart_entry = Cart_Product(
+        product_id=product_id,
+        cart_id=cart_id
+    )
+    
+    db.session.add(cart_entry)
+    db.session.commit()
+    return cart_entry.to_dict()
+
+
+@cart_routes.route('/<int:cart_id>/remove/<int:product_id>')
+@login_required
+def remove_item(cart_id, product_id):
+    remove_entry = Cart_Product.query.order_by(desc(Cart_Product.id)).filter_by(cart_id=cart_id, product_id=product_id).first()
+    db.session.delete(remove_entry)
+    db.session.commit()
+    return remove_entry.to_dict()

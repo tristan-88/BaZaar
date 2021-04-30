@@ -3,6 +3,7 @@ const REMOVE_PRODUCTS = 'product/REMOVE_PRODUCTS'
 const ADD_PRODUCTS = 'products/ADD_PRODUCTS'
 const ADD_PHOTOS = 'products/ADD_PHOTOS'
 const GET_PHOTOS = 'products/GET_PHOTOS'
+const FEATURE_PRODUCTS = 'product/FEATURE_PRODUCTS'
 
 //Actions
 const setProducts = (products) => ({
@@ -33,23 +34,29 @@ const getPhotos = (photos) => ({
 //we need to get all photos of one product
 //we need a thunk to store photos for one product
 
+const featureProducts = (products) => ({
+    type: FEATURE_PRODUCTS,
+    payload: products
+})
+
+
 //Thunks
 export const addProductPhotos = (image, product_id) => async (dispatch) => {
     console.log(image)
     const formData = new FormData();
-        formData.append('image', image)
-        formData.append('product_id', product_id)
+    formData.append('image', image)
+    formData.append('product_id', product_id)
 
-        const response = await fetch('/api/photos', {
-            method: "POST",
-            body: formData
-        });
+    const response = await fetch('/api/photos', {
+        method: "POST",
+        body: formData
+    });
 
-        if (response.ok) {
-            const data = await response.json();
-            dispatch(addPhotos(data))
-        }
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(addPhotos(data))
     }
+}
 
 
 
@@ -63,13 +70,32 @@ export const loadProducts = () => async (dispatch) => {
     dispatch(setProducts(data))
 }
 
+export const loadSingleProduct = (id) => async (dispatch) => {
+    const res = await fetch(`/api/products/${id}`)
+    const product = await res.json()
+    if (res.ok) {
+        dispatch(setProducts([product]))
+    }
+}
+
+export const loadFeatureProducts = () => async (dispatch) => {
+    const res = await fetch('/api/products/top5')
+    const data = await res.json()
+
+    if (res.errors) {
+        return data
+    }
+    dispatch(featureProducts(data))
+}
+
+
 export const addProduct = (name, store_id, price, quantity, description, image) => async (dispatch) => {
     const formData = new FormData();
-        formData.append('name', name)
-        formData.append('store_id', store_id)
-        formData.append('price', price)
-        formData.append('quantity', quantity)
-        formData.append('description', description)
+    formData.append('name', name)
+    formData.append('store_id', store_id)
+    formData.append('price', price)
+    formData.append('quantity', quantity)
+    formData.append('description', description)
 
     const response = await fetch('/api/products', {
         method: "POST",
@@ -92,6 +118,7 @@ export const removeProducts = () => async (dispatch) => {
 
 const initialState = {
     products: [],
+    featureProducts: [],
     newProduct: []
 }
 
@@ -101,14 +128,19 @@ export default function cartReducer(state = initialState, action) {
             return {
                 ...state,
                 products: [...action.payload]
-             }
+            }
+        case FEATURE_PRODUCTS:
+            return {
+                ...state,
+                featureProducts: [...action.payload]
+            }
         case ADD_PRODUCTS:
             return {
                 ...state,
                 newProduct: [action.payload]
             }
         case REMOVE_PRODUCTS:
-            return {};
+            return null;
         default:
             return state
     }

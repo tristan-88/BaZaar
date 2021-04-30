@@ -40,19 +40,31 @@ def all_products():
 # ---GET--- http://localhost:5000/api/products/id ---TESTED---
 
 
+
+
+
 @product_routes.route('/<int:id>')
 def single_product(id):
     product = Product.query.get(id)
     return product.to_dict()
 
 
+
+@product_routes.route('/top5')
+def top_five():
+    feature_products = Product.query.all()
+    product_list = [product.to_dict() for product in feature_products]
+    sorted_list = sorted(product_list, key= lambda i: len(i["favorite"]), reverse=True)
+    return jsonify(sorted_list[0:5])
+
+
+
+
 @product_routes.route('/<int:id>/photos')
 def product_photos(id):
     photos = Photo.query.filter_by(product_id=id).all()
     product_photos = {"product_photos": [photo.to_dict() for photo in photos]}
-    # photo_urls = [k: v for k, v in product_photos.["product_photos"].items() if k == "photo_url"]
     return product_photos
-
 
 # ---GET--- http://localhost:5000/api/products/id/reviews ---TESTED---
 @product_routes.route('/<int:id>/reviews')

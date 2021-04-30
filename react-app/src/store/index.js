@@ -9,7 +9,7 @@ const rootReducer = combineReducers({
   session,
   search,
   cart,
-  product
+  products: product
 });
 
 let enhancer;
