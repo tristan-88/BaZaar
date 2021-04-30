@@ -4,7 +4,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { loadFeatureProducts, loadProducts } from '../../store/product';
-import ProductCard from '../ProductCard/ProductCard'
+import ProductCardContainer from '../ProductCardContainer/ProductCardContainer'
 import FeatureProductContainer from '../FeatureProductTile/FeatureProductContainer'
 import './HomePage.css'
 import ProductForm from '../ProductForm/ProductForm';
@@ -25,6 +25,9 @@ function HomePage() {
 		return null
 	}
 
+	const setFilter = (id) => {
+		console.log(id)
+	}
 
 
 	return (
@@ -40,9 +43,19 @@ function HomePage() {
 				{products && <FeatureProductContainer products={products} />}
 			</div>
 			<div className="tags-div">
-				<h1>TAGS AND CATEGORIES WILL BE HERE</h1>
+				<div onClick={(e) => setFilter(e.target.id)} id='1' className='sports-tag-div'>Sports</div>
+				<div onClick={(e) => setFilter(e.target.id)} id='2' className='gardening-tag-div'>Home & Gardening</div>
+				<div onClick={(e) => setFilter(e.target.id)} id='3' className='jewelry-tag-div'>Jewelry</div>
+				<div onClick={(e) => setFilter(e.target.id)} id='4' className='clothing-tag-div'>Clothing</div>
+				<div onClick={(e) => setFilter(e.target.id)} id='5' className='kitchen-tag-div'>Kitchen</div>
+				<div onClick={(e) => setFilter(e.target.id)} id='6' className='collectibles-tag-div'>Collectibles</div>
+				<div onClick={(e) => setFilter(e.target.id)} id='7' className='craft-tag-div'>Arts & Crafts</div>
+				<div onClick={(e) => setFilter(e.target.id)} id='8' className='decor-tag-div'>Home Decor</div>
+				<div onClick={(e) => setFilter(e.target.id)} id='9' className='art-tag-div'>Art</div>
+				<div onClick={(e) => setFilter(e.target.id)} id='10' className='misc-tag-div'>Misc</div>
+				<div onClick={(e) => setFilter(e.target.id)} id='11' className='home-tag-div'>Home & Living</div>
 			</div>
-			<ProductCard />
+			<ProductCardContainer />
 		</>
 	);
 }
