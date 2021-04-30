@@ -9,24 +9,30 @@ function Cart() {
     const dispatch = useDispatch()
 
     const cartProducts = useSelector(state => state.cart.products)
+        .map(product => product.id)
     const products = useSelector(state => state.products.products)
 
     //look at when ever something here changes reload this component
     useEffect(() => {
         dispatch(loadProducts())
-
+        console.log(cartProducts)
     }, [dispatch])
 
+    let myCart;
+    if (products) {
+        myCart = products.map(product => (cartProducts.includes(product.id) ? product : ''))
+            .filter(product => product !== "")
+    }
 
     return (
         <>
-            {products.length &&
+            {myCart.length &&
                 <div>
                     <div className="cart-card">
-                        <h1>{`CART(${products.length})`}</h1>
+                        <h1>{`CART(${myCart.length})`}</h1>
                     </div>
                     <div>
-                        {products.map(product => (
+                        {myCart.map(product => (
                             <SmallProductTile product={product} />
                         ))}
                     </div>
