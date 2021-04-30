@@ -1,0 +1,36 @@
+
+
+.store-info{
+    display: flex;
+    width: 1500px;
+    height: 600px;
+    padding:20px;
+    margin:20px;
+}
+.store_name_description{
+    margin:30px;
+    margin-top: 50px;
+    font-family: 'Playfair';
+}
+.img-store{
+    width:500px;
+    height:500px;
+    margin:20px;
+    box-shadow: 0 17px 9px -7px rgba(0,0,0,0.35);
+}
+
+.other-item{
+    display: flex;
+    position: relative;
+    display: inline-block;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-x: none;
+    align-items: baseline;
+}
+
+.store-items{
+    display: flex;
+    margin:10px;
+}
