@@ -3,13 +3,16 @@
 // products are a component
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { loadProducts } from '../../store/product';
-import ProductCard from '../ProductCard/ProductCard'
+import { loadFeatureProducts, loadProducts } from '../../store/product';
+import ProductCardContainer from '../ProductCardContainer/ProductCardContainer'
+import { gettingStore } from '../../store/store'
+import { createCart } from '../../store/cart'
 import FeatureProductContainer from '../FeatureProductTile/FeatureProductContainer'
 import './HomePage.css'
-import ProductForm from '../ProductForm/ProductForm';
+
 
 function HomePage() {
+<<<<<<< HEAD
     const dispatch = useDispatch()
 	const products = useSelector(state => state.product.products)
 	const user = useSelector(state => state.session.user)
@@ -36,27 +39,58 @@ function HomePage() {
 		  <>
 		  </>
 	  )
+=======
+	const dispatch = useDispatch()
+
+	const [loaded, setLoaded] = useState(false)
+
+	useEffect(() => {
+		dispatch(gettingStore())
+		dispatch(loadProducts())
+		dispatch(createCart())
+		setLoaded(true)
+	}, [dispatch, setLoaded])
+
+	const products = useSelector(state => state.products)
+
+	if (!products) {
+		return null
 	}
 
-    return (
-			<>
-				{sessionLinks}
-				<div className="banner-div">
-					<img
-						src="https://api.genstore.info/photos/banner-shopping.jpg"
-						alt="👽"
-						className="banner-img"
-					/>
-				</div>
-				<div className="fpt-container">
-					{products["0"] && <FeatureProductContainer products={products} />}
-				</div>
-				<div className="tags-div">
-					<h1>TAGS AND CATEGORIES WILL BE HERE</h1>
-				</div>
-				<ProductCard />
-			</>
-		);
+	const setFilter = (id) => {
+		console.log(id)
+>>>>>>> main
+	}
+
+
+	return (
+		<>
+			<div className="banner-div">
+				<img
+					src="https://api.genstore.info/photos/banner-shopping.jpg"
+					alt="👽"
+					className="banner-img"
+				/>
+			</div>
+			<div className="fpt-container">
+				{products && <FeatureProductContainer products={products} />}
+			</div>
+			<div className="tags-div">
+				<div onClick={(e) => setFilter(e.target.id)} id='1' className='sports-tag-div'>Sports</div>
+				<div onClick={(e) => setFilter(e.target.id)} id='2' className='gardening-tag-div'>Home & Gardening</div>
+				<div onClick={(e) => setFilter(e.target.id)} id='3' className='jewelry-tag-div'>Jewelry</div>
+				<div onClick={(e) => setFilter(e.target.id)} id='4' className='clothing-tag-div'>Clothing</div>
+				<div onClick={(e) => setFilter(e.target.id)} id='5' className='kitchen-tag-div'>Kitchen</div>
+				<div onClick={(e) => setFilter(e.target.id)} id='6' className='collectibles-tag-div'>Collectibles</div>
+				<div onClick={(e) => setFilter(e.target.id)} id='7' className='craft-tag-div'>Arts & Crafts</div>
+				<div onClick={(e) => setFilter(e.target.id)} id='8' className='decor-tag-div'>Home Decor</div>
+				<div onClick={(e) => setFilter(e.target.id)} id='9' className='art-tag-div'>Art</div>
+				<div onClick={(e) => setFilter(e.target.id)} id='10' className='misc-tag-div'>Misc</div>
+				<div onClick={(e) => setFilter(e.target.id)} id='11' className='home-tag-div'>Home & Living</div>
+			</div>
+			<ProductCardContainer />
+		</>
+	);
 }
 
 

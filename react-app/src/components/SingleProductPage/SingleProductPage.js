@@ -1,64 +1,87 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { NavLink, useParams } from 'react-router-dom'
+import React, { useEffect} from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useParams, useHistory } from 'react-router-dom'
+import { loadSingleProduct } from '../../store/product'
+import { addToCart } from '../../store/cart'
+import ReviewCard from '../ReviewCard/ReviewCard'
 import './SingleProductPage.css'
 // import { useDispatch } from 'react-redux'
 
 
 const SingleProductPage = () => {
-
-  // const dispatch = useDispatch()
-
+  const history = useHistory()
+  const dispatch = useDispatch()
+  let buttonText = 'Add to Cart'
   const { id } = useParams()
-  const p_id = parseInt(id)
-  const product = useSelector(state => state.product[p_id - 1])
+  const product_id = parseInt(id)
+  let cart = useSelector(state => state.cart)
+  let product = useSelector(state => state.products.products)
 
-  if (product) {
-    const url_list = product.photos.map(photo => photo.photo_url)
+  useEffect(() => {
+    dispatch(loadSingleProduct(product_id))
+  }, [dispatch, product.length])
 
+  if (product.length) {
+    product = product[0]
+  }
 
+  const addOneToCart = () => {
+    if (cart?.id) {
+      let btn = window.document.getElementById('add-btn')
+      btn.innerText = "Thank you!"
+      dispatch(addToCart(cart.id, product_id))
+      return history.push('/cart')
 
-    return (
-      <>
+    }
+    return history.push('/login')
+  }
 
-        { url_list.length && (
-          <div className='product-page-wrapper'>
-            <div className='photo-galery'>
+  return (
+    <>
+      {product.name &&
+        (
+        <div className='product-page-wrapper'>
+          <div className="picture_desc">
+            <div className='photo-gallery'>
               <div>
-                <img src={url_list[0]} className="main-photo" alt="nope"></img>
+                <img src={product.photos[0].photo_url} className="main-img" alt="nope"></img>
               </div>
               <div>
-                {url_list.map(url => (
-                  <img src={url} className='small-img'></img>
+                {product.photos.map(photo => (
+                  <img src={photo.photo_url} className='small-img'></img>
                 ))}
               </div>
             </div>
             <div className='product-description'>
+              <h2>{product.name}</h2>
               {<p>{product.description}</p>}
+              <div className="button-add-cart">
+              <button id='add-btn' onClick={addOneToCart}>{buttonText}</button>
             </div>
-            <br></br>
-            <div>STORE DIV</div>
-            <br></br>
+            </div>
+          </div>
+
+          <div className='store-div'>
+            <h1>STORE DIV</h1>
+            </div>
             <div className='reviews-container'>
-              {product.reviews.length && product.reviews.map((review, i) => (
+                  <ReviewCard product={product}/>
+              {/* {product.reviews.length && product.reviews.map((review, i) => (
                 <div className='single-review'>
-                  <div>
-                    <span key={i}>{review.user_name}</span>
-                    <span key={i + 1}>{review.created_at}</span>
+                  <div className="user_created">
+                    <div class="user-name">{review.user_name}</div>
+                    <div className="created_at">{review.created_at}</div>
                   </div>
                   <div>
                     {review.content}
                   </div>
                 </div>
-              ))}
+              ))} */}
             </div>
           </div >
         )}
-      </>
-    )
-  }
-
-  return null
+    </>
+  )
 
 }
 

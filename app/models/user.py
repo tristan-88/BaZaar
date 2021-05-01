@@ -36,7 +36,7 @@ class User(db.Model, UserMixin):
             "email": self.email,
             "address": self.address,
             "photo_url": self.photo_url,
-            "store": self.stores.to_dict()
+            # "store": self.stores.to_dict()
         }
 
     stores = db.relationship(

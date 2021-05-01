@@ -5,11 +5,12 @@ import LoginForm from "./components/auth/LoginForm/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm/SignUpForm";
 import NavBar from "./components/NavBar/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import UsersList from "./components/UsersList/UsersList";
 import SingleProductPage from "./components/SingleProductPage/SingleProductPage"
 import User from "./components/User/User";
+import Cart from "./components/Cart/Cart"
 import HomePage from "./components/HomePage/HomePage";
 import { authenticate } from "./store/session";
+import Store from './components/Store/Store'
 
 function App() {
   const dispatch = useDispatch()
@@ -30,24 +31,30 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-        <Route path="/login" exact={true}>
+        <Route exact path="/login" >
           <LoginForm />
         </Route>
-        <Route path="/sign-up" exact={true}>
+        <Route exact path="/sign-up" >
           <SignUpForm />
         </Route>
-        <Route path="/products/:id">
+        <Route exact path="/products/:id">
           <SingleProductPage />
         </Route>
-        <ProtectedRoute path="/users" exact={true}>
-          <UsersList />
-        </ProtectedRoute>
-        <ProtectedRoute path="/users/:userId" exact={true}>
+        <ProtectedRoute exact path="/users" >
           <User />
         </ProtectedRoute>
-        <Route path="/" exact={true}>
+        <ProtectedRoute exact path="/users/:userId" >
+          <User />
+        </ProtectedRoute>
+        <Route exact path="/" >
           <HomePage />
         </Route>
+        <ProtectedRoute exact path='/store'>
+          <Store />
+        </ProtectedRoute>
+        <ProtectedRoute exact path='/cart'>
+          <Cart />
+        </ProtectedRoute >
       </Switch>
     </BrowserRouter>
   );

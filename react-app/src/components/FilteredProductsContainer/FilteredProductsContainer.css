@@ -3,6 +3,8 @@
     flex-wrap: wrap;
     justify-content: center;
     overflow-x: none;
+    max-width: 60vw;
+    margin-left: 20%;
 }
 
 .product-card-container{
