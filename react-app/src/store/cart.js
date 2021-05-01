@@ -33,16 +33,22 @@ export const removeCart = () => async (dispatch) => {
 
 export const addToCart = (cart_id, product_id) => async (dispatch) => {
     const res = await fetch(`/api/carts/${cart_id}/add/${product_id}`)
+    let data = await res.json()
+    if (data) {
+        dispatch(setCart(data))
+    }
 }
 
-const initialState = null
+const initialState = {
+
+}
 
 export default function cartReducer(state = initialState, action) {
     switch (action.type) {
         case SET_CART:
             return { ...action.payload }
         case REMOVE_CART:
-            return {};
+            return null;
         default:
             return state
     }

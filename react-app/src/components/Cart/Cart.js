@@ -1,40 +1,59 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { loadProducts } from '../../store/product'
+import { createCart } from '../../store/cart'
 import SmallProductTile from '../SmallProductTile/SmallProductTile'
+import CartProductTile from '../CartProductTile/CartProductTile'
 import './Cart.css'
 
 
 function Cart() {
     const dispatch = useDispatch()
+    const cart = useSelector(state => state.cart)
+    const user = useSelector(state => state.session.user)
 
-    const cartProducts = useSelector(state => state.cart.products)
-        .map(product => product.id)
-    const products = useSelector(state => state.products.products)
 
     //look at when ever something here changes reload this component
     useEffect(() => {
-        dispatch(loadProducts())
+        dispatch(createCart())
     }, [dispatch])
 
-    let myCart;
-    if (products) {
-        myCart = products.map(product => (cartProducts.includes(product.id) ? product : ''))
-            .filter(product => product !== '')
+    let cartItems;
+    if (cart) {
+        cartItems = cart.products?.map(product => (
+            product.product
+        ))
     }
 
     return (
         <>
-            {myCart.length &&
+            { cartItems &&
                 <div>
-                    <div className="cart-card">
-                        <h1>{`CART(${myCart.length})`}</h1>
+                    <div className="cart-title">
+                        <h1>{`Welcome, ${user.username}!`}</h1>
                     </div>
-                    <div>
-                        {myCart.map(product => (
-                            <SmallProductTile product={product} />
-                        ))}
+                    <div className='tagline'>
+                        <h3>Here are the items in your cart.</h3>
                     </div>
+                    <br></br>
+                    <div className='span-divider'></div>
+                    <div className='cart-items-wrapper'>
+                        <div className='cart-items'>
+                            {cart.products.map((product, i) => (
+                                <div key={i} className='cit-tile-wrapper' id={`item-${i}`}>
+                                    <CartProductTile cartId={cart.id} product={product.product} id={i} />
+                                </div>
+                            ))}
+                        </div>
+                        <div className='sidebar-main-wrapper'>
+                            <div class="sidenav">
+                                <p className='sb-item-total'>Items</p>
+                                <p className='sb-shipping'>Shipping</p>
+                                <p className='sb-total'>Total</p>
+                                <a href="#">Proceed to Checkout</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='span-divider'></div>
                 </div>
             }
         </>
