@@ -1,10 +1,13 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../store/session";
 import { removeCart } from "../../../store/cart"
 import { removeProducts } from "../../../store/product";
 import './LogoutButton.css'
+
+
 const LogoutButton = () => {
+  const user = useSelector(state => state.session.user)
   const dispatch = useDispatch()
   const onLogout = async (e) => {
     await dispatch(logout());
@@ -13,7 +16,8 @@ const LogoutButton = () => {
   return(
     <div
      onClick={onLogout}>
-     <i class="fad fa-sign-out fa-5x"></i>
+     {/* <button type='submit'>LogOut</button> */}
+     {user && <i class="fad fa-sign-out fa-5x"></i>}
     </div>
 
   )
