@@ -5,7 +5,6 @@ import LoginForm from "./components/auth/LoginForm/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm/SignUpForm";
 import NavBar from "./components/NavBar/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import UsersList from "./components/UsersList/UsersList";
 import SingleProductPage from "./components/SingleProductPage/SingleProductPage"
 import User from "./components/User/User";
 import Cart from "./components/Cart/Cart"
@@ -42,7 +41,7 @@ function App() {
           <SingleProductPage />
         </Route>
         <ProtectedRoute exact path="/users" >
-          <UsersList />
+          <User />
         </ProtectedRoute>
         <ProtectedRoute exact path="/users/:userId" >
           <User />
