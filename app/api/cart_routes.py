@@ -79,7 +79,10 @@ def add_item(cart_id, product_id):
 @cart_routes.route('/<int:cart_id>/remove/<int:product_id>')
 @login_required
 def remove_item(cart_id, product_id):
-    remove_entry = Cart_Product.query.order_by(desc(Cart_Product.id)).filter_by(cart_id=cart_id, product_id=product_id).first()
-    db.session.delete(remove_entry)
-    db.session.commit()
-    return remove_entry.to_dict()
+    try:
+        remove_entry = Cart_Product.query.order_by(desc(Cart_Product.id)).filter_by(cart_id=cart_id, product_id=product_id).first()
+        db.session.delete(remove_entry)
+        db.session.commit()
+        return 'Yeet!'
+    except:
+        return 'Nah bruh...'
