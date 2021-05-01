@@ -62,13 +62,9 @@
 .reviews-container {
   /* grid-row: 4;
   grid-column: 1 / 4; */
-  flex:1;
-  align-self: flex-start;
   margin-left: 15em;
-  margin-bottom: 20px;
-  margin-top: 40px;
-  font-weight: bolder;
-  font-family: monospace;
+  /* margin-bottom: 20px;
+  margin-top: 40px; */
   font-size: large;
   width: 600px;
   height: 300px;
