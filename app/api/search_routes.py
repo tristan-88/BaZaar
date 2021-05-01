@@ -7,7 +7,6 @@ search_routes = Blueprint('search', __name__)
 @search_routes.route('/<string:squery>')
 def search(squery):
 
-    print(squery, '**************************************')
     search_result = {
         'Products': [],
         'Stores': []

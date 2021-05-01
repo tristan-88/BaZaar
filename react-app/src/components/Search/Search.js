@@ -18,7 +18,7 @@ function Search() {
     return (
         <div>
             <form method="get" action="/api/search" onSubmit={handleSubmit}>
-                <button onClick={handleSubmit} type='submit'><i class="fas fa-telescope"></i></button>
+                <button type='submit'><i class="fas fa-telescope"></i></button>
                 <input
                     value={search}
                     name='search'
