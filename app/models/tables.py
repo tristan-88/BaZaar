@@ -60,6 +60,7 @@ class Cart_Product(db.Model):
             "id": self.id,
             "product_id": self.product_id,
             "cart_id": self.cart_id,
+            "product": self.product.to_dict()
         }
 
     carts = db.relationship("Cart", back_populates="products")
