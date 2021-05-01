@@ -39,7 +39,9 @@ export const addToCart = (cart_id, product_id) => async (dispatch) => {
     }
 }
 
-const initialState = null
+const initialState = {
+
+}
 
 export default function cartReducer(state = initialState, action) {
     switch (action.type) {

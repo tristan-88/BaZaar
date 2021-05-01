@@ -5,10 +5,6 @@ import './CartProductTile.css'
 
 const CartProductTile = ({ product }) => {
 
-  const cart = useSelector(state => state.cart)
-
-  console.log(cart)
-
   return (
     <div className='cart-card-wrapper'>
       <div>
@@ -17,7 +13,7 @@ const CartProductTile = ({ product }) => {
         </NavLink>
       </div>
       <div>
-        {product.description}
+        description
       </div>
       <div>
         {product.price}
