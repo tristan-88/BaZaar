@@ -44,8 +44,13 @@ function Cart() {
                                 </div>
                             ))}
                         </div>
-                        <div className='sidebar-wrapper'>
-                            SIDEBAR
+                        <div className='sidebar-main-wrapper'>
+                            <div class="sidenav">
+                                <p className='sb-item-total'>Items</p>
+                                <p className='sb-shipping'>Shipping</p>
+                                <p className='sb-total'>Total</p>
+                                <a href="#">Proceed to Checkout</a>
+                            </div>
                         </div>
                     </div>
                     <div className='span-divider'></div>
