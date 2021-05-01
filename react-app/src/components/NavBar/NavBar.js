@@ -1,10 +1,12 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
+import { useSelector } from 'react-redux'
 import LogoutButton from './../auth/LogoutButton/LogoutButton';
 import Search from '../Search/Search';
 import './NavBar.css'
 
 const NavBar = () => {
+  const cart = useSelector(state => state.cart?.products)
   return (
     <nav>
       <div className='navigation-bar-container'>
@@ -24,6 +26,9 @@ const NavBar = () => {
         <div className="search-bar">
           <Search />
         </div>
+        <NavLink to='/cart'>
+          <i class="fad fa-shopping-cart fa-4x"></i> <div>{cart?.length}</div>
+        </NavLink>
       </div>
     </nav>
   );

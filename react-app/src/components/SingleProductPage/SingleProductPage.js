@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useParams, useHistory } from 'react-router-dom'
 import { loadSingleProduct } from '../../store/product'
 import { addToCart } from '../../store/cart'
+import ReviewCard from '../ReviewCard/ReviewCard'
 import './SingleProductPage.css'
 // import { useDispatch } from 'react-redux'
 
@@ -30,7 +31,7 @@ const SingleProductPage = () => {
       btn.innerText = "Thank you!"
       dispatch(addToCart(cart.id, product_id))
       return history.push('/cart')
-       
+
     }
     return history.push('/login')
   }
@@ -59,12 +60,13 @@ const SingleProductPage = () => {
             </div>
             </div>
           </div>
-            
+
           <div className='store-div'>
             <h1>STORE DIV</h1>
             </div>
             <div className='reviews-container'>
-              {product.reviews.length && product.reviews.map((review, i) => (
+                  <ReviewCard product={product}/>
+              {/* {product.reviews.length && product.reviews.map((review, i) => (
                 <div className='single-review'>
                   <div className="user_created">
                     <div class="user-name">{review.user_name}</div>
@@ -74,7 +76,7 @@ const SingleProductPage = () => {
                     {review.content}
                   </div>
                 </div>
-              ))}
+              ))} */}
             </div>
           </div >
         )}
