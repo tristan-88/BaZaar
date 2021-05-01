@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import current_user
-from app.models import db, Product, Store, Review, Photo
+from app.models import db, Product, Store, Review, Photo, Cart_Product
 from app.forms import ProductForm
 from sqlalchemy import desc, asc
 
@@ -40,8 +40,12 @@ def all_products():
 # ---GET--- http://localhost:5000/api/products/id ---TESTED---
 
 
-
-
+@product_routes.route('/fromcart/<int:id>')
+# @login_protected
+def cart_products(id):
+    carts = Cart_Product.query.filter(cart_id=cart_id)
+    products = [cart.to_dict() for cart in carts]
+    return jsonify(products)
 
 @product_routes.route('/<int:id>')
 def single_product(id):

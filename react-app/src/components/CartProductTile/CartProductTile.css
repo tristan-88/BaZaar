@@ -1,0 +1,14 @@
+.cart-card-wrapper {
+  display: flex;
+  border: 2px solid black;
+  align-items: center;
+  max-width: 20vw;
+  height: 70px;
+  padding: 5px;
+  margin: 8px;
+}
+
+.thumbnail {
+  max-width: 60px;
+  max-height: 60px;
+}

@@ -17,18 +17,12 @@ export const getSearch = (search) => async dispatch => {
 
 const initialState = {
     'products': [],
-    'search': []
+    'stores': []
 
 }
 
 const searchReducer = (state = initialState, action) => {
     switch (action.type) {
-        // case LOAD_SEARCH:
-        //     const newState = {};
-        //     action.payload.forEach((search) => {
-        //         newState[search.id] = search;
-        //     })
-        //     return newState;
         case LOAD_SEARCH:
             return {
                 'products': [...action.payload.Products],

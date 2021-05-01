@@ -4,16 +4,13 @@ from app.models import User, Product, Store
 
 search_routes = Blueprint('search', __name__)
 
-
 @search_routes.route('/<string:squery>')
 def search(squery):
 
-    print(squery)
     search_result = {
         'Products': [],
         'Stores': []
     }
-
 
     product_results = Product.query.filter(Product.name.ilike(f'%{squery}%')).all()
     store_results = Store.query.filter(Store.name.ilike(f'%{squery}%')).all()
