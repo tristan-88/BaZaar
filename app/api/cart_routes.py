@@ -19,7 +19,7 @@ def check_create_cart(id):
         new_cart = Cart(user_id=id)
         db.session.add(new_cart)
         db.session.commit()
-        return new_cart.to_dict()
+        return jsonify(new_cart)
 
 @cart_routes.route('', methods=["POST"])
 @login_required
