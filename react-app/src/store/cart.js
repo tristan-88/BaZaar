@@ -48,7 +48,7 @@ export default function cartReducer(state = initialState, action) {
         case SET_CART:
             return { ...action.payload }
         case REMOVE_CART:
-            return {};
+            return null;
         default:
             return state
     }

@@ -7,7 +7,6 @@ import './LogoutButton.css'
 const LogoutButton = () => {
   const dispatch = useDispatch()
   const onLogout = async (e) => {
-    await dispatch(removeCart());
     await dispatch(logout());
   };
 
