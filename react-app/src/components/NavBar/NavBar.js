@@ -7,20 +7,21 @@ import './NavBar.css'
 
 const NavBar = () => {
   const cart = useSelector(state => state.cart?.products)
+  const user = useSelector(state => state.session?.user)
   return (
     <nav>
       <div className='navigation-bar-container'>
         <NavLink to="/" exact={true} >
           <i class="fad fa-home-lg fa-4x"></i>
         </NavLink>
-        <NavLink to="/login" exact={true} activeClassName="active">
+        {!user && <NavLink to="/login" exact={true} activeClassName="active">
           <i class="fad fa-sign-in fa-4x"></i>
-        </NavLink>
-        <NavLink to="/sign-up" exact={true} activeClassName="active">
+        </NavLink>}
+        {!user && <NavLink to="/sign-up" exact={true} activeClassName="active">
           <i class="fad fa-user-plus fa-4x" ></i>
-        </NavLink>
+        </NavLink>}
         <NavLink to="/users" exact={true} activeClassName="active">
-          <i class="fad fa-users fa-4x"></i>
+         {user && <i class="fad fa-users fa-4x"></i>}
         </NavLink>
         <LogoutButton />
         <div className="search-bar">
