@@ -12,34 +12,6 @@ import './HomePage.css'
 
 
 function HomePage() {
-<<<<<<< HEAD
-    const dispatch = useDispatch()
-	const products = useSelector(state => state.product.products)
-	const user = useSelector(state => state.session.user)
-
-	useEffect(() => {
-		if (user) {
-
-		}
-        dispatch(loadProducts())
-    }, [dispatch])
-
-	console.log(user)
-    if (!products) {
-        return null
-    }
-
-	let sessionLinks;
-	if (user) {
-	  sessionLinks = (
-		<ProductForm />
-	  )
-	  } else {
-		sessionLinks = (
-		  <>
-		  </>
-	  )
-=======
 	const dispatch = useDispatch()
 
 	const [loaded, setLoaded] = useState(false)
@@ -59,7 +31,6 @@ function HomePage() {
 
 	const setFilter = (id) => {
 		console.log(id)
->>>>>>> main
 	}
 
 

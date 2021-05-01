@@ -95,7 +95,7 @@ const ProductForm = () => {
                     onChange={updateImage}
                     ></input>
                 </div>
-                <button type="submit">Sign Up</button>
+                <button type="submit">Add Product</button>
             </form>
             }
         </>
