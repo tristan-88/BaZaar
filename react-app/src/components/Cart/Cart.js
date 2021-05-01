@@ -8,8 +8,9 @@ import './Cart.css'
 
 function Cart() {
     const dispatch = useDispatch()
-
     const cart = useSelector(state => state.cart)
+    const user = useSelector(state => state.session.user)
+
 
     //look at when ever something here changes reload this component
     useEffect(() => {
@@ -27,14 +28,32 @@ function Cart() {
         <>
             { cartItems &&
                 <div>
-                    <div className="cart-card">
-                        <h1>{`CART(${cart.products.length})`}</h1>
+                    <div className="cart-title">
+                        <h1>{`Welcome, ${user.username}!`}</h1>
                     </div>
-                    <div>
-                        {cart.products.map(product => (
-                            <CartProductTile product={product.product} />
-                        ))}
+                    <div className='tagline'>
+                        <h3>Here are the items in your cart.</h3>
                     </div>
+                    <br></br>
+                    <div className='span-divider'></div>
+                    <div className='cart-items-wrapper'>
+                        <div className='cart-items'>
+                            {cart.products.map((product, i) => (
+                                <div key={i} className='cit-tile-wrapper' id={`item-${i}`}>
+                                    <CartProductTile cartId={cart.id} product={product.product} id={i} />
+                                </div>
+                            ))}
+                        </div>
+                        <div className='sidebar-main-wrapper'>
+                            <div class="sidenav">
+                                <p className='sb-item-total'>Items</p>
+                                <p className='sb-shipping'>Shipping</p>
+                                <p className='sb-total'>Total</p>
+                                <a href="#">Proceed to Checkout</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='span-divider'></div>
                 </div>
             }
         </>
