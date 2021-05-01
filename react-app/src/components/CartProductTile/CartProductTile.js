@@ -11,7 +11,9 @@ const CartProductTile = ({ product, id, cartId }) => {
     let item = document.getElementById(id)
     await fetch(`/api/carts/${cartId}/remove/${product.id}`)
     console.log('click', id)
-    item.remove()
+    if (item) {
+      item.remove()
+    }
   }
 
   return (
@@ -26,7 +28,7 @@ const CartProductTile = ({ product, id, cartId }) => {
       </div>
       <div className='cit-item-price-X'>
         <div className='cit-remove-btn' id={id} onClick={(e) => removeItem(`item-${e.target.id}`)}>
-          <i className='fa fa-trash' aria-hidden='true'></i>
+          <i className='fa fa-trash' id={id} aria-hidden='true'>Remove</i>
         </div>
         <div className='cit-price'>
           {`$${product.price}`}
