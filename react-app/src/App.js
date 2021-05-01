@@ -11,6 +11,7 @@ import Cart from "./components/Cart/Cart"
 import HomePage from "./components/HomePage/HomePage";
 import { authenticate } from "./store/session";
 import Store from './components/Store/Store'
+import Footer from './components/Footer/Footer'
 
 function App() {
   const dispatch = useDispatch()
@@ -56,7 +57,9 @@ function App() {
           <Cart />
         </ProtectedRoute >
       </Switch>
+      <Footer/>
     </BrowserRouter>
+
   );
 }
 

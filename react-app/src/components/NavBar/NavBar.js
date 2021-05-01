@@ -7,6 +7,11 @@ import './NavBar.css'
 
 const NavBar = () => {
   const cart = useSelector(state => state.cart?.products)
+
+
+  const user = useSelector(state => state.session.user)
+
+
   return (
     <nav>
         <div className='navigation-bar-container'>
