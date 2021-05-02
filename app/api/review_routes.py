@@ -51,7 +51,7 @@ def create_review():
     if form.validate_on_submit():
         review = Review(
             user_id= id
-            content = form.data['Review']
+            # content = form.data['Review']
         )
         db.session.add(review)
         db.session.commit()

@@ -17,25 +17,32 @@ const CartProductTile = ({ product, id, cartId }) => {
   }
 
   return (
-    <div className='cit-cart-item'>
-      <div>
-        <NavLink to={`/products/${product.id}`}>
-          <img className='cit-thumbnail' src={product.photos[0].photo_url}></img>
-        </NavLink>
-      </div>
-      <div className='cit-item-name'>
-        {product.name}
-      </div>
-      <div className='cit-item-price-X'>
-        <div className='cit-remove-btn' id={id} onClick={(e) => removeItem(`item-${e.target.id}`)}>
-          <i className='fa fa-trash' id={id} aria-hidden='true'>Remove</i>
-        </div>
-        <div className='cit-price'>
-          {`$${product.price}`}
-        </div>
-      </div>
-    </div>
-  )
+		<div className="cit-cart-item">
+			<div>
+				<NavLink to={`/products/${product.id}`}>
+					<img
+						className="cit-thumbnail"
+						src={product.photos[0].photo_url}
+					></img>
+				</NavLink>
+			</div>
+			<div className="cit-item-name">{`${product.name}`}</div>
+			<div className="cit-item-price-X">
+				<div
+					className="cit-remove-btn"
+					id={id}
+					onClick={(e) => removeItem(`item-${e.target.id}`)}
+				>
+					<i className="fa fa-trash" id={id} aria-hidden="true">
+						Remove
+					</i>
+				</div>
+				<div className="cit-price">
+					{`Quantity: ${product.cartQty}  $${product.price}`}
+				</div>
+			</div>
+		</div>
+	);
 }
 
 export default CartProductTile;

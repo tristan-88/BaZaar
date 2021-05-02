@@ -5,7 +5,7 @@ import search from './search';
 import cart from './cart';
 import product from './product';
 import store from './store'
-import review from './review';
+// import review from './review';
 
 const rootReducer = combineReducers({
   session,
@@ -13,7 +13,7 @@ const rootReducer = combineReducers({
   cart,
   products: product,
   store,
-  review
+  // review
 });
 
 let enhancer;
