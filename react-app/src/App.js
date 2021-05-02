@@ -12,6 +12,7 @@ import HomePage from "./components/HomePage/HomePage";
 import { authenticate } from "./store/session";
 import Store from './components/Store/Store'
 import Footer from './components/Footer/Footer'
+import SearchResultPage from "./components/SearchResultPage/SearchResultPage";
 
 function App() {
   const dispatch = useDispatch()
@@ -56,6 +57,9 @@ function App() {
         <ProtectedRoute exact path='/cart'>
           <Cart />
         </ProtectedRoute >
+        <Route exact path="/search" >
+          <SearchResultPage />
+        </Route>
       </Switch>
       <Footer/>
     </BrowserRouter>

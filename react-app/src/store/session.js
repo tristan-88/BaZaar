@@ -1,3 +1,5 @@
+import { removeCart } from './cart';
+import { removeStore } from './store';
 
 const SET_USER = 'session/SET_USER'
 const REMOVE_USER = 'session/REMOVE_USER'
@@ -56,30 +58,32 @@ export const logout = () => async (dispatch) => {
   });
 
   dispatch(removeUser())
+  dispatch(removeCart())
+  dispatch(removeStore())
 };
 
 
 export const signUp = (firstname, lastname, username, email, image, password, address) => async (dispatch) => {
   const formData = new FormData();
-    formData.append('first_name', firstname)
-    formData.append('last_name', lastname)
-    formData.append('username', username)
-    formData.append('email', email)
-    formData.append('image', image)
-    formData.append('password', password)
-    formData.append('address', address)
+  formData.append('first_name', firstname)
+  formData.append('last_name', lastname)
+  formData.append('username', username)
+  formData.append('email', email)
+  formData.append('image', image)
+  formData.append('password', password)
+  formData.append('address', address)
 
 
-    const response = await fetch('/api/auth/signup', {
-      method: "POST",
-      body: formData
-    });
+  const response = await fetch('/api/auth/signup', {
+    method: "POST",
+    body: formData
+  });
 
-    if (response.ok) {
-      const data = await response.json();
-      dispatch(setUser(data))
-    }
-  };
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(setUser(data))
+  }
+};
 
 const initialState = { user: null };
 

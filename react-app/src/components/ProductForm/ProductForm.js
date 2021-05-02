@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { Redirect } from "react-router-dom";
-import { addProductPhotos, addProduct } from "../../store/product";
+import { addProduct } from "../../store/product";
+import { gettingStore } from "../../store/store";
 import './ProductForm.css';
 
 
@@ -13,7 +13,7 @@ const ProductForm = () => {
     const [quantity, setQuantity] = useState(1);
     const [description, setDescription] = useState("");
 
-    const store = useSelector(state => state.session.user.store)
+    const store = useSelector(state => state.store)
 
     let store_id;
     if (store) {
@@ -23,6 +23,8 @@ const ProductForm = () => {
     const productCreate = async (e) => {
         e.preventDefault();
         await dispatch(addProduct(name, store_id, price, quantity, description, image))
+        await dispatch(gettingStore())
+
     }
     //we needed to check how many products we had so that the new products id does not conflict with the ones we have
     const updateName = (e) => {
@@ -95,7 +97,7 @@ const ProductForm = () => {
                     onChange={updateImage}
                     ></input>
                 </div>
-                <button type="submit">Sign Up</button>
+                <button type="submit">Add Product</button>
             </form>
             }
         </>

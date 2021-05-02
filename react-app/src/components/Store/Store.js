@@ -1,15 +1,19 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux'
-import './Store.css'
-import SmallProductTile from "../SmallProductTile/SmallProductTile"
-import FeatureProductTile from '../FeatureProductTile/FeatureProductTile'
-
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import "./Store.css"
+import SmallProductTile from "../SmallProductTile/SmallProductTile";
+import FeatureProductTile from "../FeatureProductTile/FeatureProductTile";
 
 const Store = () => {
-    const store = useSelector(state => state.session?.user?.store) 
+	const dispatch = useDispatch()
+    const store = useSelector(state => state.store)
 
+	// useEffect(() => {
+
+	// }, [])
     return (
 			<>
+				{store &&
 				<div className="store-page">
 					<div className="store-info">
 						<div className="store-img">
@@ -21,9 +25,7 @@ const Store = () => {
 						</div>
 						<div className="store_name_description">
 							<h2>Store Name: {store.name}</h2>
-							<p>
-								<h3>Store Description:</h3> {store.description}
-							</p>
+							<h3>Store Description:</h3> {store.description}
 						</div>
 					</div>
                 <div className="store-items">
@@ -37,7 +39,7 @@ const Store = () => {
 									/>
 								</div>
 							)).slice(0,1)}
-                        <div className="other-item"> 
+                        <div className="other-item">
 						{store.products
 							.map((product) => (
 								<div className="other-products">
@@ -50,6 +52,7 @@ const Store = () => {
                         </div>
 					</div>
 				</div>
+				}
 			</>
 		);
 
