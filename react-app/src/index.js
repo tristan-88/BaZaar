@@ -9,6 +9,7 @@ import * as sessionActions from './store/session';
 import * as cartActions from './store/cart';
 import * as productActions from './store/product';
 import * as storeActions from './store/store';
+import * as reviewActions from './store/review'
 
 const store = configureStore();
 
@@ -18,6 +19,7 @@ if (process.env.NODE_ENV !== 'production') {
   window.cartActions = cartActions;
   window.productActions = productActions;
   window.storeActions = storeActions;
+  window.reviewActions = reviewActions;
 }
 
 ReactDOM.render(
