@@ -44,12 +44,14 @@ function App() {
         </Route>
         <ProtectedRoute exact path="/users" >
           <User />
+
         </ProtectedRoute>
         <ProtectedRoute exact path="/users/:userId" >
           <User />
         </ProtectedRoute>
         <Route exact path="/" >
           <HomePage />
+          <Footer/>
         </Route>
         <ProtectedRoute exact path='/store'>
           <Store />
@@ -61,7 +63,7 @@ function App() {
           <SearchResultPage />
         </Route>
       </Switch>
-      <Footer/>
+
     </BrowserRouter>
 
   );

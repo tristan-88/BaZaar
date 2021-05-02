@@ -30,7 +30,9 @@ const FeatureProductTile = ({ product }) => {
           <div><NavLink to={`/products/${product.id}`}>
             {`$${product.price}`}
           </NavLink></div>
+
         </div>
+
       }
 
 

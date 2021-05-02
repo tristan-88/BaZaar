@@ -2,6 +2,7 @@ import React, { useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useParams, useHistory } from 'react-router-dom'
 import { loadSingleProduct } from '../../store/product'
+import Footer from '../Footer/Footer'
 import { addToCart } from '../../store/cart'
 import ReviewCard from '../ReviewCard/ReviewCard'
 import './SingleProductPage.css'
@@ -69,6 +70,7 @@ const SingleProductPage = () => {
             <h2>REVIEWS</h2>
                   <ReviewCard product={product}/>
             </div>
+            <Footer/>
           </div >
         )}
     </>
