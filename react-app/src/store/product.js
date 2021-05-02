@@ -102,8 +102,8 @@ export const addProduct = (name, store_id, price, quantity, description, image) 
     if (response.ok) {
         const data = await response.json();
         let product_id = data.id
-        dispatch(addProductPhotos(image, product_id))
-        dispatch(createProduct(data))
+        await dispatch(addProductPhotos(image, product_id))
+        await dispatch(loadProducts())
     }
 }
 
@@ -116,7 +116,6 @@ export const removeProducts = () => async (dispatch) => {
 const initialState = {
     products: [],
     featureProducts: [],
-    newProduct: []
 }
 
 export default function cartReducer(state = initialState, action) {
@@ -130,11 +129,6 @@ export default function cartReducer(state = initialState, action) {
             return {
                 ...state,
                 featureProducts: [...action.payload]
-            }
-        case ADD_PRODUCTS:
-            return {
-                ...state,
-                newProduct: [action.payload]
             }
         case REMOVE_PRODUCTS:
             return null;

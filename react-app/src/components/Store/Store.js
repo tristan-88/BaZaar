@@ -8,7 +8,9 @@ const Store = () => {
 	const dispatch = useDispatch()
     const store = useSelector(state => state.store)
 
+	// useEffect(() => {
 
+	// }, [])
     return (
 			<>
 				{store &&
