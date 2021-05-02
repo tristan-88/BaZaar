@@ -66,17 +66,6 @@ const SingleProductPage = () => {
             </div>
             <div className='reviews-container'>
                   <ReviewCard product={product}/>
-              {/* {product.reviews.length && product.reviews.map((review, i) => (
-                <div className='single-review'>
-                  <div className="user_created">
-                    <div class="user-name">{review.user_name}</div>
-                    <div className="created_at">{review.created_at}</div>
-                  </div>
-                  <div>
-                    {review.content}
-                  </div>
-                </div>
-              ))} */}
             </div>
           </div >
         )}

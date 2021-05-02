@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import "./User.css"
 import Store from '../Store/Store';
 import ShopForm from '../ShopForm/ShopForm';
+import ProductForm from '../ProductForm/ProductForm';
 
 function User() {
   const user = useSelector(state => state.session.user)
@@ -17,6 +18,8 @@ function User() {
       <>
         <strong>My Shop!</strong>
         <Store />
+        <h1>Add Product</h1>
+        <ProductForm />
       </>
     )
   } else {
