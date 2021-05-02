@@ -17,7 +17,7 @@ const LogoutButton = () => {
     <div
      onClick={onLogout}>
      {/* <button type='submit'>LogOut</button> */}
-     {user && <i class="fad fa-sign-out fa-5x"></i>}
+     {user && <i class="fad fa-sign-out fa-5x" style={{fontSize:'3em', color:'darkorange'}}></i>}
     </div>
 
   )
