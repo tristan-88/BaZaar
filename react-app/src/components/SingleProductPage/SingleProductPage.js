@@ -5,6 +5,7 @@ import { loadSingleProduct } from '../../store/product'
 import { addToCart } from '../../store/cart'
 import ReviewCard from '../ReviewCard/ReviewCard'
 import './SingleProductPage.css'
+// import ReviewForm from '../ReviewForm/ReviewForm'
 // import { useDispatch } from 'react-redux'
 
 
@@ -64,7 +65,8 @@ const SingleProductPage = () => {
           <div className='store-div'>
             <h1>STORE DIV</h1>
             </div>
-            <div className='reviews-container'>
+          <div className='reviews-container'>
+            <h2>REVIEWS</h2>
                   <ReviewCard product={product}/>
             </div>
           </div >
