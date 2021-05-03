@@ -26,7 +26,8 @@ const CartProductTile = ({ product, id, cartId }) => {
 					></img>
 				</NavLink>
 			</div>
-			<div className="cit-item-name">{`${product.name}`}</div>
+		  <div className="cit-item-name">{`${product.name}`}</div>
+		  <div className="cit-right-attributes">
 			<div className="cit-item-price-X">
 				<div
 					className="cit-remove-btn"
@@ -36,10 +37,14 @@ const CartProductTile = ({ product, id, cartId }) => {
 					<i className="fa fa-trash" id={id} aria-hidden="true">
 						Remove
 					</i>
-				</div>
+			  </div>
+			  <div className="cit-qty">
+				  {`Quantity: ${product.cartQty}  ` }
+			  </div>
 				<div className="cit-price">
-					{`Quantity: ${product.cartQty}  $${product.price}`}
-				</div>
+				  {`Price: $${product.price}`}
+				  </div>
+			  </div>
 			</div>
 		</div>
 	);
