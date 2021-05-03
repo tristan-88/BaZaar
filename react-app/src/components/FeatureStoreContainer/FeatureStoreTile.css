@@ -1,0 +1,53 @@
+
+.fst-container-div {
+  display: flex;
+  justify-content: space-around;
+  background-color: aliceblue;
+  margin-top: 18px;
+  margin-bottom: 18px;
+  opacity: 1;
+}
+
+.fst-wrapper {
+  display: flex;
+  border: 1px solid black;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px outset;
+  width: 340px;
+  height: 400px;
+  margin: 5px;
+  padding: 30px;
+  opacity: 1;
+  animation: fade-in 1s linear;
+  overflow: hidden;
+}
+.small-img-div {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.fst-small-img {
+  box-sizing: border-box;
+  margin-left: 2px;
+  max-width: 50px;
+  max-height: 50px;
+  padding: 2px;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.fst-main-img {
+  max-width: 240px;
+  max-height: 240px;
+}
+
+.divider-line {
+  opacity: 1;
+  animation: fade-in 3s linear;
+}
+
+
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+} 

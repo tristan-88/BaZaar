@@ -50,6 +50,10 @@ const SingleProductPage = (props) => {
 			let btn = window.document.getElementById('add-btn')
 			btn.innerText = "Thank you!"
 			dispatch(addToCart(cart.id, product_id))
+			setTimeout(() => {
+
+				return history.push('/')
+			}, 1000);
 		}
 		return history.push('/login')
 	}
@@ -88,9 +92,9 @@ const SingleProductPage = (props) => {
 						</div>
 					</div>
 
-					<div className="store-div">
+					{/* <div className="store-div">
 						<h1>STORE DIV</h1>
-					</div>
+					</div> */}
 					<h2>REVIEWS</h2>
 					<button onClick={handleSubmit} className="post-btn">POST REVIEW</button>
 					<div className="reviews-container">
