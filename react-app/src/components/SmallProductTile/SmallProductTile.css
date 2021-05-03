@@ -3,23 +3,25 @@ body{
 }
 
 .product-img{
-    height: 180px;
-    width: 180px;
+    height: 160px;
+    width: 160px;
     padding: 5px;
 }
 
 .product-card{
-    border: 3px outset white;
+    border: 1px solid rgb(192, 190, 190);
     margin: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
     width: fit-content;
-    max-width: 250px;
+    width: 180px;
     position: relative;
     padding: 3px;
     border-radius: 15px;
 }
+
+
 
 .product-card:hover {
     box-shadow: 10px 17px 9px -7px rgba(0,0,0,0.35);

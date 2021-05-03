@@ -4,6 +4,12 @@
   justify-content: space-around;
 }
 
+.filtered-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
 .banner-img{
   height: 100%;
   width: 100%;
