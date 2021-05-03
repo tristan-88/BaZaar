@@ -20,3 +20,7 @@ body{
     padding: 3px;
     border-radius: 15px;
 }
+
+.product-card:hover {
+    box-shadow: 10px 17px 9px -7px rgba(0,0,0,0.35);
+}

@@ -1,10 +1,14 @@
 .navigation-bar-container {
     display: flex;
-    
+    justify-content: space-between;
 }
 
-.search-bar{
+.interface-buttons {
+    display:flex;
+}
+
+.login-button {
     display: flex;
-    align-self: flex-end;
+    background: none;
+    border: none
 }
-

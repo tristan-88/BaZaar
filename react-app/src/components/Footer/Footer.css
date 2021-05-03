@@ -1,0 +1,26 @@
+.footer-container {
+    /* position: sticky; */
+    display: flex;
+    background-color: var(--accent1);
+    margin-top: 1px;
+    margin-bottom: -10px;
+    margin-left: -8px;
+    margin-right: -10px;
+    justify-content: space-evenly;
+}
+
+  .about-container {
+    order: 1;
+    margin: 20px;
+    padding: 50px;
+  }
+  .host-container {
+    order: 3;
+    margin: 20px;
+    padding: 50px;
+  }
+  .social-media-container {
+    order: 2;
+    margin-top: 120px;
+
+  }

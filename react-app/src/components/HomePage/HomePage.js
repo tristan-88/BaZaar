@@ -13,14 +13,20 @@ import './HomePage.css'
 
 function HomePage() {
 	const dispatch = useDispatch()
-
+	const user = useSelector(state => state.session.user)
 	const [loaded, setLoaded] = useState(false)
 
 	useEffect(() => {
-		dispatch(gettingStore())
-		dispatch(loadProducts())
-		dispatch(createCart())
-		setLoaded(true)
+		if (user) {
+			dispatch(gettingStore())
+			dispatch(loadProducts())
+			dispatch(createCart())
+			setLoaded(true)
+		} else {
+			dispatch(loadProducts())
+			dispatch(createCart())
+			setLoaded(true)
+		}
 	}, [dispatch, setLoaded])
 
 	const products = useSelector(state => state.products)
