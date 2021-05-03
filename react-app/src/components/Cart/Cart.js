@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { createCart } from '../../store/cart'
+import { Redirect, useHistory } from 'react-router-dom'
+import { createCart, completeOrder } from '../../store/cart'
 import SmallProductTile from '../SmallProductTile/SmallProductTile'
 import CartProductTile from '../CartProductTile/CartProductTile'
 import './Cart.css'
@@ -8,13 +9,9 @@ import './Cart.css'
 
 function Cart() {
 	const dispatch = useDispatch()
+	const history = useHistory()
 	const cart = useSelector(state => state.cart)
 	const user = useSelector(state => state.session.user)
-
-
-	const completeOrder = async (id) => {
-
-	}
 
 	//look at when ever something here changes reload this component
 	useEffect(() => {
@@ -24,6 +21,7 @@ function Cart() {
 	if (!cart.products) {
 		return null
 	}
+
 	let cartItems;
 	if (cart) {
 		const uniqueProduct = {}
@@ -48,6 +46,12 @@ function Cart() {
 		// cartItems = cart.products?.map(product => (
 		//     product.product
 		// ))
+	}
+
+	const completeOrder = async () => {
+		let btn = window.document.getElementById('checkout-btn')
+		btn.innerText = "Thank you!"
+		return <Redirect path='/home' />
 	}
 
 	return (
@@ -90,8 +94,7 @@ function Cart() {
 								<p className="sb-item-total">Items</p>
 								<div>{cart.products.length}</div>
 								<p className="sb-shipping">Shipping</p>
-								<p className="sb-total">Total</p>
-								<a href="#">Proceed to Checkout</a>
+								<p id='checkout-btn' onClick={completeOrder}>Proceed to Checkout</p>
 							</div>
 						</div>
 					</div>

@@ -39,6 +39,14 @@ export const addToCart = (cart_id, product_id) => async (dispatch) => {
     }
 }
 
+export const completeOrder = (cart_id) => async (dispatch) => {
+    const res = await fetch(`/api/carts/${cart_id}/close`)
+    let data = await res.json()
+    if (res.ok) {
+        dispatch(setCart(data))
+    }
+}
+
 const initialState = {
 
 }
