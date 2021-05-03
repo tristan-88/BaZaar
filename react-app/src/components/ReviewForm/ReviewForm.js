@@ -14,22 +14,25 @@ const ReviewForm = () => {
 		await dispatch(postingReview({ content, productId }))
     }
 
-    return (
-			<>
+	return (
+		<div className="form-body">
+			<div className="form-container">
 				<form onSubmit={creatReview}>
-					<div>
-						<label>Content</label>
+					<div className="form-inputs">
+						<label>Review </label>
 						<input
 							type="text"
 							onChange={(e) => {
 								setContent(e.target.value);
 							}}
-							value={content}
-						></input>
+						value={content}></input>
+					</div>
+					<div className="button-div">
 						<button type="submit">submit</button>
 					</div>
-				</form>
-			</>
+				</form>	
+			</div>
+		</div>
 		);
 }
 

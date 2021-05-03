@@ -94,7 +94,7 @@ const SingleProductPage = (props) => {
 						<h1>STORE DIV</h1>
 					</div>
 					<h2>REVIEWS</h2>
-					<button onClick={handleSubmit}>POST REVIEW</button>
+					<button onClick={handleSubmit} className="post-btn">POST REVIEW</button>
 					<div className="reviews-container">
 						{product.reviews?.map((review) => (
 							<ReviewCard review={review} user={user} />

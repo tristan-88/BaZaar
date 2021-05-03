@@ -67,16 +67,17 @@
   margin-top: 40px; */
   font-size: large;
   width: 600px;
-  height: 300px;
   display: flex;
   flex-direction: column-reverse;
+  margin-bottom: 20px;
 }
 
 .picture_desc{
   display: flex;
 }
 
-#add-btn{
+#add-btn, 
+.post-btn{
     outline: none;
     text-decoration: none;
     border-radius: 50px;

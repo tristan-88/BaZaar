@@ -15,8 +15,8 @@ function ReviewCard({ review, user }) {
 			setShown(false);
 		};
 
-		// document.addEventListener("click", closeShown);
-		// return () => document.removeEventListener("click", closeShown)
+		document.addEventListener("submit", closeShown);
+		return () => document.removeEventListener("submit", closeShown)
 	}, [isShown]);
 
 	const handleSubmit = () => {

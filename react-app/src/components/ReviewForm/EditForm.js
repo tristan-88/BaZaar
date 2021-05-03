@@ -10,7 +10,7 @@ import "./ReviewForm.css";
 
 const EditForm = ({reviewId}) => {
 	const dispatch = useDispatch();
-	const [content, setContent] = useState("");
+    const [content, setContent] = useState("");
 
     const editReview = async (e) => {
         console.log(reviewId)
@@ -23,19 +23,27 @@ const EditForm = ({reviewId}) => {
     }
 
 	return (
-        <>
+		<div className="form-body">
+			<div className="form-container">
                 <form onSubmit={editReview}>
-                    <label>Edit Review: </label>
-                    <input type="text" onChange={(e) => {
-                        setContent(e.target.value);
-                    }} value={content}></input>
-                    <button type="submit">
-                    submit
-                    </button>
-                    
-                </form>
-                <button onClick={() => deleteReview(reviewId)}>Delete</button>
-		</>
+                    <div className="form-inputs">
+					<label>Edit Review: </label>
+					<input
+						type="text"
+						onChange={(e) => {
+							setContent(e.target.value);
+						}}
+						value={content}
+                        ></input>
+                    </div>
+                    <div class="button-div"><button type="submit">submit</button>
+                    </div>
+					
+				</form>
+				<div class="button-div"><button onClick={() => deleteReview(reviewId)}>Delete</button></div>
+				
+			</div>
+		</div>
 	);
 };
 
