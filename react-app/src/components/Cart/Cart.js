@@ -77,20 +77,22 @@ function Cart() {
 						<div className="cart-items">
 							{cartItems.map((product, i) => (
 								<div key={i} className="cit-tile-wrapper" id={`item-${i}`}>
-									<CartProductTile
-										cartId={cart.id}
-										product={product}
-										id={i}
-									/>
+									<CartProductTile cartId={cart.id} product={product} id={i} />
 								</div>
 							))}
 						</div>
 						<div className="sidebar-main-wrapper">
 							<div class="sidenav">
-								<p className="sb-item-total">Items</p>
-								<div>{cart.products.length}</div>
-								<p className="sb-shipping">Shipping</p>
-								<p className="sb-total">Total</p>
+								<div className="sb-item-total">{`Total Items: ${cart.products.length}`}</div>
+								<div className="sb-shipping">
+									Shipping:</div>
+									<div className="radio-shipping">
+										<input type="radio" value="Standard" name="shipping" /> Standard Shipping: Free
+										<input type="radio" value="Express" name="shipping" /> Express: $10.00
+										<input type="radio" value="OverNight" name="shipping" /> Over Night: $20.00
+									
+								</div>
+								<div className="sb-total">Total:$55.09</div>
 								<a href="#">Proceed to Checkout</a>
 							</div>
 						</div>
