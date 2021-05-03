@@ -1,7 +1,6 @@
 
 
 .store-info{
-    position: relative;
     left: 15%;
     display: flex;
     width: 1500px;
@@ -10,7 +9,6 @@
     margin:20px;
 }
 .store_name_description{
-    position: relative;
     border-radius: 10px;
     box-shadow: 0 17px 9px -7px rgba(0,0,0,0.35);
     left: 15%;
@@ -30,7 +28,6 @@
 
 .other-item{
     display: flex;
-    position: relative;
     display: inline-block;
     display: flex;
     flex-wrap: wrap;
@@ -43,6 +40,5 @@
 .store-items{
     display: flex;
     margin:10px;
-    position: relative;
     left: 17%;
 }

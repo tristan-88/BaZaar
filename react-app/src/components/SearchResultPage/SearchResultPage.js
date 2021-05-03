@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import SmallProductTile from '../SmallProductTile/SmallProductTile'
 import CartProductTile from '../CartProductTile/CartProductTile'
+import './SearchResultPage.css'
 
 const SearchResultPage = () => {
 
@@ -13,11 +14,6 @@ const SearchResultPage = () => {
       {
         <div>
           <div className='products-div'>
-            {product_results.map(product => (
-              <CartProductTile product={product} />))
-            }
-          </div>
-          <div>
             {product_results.map(product => (
               <SmallProductTile product={product} />))
             }

@@ -4,7 +4,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createCart } from '../../store/cart'
-import { gettingStore } from '../../store/store'
+import { getStore } from '../../store/store'
 import { loadFeatureProducts, loadProducts, loadFilteredProducts } from '../../store/product';
 import SmallProductTile from '../SmallProductTile/SmallProductTile'
 import ProductCardContainer from '../ProductCardContainer/ProductCardContainer'
@@ -20,7 +20,7 @@ function HomePage() {
 
 	useEffect(() => {
 		if (user) {
-			dispatch(gettingStore())
+			dispatch(getStore())
 			dispatch(loadProducts())
 			dispatch(createCart())
 			setLoaded(true)
@@ -45,7 +45,7 @@ function HomePage() {
 		<>
 			<div className="banner-div">
 				<img
-					src="https://api.genstore.info/photos/banner-shopping.jpg"
+					src="https://github.com/Drewthurm21/portfolio/blob/main/images/homepage-banner.jpeg?raw=true"
 					alt="👽"
 					className="banner-img"
 				/>
@@ -66,7 +66,7 @@ function HomePage() {
 				<div onClick={(e) => setFilter(e.target.id)} id='10' className='misc-tag-div'>Misc</div>
 				<div onClick={(e) => setFilter(e.target.id)} id='11' className='home-tag-div'>Home & Living</div>
 			</div>
-			<div className="fpt-container">
+			<div className="filtered-container">
 				{filteredProducts && filteredProducts.map(product => <SmallProductTile product={product} />)}
 			</div>
 			<div>
