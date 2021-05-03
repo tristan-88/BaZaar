@@ -1,6 +1,8 @@
 
 
 .store-info{
+    position: relative;
+    left: 15%;
     display: flex;
     width: 1500px;
     height: 600px;
@@ -8,12 +10,19 @@
     margin:20px;
 }
 .store_name_description{
-    margin:30px;
-    margin-top: 50px;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 0 17px 9px -7px rgba(0,0,0,0.35);
+    left: 15%;
+    width: fit-content;
+    height: fit-content;
+    padding: 30px;
+    margin-top: 130px;
     font-family: 'Playfair';
+    background-color: rgba(204, 239, 240, 0.801);
 }
 .img-store{
-    width:500px;
+    width:600px;
     height:500px;
     margin:20px;
     box-shadow: 0 17px 9px -7px rgba(0,0,0,0.35);
@@ -28,9 +37,12 @@
     justify-content: center;
     overflow-x: none;
     align-items: baseline;
+    max-width: 40%;
 }
 
 .store-items{
     display: flex;
     margin:10px;
+    position: relative;
+    left: 17%;
 }
