@@ -16,12 +16,13 @@ def check_create_cart(id):
         if cart["order_id"] is None:
             return jsonify(cart)
     except:
-        new_cart = Cart(user_id=id)
-        db.session.add(new_cart)
-        db.session.commit()
-        return jsonify(new_cart)
+        print('hi')
+    new_cart = Cart(user_id=id)
+    db.session.add(new_cart)
+    db.session.commit()
+    return new_cart.to_dict()
 
-@cart_routes.route('', methods=["POST"])
+@cart_routes.route('', methods=["GET", "POST"])
 @login_required
 def assign_cart():
     return check_create_cart(current_user.id)
@@ -86,3 +87,12 @@ def remove_item(cart_id, product_id):
         return 'Yeet!'
     except:
         return 'Nah bruh...'
+
+
+@cart_routes.route('/<int:cart_id>/close/<int:order_id>')
+def close_cart(cart_id, order_id):
+    cart = Cart.query.get(cart_id)
+
+    cart.order_id = order_id
+    db.session.commit()
+    return cart.to_dict()

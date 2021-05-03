@@ -12,16 +12,20 @@ function ProductCardContainer() {
 
     if (!products) return null
 
+
     return (
         //we may want to limit on the display
         <div className="product-card-container" >
+            <div className='divider-line'>
+
+            </div>
             <div className="product-list">
                 {products.slice(0, 10).map((product, i) => (
                     <SmallProductTile product={product} key={i} />
                 ))}
             </div>
             <br></br>
-            <h1>next 10</h1>
+            <div className='.divider-line'></div>
             <div className="product-list">
                 {products.slice(10, 20).map((product, i) => (
                     <SmallProductTile product={product} key={i} />

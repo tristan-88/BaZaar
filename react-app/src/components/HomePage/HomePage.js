@@ -3,11 +3,13 @@
 // products are a component
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { loadFeatureProducts, loadProducts } from '../../store/product';
-import ProductCardContainer from '../ProductCardContainer/ProductCardContainer'
-import { gettingStore } from '../../store/store'
 import { createCart } from '../../store/cart'
+import { gettingStore } from '../../store/store'
+import { loadFeatureProducts, loadProducts, loadFilteredProducts } from '../../store/product';
+import SmallProductTile from '../SmallProductTile/SmallProductTile'
+import ProductCardContainer from '../ProductCardContainer/ProductCardContainer'
 import FeatureProductContainer from '../FeatureProductTile/FeatureProductContainer'
+import FilteredProductsContainer from '../FilteredProductsContainer/FilteredProductsContainer'
 import './HomePage.css'
 
 
@@ -30,15 +32,14 @@ function HomePage() {
 	}, [dispatch, setLoaded])
 
 	const products = useSelector(state => state.products)
-
+	const filteredProducts = useSelector(state => state.products.filteredProducts)
 	if (!products) {
 		return null
 	}
 
-	const setFilter = (id) => {
-		console.log(id)
+	const setFilter = async (tagId) => {
+		await dispatch(loadFilteredProducts(Number(tagId)))
 	}
-
 
 	return (
 		<>
@@ -49,8 +50,8 @@ function HomePage() {
 					className="banner-img"
 				/>
 			</div>
-			<div className="fpt-container">
-				{products && <FeatureProductContainer products={products} />}
+			<div className='fpt-container'>
+				<FeatureProductContainer />
 			</div>
 			<div className="tags-div">
 				<div onClick={(e) => setFilter(e.target.id)} id='1' className='sports-tag-div'>Sports</div>
@@ -64,6 +65,14 @@ function HomePage() {
 				<div onClick={(e) => setFilter(e.target.id)} id='9' className='art-tag-div'>Art</div>
 				<div onClick={(e) => setFilter(e.target.id)} id='10' className='misc-tag-div'>Misc</div>
 				<div onClick={(e) => setFilter(e.target.id)} id='11' className='home-tag-div'>Home & Living</div>
+			</div>
+			<div className="fpt-container">
+				{filteredProducts && filteredProducts.map(product => <SmallProductTile product={product} />)}
+			</div>
+			<div>
+			</div>
+			<div classname='filtered-products-wrapper'>
+				<FilteredProductsContainer products={products} />
 			</div>
 			<ProductCardContainer />
 		</>
