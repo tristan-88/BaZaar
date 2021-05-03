@@ -50,57 +50,64 @@ const ProductForm = () => {
 
 
     return (
-        <>
+        <div className="form-body">
             {store_id &&
-                <form onSubmit={productCreate}>
-                    <div>
-                        <label>Name</label>
-                        <input
-                            type="text"
-                            name="name"
-                            onChange={updateName}
-                            value={name}
-                        ></input>
-                    </div>
-                    <div>
-                        <label>Price</label>
-                        <input
-                            type="text"
-                            name="price"
-                            onChange={updatePrice}
-                            value={price}
-                        ></input>
-                    </div>
-                    <div>
-                        <label>Quantity</label>
-                        <input
-                            type="number"
-                            name="quantity"
-                            onChange={updateQuantity}
-                            value={quantity}
-                        ></input>
-                    </div>
-                    <div>
-                        <label>Description</label>
-                        <input
-                            type="text"
-                            name="description"
-                            onChange={updateDescription}
-                            value={description}
-                        ></input>
-                    </div>
-                    <div>
-                        <label>Photo Url</label>
-                        <input
-                            type="file"
-                            accept="image/*"
-                            onChange={updateImage}
-                        ></input>
-                    </div>
-                    <button type="submit">Add Product</button>
-                </form>
+                <div className="form-container">
+                    <form onSubmit={productCreate}>
+                        <div className="form-inputs">
+
+                            <div className="product-name">
+                                <label>Name</label>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    onChange={updateName}
+                                    value={name}
+                                ></input>
+                            </div>
+                            <div>
+                                <label>Price</label>
+                                <input
+                                    type="text"
+                                    name="price"
+                                    onChange={updatePrice}
+                                    value={price}
+                                ></input>
+                            </div>
+                            <div>
+                                <label>Quantity</label>
+                                <input
+                                    type="number"
+                                    name="quantity"
+                                    onChange={updateQuantity}
+                                    value={quantity}
+                                ></input>
+                            </div>
+                            <div>
+                                <label>Description</label>
+                                <input
+                                    type="text"
+                                    name="description"
+                                    onChange={updateDescription}
+                                    value={description}
+                                ></input>
+                            </div>
+                            <div>
+                                <label>{`Photo Url `}</label>
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={updateImage}
+                                ></input>
+                            </div>
+                        </div>
+                        <div className="button-div">
+                            <button type="submit">Add Product</button>
+                        </div>
+                    </form>
+                </div>
             }
-        </>
+        </div>
     )
 }
 

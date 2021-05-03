@@ -30,42 +30,41 @@ function App() {
   }
 
   return (
-    <BrowserRouter>
-      <NavBar />
-      <Switch>
-        <Route exact path="/login" >
-          <LoginForm />
-        </Route>
-        <Route exact path="/sign-up" >
-          <SignUpForm />
-        </Route>
-        <Route exact path="/products/:id">
-          <SingleProductPage />
-        </Route>
-        <ProtectedRoute exact path="/users" >
-          <User />
-        </ProtectedRoute>
-        <ProtectedRoute exact path="/users/:userId" >
-          <User />
-        </ProtectedRoute>
-        <Route exact path="/" >
-          <HomePage />
-          <Footer/>
-        </Route>
-        <ProtectedRoute exact path='/store'>
-          <Store />
-        </ProtectedRoute>
-        <ProtectedRoute exact path='/cart'>
-          <Cart />
-        </ProtectedRoute >
-        <Route exact path="/search" >
-          <SearchResultPage />
-        </Route>
-      </Switch>
-
-    </BrowserRouter>
-
-  );
+		<BrowserRouter>
+			<NavBar />
+			<Switch>
+				<Route exact path="/login">
+					<LoginForm />
+				</Route>
+				<Route exact path="/sign-up">
+					<SignUpForm />
+				</Route>
+				<Route exact path="/products/:id">
+					<SingleProductPage />
+				</Route>
+				<ProtectedRoute exact path="/users">
+					<User />
+				</ProtectedRoute>
+				<ProtectedRoute exact path="/users/:userId">
+					<User />
+				</ProtectedRoute>
+				<Route exact path="/">
+					<HomePage />
+					<Footer />
+				</Route>
+				<ProtectedRoute exact path="/store">
+					<Store />
+					<Footer />
+				</ProtectedRoute>
+				<ProtectedRoute exact path="/cart">
+					<Cart />
+				</ProtectedRoute>
+				<Route exact path="/search">
+					<SearchResultPage />
+				</Route>
+			</Switch>
+		</BrowserRouter>
+	);
 }
 
 export default App;
