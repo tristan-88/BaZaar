@@ -38,7 +38,6 @@ const EditForm = ({reviewId}) => {
                     </div>
                     <div class="button-div"><button type="submit">submit</button>
                     </div>
-					
 				</form>
 				<div class="button-div"><button onClick={() => deleteReview(reviewId)}>Delete</button></div>
 				
