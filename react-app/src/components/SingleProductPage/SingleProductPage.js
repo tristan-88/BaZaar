@@ -18,7 +18,7 @@ const SingleProductPage = (props) => {
   const { id } = useParams()
   const product_id = parseInt(id)
 
-  
+
   let cart = useSelector(state => state.cart)
   let product = useSelector(state => state.products.products)
   let user = useSelector(state => state.session.user)
@@ -34,7 +34,7 @@ const SingleProductPage = (props) => {
 
     document.addEventListener("submit", closeShown);
     return () => document.removeEventListener("submit", closeShown)
-   
+
   }, [isShown])
 
   useEffect(() => {
@@ -59,7 +59,7 @@ const SingleProductPage = (props) => {
   const handleSubmit = () => {
     setShown(true)
  }
-  
+
   return (
 		<>
 			{product.name && (
@@ -90,9 +90,9 @@ const SingleProductPage = (props) => {
 						</div>
 					</div>
 
-					<div className="store-div">
+					{/* <div className="store-div">
 						<h1>STORE DIV</h1>
-					</div>
+					</div> */}
 					<h2>REVIEWS</h2>
 					<button onClick={handleSubmit} className="post-btn">POST REVIEW</button>
 					<div className="reviews-container">
