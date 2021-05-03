@@ -11,6 +11,7 @@ import Cart from "./components/Cart/Cart"
 import HomePage from "./components/HomePage/HomePage";
 import { authenticate } from "./store/session";
 import Store from './components/Store/Store'
+import Footer from './components/Footer/Footer'
 import SearchResultPage from "./components/SearchResultPage/SearchResultPage";
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
         </ProtectedRoute>
         <Route exact path="/" >
           <HomePage />
+          <Footer/>
         </Route>
         <ProtectedRoute exact path='/store'>
           <Store />
@@ -60,7 +62,9 @@ function App() {
           <SearchResultPage />
         </Route>
       </Switch>
+
     </BrowserRouter>
+
   );
 }
 

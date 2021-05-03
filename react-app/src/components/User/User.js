@@ -5,6 +5,7 @@ import Store from '../Store/Store';
 import ShopForm from '../ShopForm/ShopForm';
 import ProductForm from '../ProductForm/ProductForm';
 import './User.css';
+import Footer from '../Footer/Footer'
 
 function User() {
   const user = useSelector(state => state.session.user)
@@ -16,14 +17,15 @@ function User() {
   let sessionLinks;
   if (store) {
     sessionLinks = (
-      <div>
+      <>
         <h2 className="shop-title">My Shop!</h2>
         <div className="border-line"></div>
         <Store />
         <div className="border-line"></div>
         <h1>Add Product</h1>
         <ProductForm />
-      </div>
+        <Footer/>
+      </>
     )
   } else {
     sessionLinks = (
