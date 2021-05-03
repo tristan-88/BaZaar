@@ -68,6 +68,8 @@
   font-size: large;
   width: 600px;
   height: 300px;
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 .picture_desc{
@@ -102,3 +104,17 @@
 .user_created{
   margin: 20px;
 }
+
+
+/*
+ Removed Button 
+
+#add-btn{
+  background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+} */
