@@ -4,6 +4,7 @@ import "./User.css"
 import Store from '../Store/Store';
 import ShopForm from '../ShopForm/ShopForm';
 import ProductForm from '../ProductForm/ProductForm';
+import Footer from '../Footer/Footer'
 
 function User() {
   const user = useSelector(state => state.session.user)
@@ -20,6 +21,7 @@ function User() {
         <Store />
         <h1>Add Product</h1>
         <ProductForm />
+        <Footer/>
       </>
     )
   } else {
