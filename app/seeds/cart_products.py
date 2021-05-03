@@ -8,8 +8,8 @@ faker = Faker()
 
 
 def seed_Cart_Products():
-    for i in range(5):
-        demo = Cart_Product(product_id=faker.pyint(min_value=1, max_value=51), cart_id=faker.pyint(min_value=1, max_value=6))
+    for i in range(70):
+        demo = Cart_Product(product_id=faker.pyint(min_value=1, max_value=25), cart_id=faker.pyint(min_value=1, max_value=6))
         db.session.add(demo)
     db.session.commit()
 

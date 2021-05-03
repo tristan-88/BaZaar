@@ -7,9 +7,9 @@ faker = Faker()
 
 
 def seed_Product_Tags():
-    for i in range(20):
+    for i in range(100):
         demo = Product_Tag(
-            product_id=faker.pyint(min_value=1, max_value=51),
+            product_id=faker.pyint(min_value=1, max_value=25),
             tag_id=faker.pyint(min_value=1, max_value=11)
         )
         db.session.add(demo)

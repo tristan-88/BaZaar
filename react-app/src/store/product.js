@@ -4,6 +4,7 @@ const ADD_PRODUCTS = 'products/ADD_PRODUCTS'
 const ADD_PHOTOS = 'products/ADD_PHOTOS'
 const GET_PHOTOS = 'products/GET_PHOTOS'
 const FEATURE_PRODUCTS = 'product/FEATURE_PRODUCTS'
+const FILTERED_PRODUCTS = 'product/FILTERED_PRODUCTS'
 
 //Action
 const setProducts = (products) => ({
@@ -30,6 +31,10 @@ const getPhotos = (photos) => ({
     payload: photos
 })
 
+const filteredProducts = (products) => ({
+    type: FILTERED_PRODUCTS,
+    payload: products
+})
 
 //we need to get all photos of one product
 //we need a thunk to store photos for one product
@@ -85,6 +90,14 @@ export const loadFeatureProducts = () => async (dispatch) => {
     dispatch(featureProducts(data))
 }
 
+export const loadFilteredProducts = (id) => async (dispatch) => {
+    let res = await fetch(`/api/products/bytag/${id}`)
+    let products = await res.json()
+    if (res.ok) {
+        dispatch(filteredProducts(products))
+    }
+}
+
 
 export const addProduct = (name, store_id, price, quantity, description, image) => async (dispatch) => {
     const formData = new FormData();
@@ -129,6 +142,11 @@ export default function cartReducer(state = initialState, action) {
             return {
                 ...state,
                 featureProducts: [...action.payload]
+            }
+        case FILTERED_PRODUCTS:
+            return {
+                ...state,
+                filteredProducts: [...action.payload]
             }
         case REMOVE_PRODUCTS:
             return null;

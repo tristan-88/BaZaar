@@ -14,3 +14,19 @@
     background-position: 50%;
     display: inline-block;
 }
+
+.divider-line {
+    opacity: 1;
+    animation: fade-in 5s linear;
+}
+
+
+@keyframes fade-in {
+    from {
+      transition: oppacity 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+}

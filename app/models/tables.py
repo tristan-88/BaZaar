@@ -37,12 +37,11 @@ class Product_Tag(db.Model):
     product_id = db.Column(db.Integer, db.ForeignKey('products.id'), nullable=False)
     tag_id = db.Column(db.Integer, db.ForeignKey('tags.id'), nullable=False)
 
+    def get_product(self):
+        return self.products.to_dict()
+
     def to_dict(self):
-         return {
-            "id": self.id,
-            "product_id": self.product_id,
-            "tag_id": self.tag_id,
-        }
+         return self.tag_id
 
     tags = db.relationship("Tag", back_populates="")
     products = db.relationship("Product", back_populates="tags")
