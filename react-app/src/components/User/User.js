@@ -4,6 +4,7 @@ import "./User.css"
 import Store from '../Store/Store';
 import ShopForm from '../ShopForm/ShopForm';
 import ProductForm from '../ProductForm/ProductForm';
+import './User.css';
 import Footer from '../Footer/Footer'
 
 function User() {
@@ -17,8 +18,10 @@ function User() {
   if (store) {
     sessionLinks = (
       <>
-        <strong>My Shop!</strong>
+        <h2 className="shop-title">My Shop!</h2>
+        <div className="border-line"></div>
         <Store />
+        <div className="border-line"></div>
         <h1>Add Product</h1>
         <ProductForm />
         <Footer/>
@@ -35,28 +38,26 @@ function User() {
 
   return (
       <div>
-        <div>
-          <strong>First Name: </strong> {user.first_name}
+        <h2>Profile</h2>
+        <div className="profile-info">
+          <div>
+            <strong>First Name: </strong> {user.first_name}
+          </div>
+          <div>
+            <strong>Last Name: </strong> {user.last_name}
+          </div>
+          <div>
+            <strong>Email: </strong> {user.email}
+          </div>
+          <div>
+            <strong>Username: </strong> {user.username}
+          </div>
+          <div>
+            <strong>Address: </strong> {user.address}
+          </div>
         </div>
-        <div>
-          <strong>Last Name: </strong> {user.last_name}
-        </div>
-        <div>
-          <strong>Email: </strong> {user.email}
-        </div>
-        <div>
-          <strong>Username: </strong> {user.username}
-        </div>
-        <div>
-          <strong>Address: </strong> {user.address}
-        </div>
-        <div>
-          <strong>Profile Photo</strong>
-        </div>
-        <div>
-          <img src={user.photo_url} alt="User profile picture"/>
-        </div>
-        <div>
+        <img id="profile-photo" src={user.photo_url} alt="User profile picture"/>
+        <div className="shop-container">
           {sessionLinks}
         </div>
       </div>

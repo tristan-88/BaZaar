@@ -1,0 +1,42 @@
+#profile-photo {
+    position: relative;
+    right: 20%;
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 50%;
+    bottom: 132px;
+}
+
+.profile-info {
+    border-radius: 10px;
+    box-shadow: 0 17px 9px -7px rgba(0,0,0,0.35);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    top: 40px;
+    left: 40%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 150px;
+    padding-right: 150px;
+    width: fit-content;
+    background-color: rgba(204, 239, 240, 0.801);
+    justify-content: center;
+}
+
+.shop-container {
+    position: relative;
+    bottom: 100px;
+}
+
+.border-line {
+    border-bottom: 1px solid;
+    background-color: black;
+    height: 2px;
+    max-width: 66%;
+    position: relative;
+    left: 16%;
+}

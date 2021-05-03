@@ -5,12 +5,8 @@ import SmallProductTile from "../SmallProductTile/SmallProductTile";
 import FeatureProductTile from "../FeatureProductTile/FeatureProductTile";
 
 const Store = () => {
-	const dispatch = useDispatch()
     const store = useSelector(state => state.store)
 
-	// useEffect(() => {
-
-	// }, [])
     return (
 			<>
 				{store &&
@@ -24,8 +20,8 @@ const Store = () => {
 							/>
 						</div>
 						<div className="store_name_description">
-							<h2>Store Name: {store.name}</h2>
-							<h3>Store Description:</h3> {store.description}
+							<h2>{store.name}</h2>
+							<h3>Description:</h3> {store.description}
 						</div>
 					</div>
                 <div className="store-items">
