@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import current_user
-from app.models import db, Product, Store, Review, Photo, Cart_Product
+from app.models import db, Product, Store, Review, Photo, Cart_Product, Product_Tag
 from app.forms import ProductForm
 from sqlalchemy import desc, asc
 
@@ -37,7 +37,10 @@ def all_products():
 #     products = Product.query.get(1)
 #     return {"message":products.reviews[0].users.username}
 
-# ---GET--- http://localhost:5000/api/products/id ---TESTED---
+
+@product_routes.route('/bytag/<int:id>')
+def products_by_tag(id):
+    return jsonify([product.get_product() for product in Product_Tag.query.filter_by(tag_id=id).all()])
 
 
 @product_routes.route('/fromcart/<int:id>')
@@ -46,6 +49,7 @@ def cart_products(id):
     carts = Cart_Product.query.filter(cart_id=cart_id)
     products = [cart.to_dict() for cart in carts]
     return jsonify(products)
+
 
 @product_routes.route('/<int:id>')
 def single_product(id):
@@ -62,13 +66,12 @@ def top_five():
     return jsonify(sorted_list[0:5])
 
 
-
-
 @product_routes.route('/<int:id>/photos')
 def product_photos(id):
     photos = Photo.query.filter_by(product_id=id).all()
     product_photos = {"product_photos": [photo.to_dict() for photo in photos]}
     return product_photos
+
 
 # ---GET--- http://localhost:5000/api/products/id/reviews ---TESTED---
 @product_routes.route('/<int:id>/reviews')

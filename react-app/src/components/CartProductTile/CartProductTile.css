@@ -8,7 +8,8 @@
   justify-content: space-around;
   justify-items: space-around;
   max-width: 90vw;
-  margin: 3vw auto;
+  min-height: 85%;
+  margin: 6vw auto;
   padding: 15px;
 }
 
@@ -37,25 +38,25 @@
   justify-content: space-between;
   width: 450px;
   padding: 5px;
-  height: 70px;
+  height: 170px;
   margin: 11px;
-  transform: scale 700ms, border 700ms;
+  transition: 300ms linear;
 }
 
 .cit-cart-item:hover {
-  transform: scale(1.02);
+  transform: scale(1.01);
   border: 2px solid black;
 }
 
 .cit-thumbnail {
-  max-width: 60px;
-  max-height: 60px;
+  max-width: 120px;
+  max-height: 120px;
 }
 
 .cit-item-name {
   display: flex;
   align-content: center;
-  max-width: 315px;
+  max-width: auto;
 }
 
 .cit-item-price-X {
@@ -64,7 +65,7 @@
   justify-content:space-around;
   justify-self: flex-end;
   min-height: 100%;
-  min-width: 55px;
+  min-width: 85px;
   font-size: small;
 }
 
@@ -82,7 +83,7 @@
   color: white;
   justify-self: flex-start;
   align-items:center;
-  transition: background-color 400ms, color 400ms;
+  transition: 400ms linear;
 }
 
 .cit-remove-btn:hover {
@@ -102,7 +103,8 @@
   box-sizing: border-box;
   width: 600px;
   max-width: 25%;
-  min-height: 65%;
+  min-height: 95%;
+
 }
 
 .sidenav {
@@ -134,7 +136,7 @@
   border-radius: 5px;
   width: 75%;
   background-color: tomato;
-  transition: background-color 400ms, scale 400ms;
+  transition: 400ms linear;
 }
 
 .sidenav a:hover {
@@ -152,11 +154,11 @@
   border: 1px solid rgb(83, 83, 83);
   border-radius: 5px;
   width: 75%;
-  transition: background-color 400ms, scale 400ms;
+  transition: 400ms linear;
 }
 
 .sidenav p:hover {
-  transform: scale(1.02);
+  transform: scale(1.01);
 }
 
 @media screen and (max-height: 450px) {

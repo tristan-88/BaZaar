@@ -17,9 +17,9 @@ def seed_reviews():
     # random_date = start_date + datetime.timedelta(days=random_number_of_days)
     for i in range(50):
         demo = Review(
-            product_id=faker.pyint(min_value=1, max_value=51),
+            product_id=faker.pyint(min_value=1, max_value=24),
             user_id=faker.pyint(min_value=1, max_value=6),
-            content=faker.sentence(),
+            content=faker.sentences(3),
             created_at=faker.date_time_this_year()
         )
         db.session.add(demo)
