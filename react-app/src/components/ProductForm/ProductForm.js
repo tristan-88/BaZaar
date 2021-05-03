@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { addProduct } from "../../store/product";
-import { gettingStore } from "../../store/store";
+import { getStore } from "../../store/store";
 import './ProductForm.css';
 
 
@@ -23,7 +23,7 @@ const ProductForm = () => {
     const productCreate = async (e) => {
         e.preventDefault();
         await dispatch(addProduct(name, store_id, price, quantity, description, image))
-        await dispatch(gettingStore())
+        await dispatch(getStore())
 
     }
     //we needed to check how many products we had so that the new products id does not conflict with the ones we have
@@ -32,15 +32,15 @@ const ProductForm = () => {
     };
 
     const updatePrice = (e) => {
-    setPrice(e.target.value);
+        setPrice(e.target.value);
     };
 
     const updateQuantity = (e) => {
-    setQuantity(e.target.value);
+        setQuantity(e.target.value);
     };
 
     const updateDescription = (e) => {
-    setDescription(e.target.value);
+        setDescription(e.target.value);
     };
 
     const updateImage = (e) => {
@@ -53,58 +53,58 @@ const ProductForm = () => {
         <div className="form-body">
             {store_id &&
                 <div className="form-container">
-                <form onSubmit={productCreate}>
-                <div className="form-inputs">
+                    <form onSubmit={productCreate}>
+                        <div className="form-inputs">
 
-                <div className="product-name">
-                    <label>Name</label>
-                    <input
-                    type="text"
-                    name="name"
-                    onChange={updateName}
-                    value={name}
-                    ></input>
-                </div>
-                <div>
-                    <label>Price</label>
-                    <input
-                    type="text"
-                    name="price"
-                    onChange={updatePrice}
-                    value={price}
-                    ></input>
-                </div>
-                <div>
-                    <label>Quantity</label>
-                    <input
-                    type="number"
-                    name="quantity"
-                    onChange={updateQuantity}
-                    value={quantity}
-                    ></input>
-                </div>
-                <div>
-                    <label>Description</label>
-                    <input
-                    type="text"
-                    name="description"
-                    onChange={updateDescription}
-                    value={description}
-                    ></input>
-                </div>
-                <div>
-                    <label>{`Photo Url `}</label>
-                    <input
-                    type="file"
-                    accept="image/*"
-                    onChange={updateImage}
-                    ></input>
-                </div>
-            </div>
-                    <div className="button-div">
-                        <button type="submit">Add Product</button>
-                    </div>
-            </form>
+                            <div className="product-name">
+                                <label>Name</label>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    onChange={updateName}
+                                    value={name}
+                                ></input>
+                            </div>
+                            <div>
+                                <label>Price</label>
+                                <input
+                                    type="text"
+                                    name="price"
+                                    onChange={updatePrice}
+                                    value={price}
+                                ></input>
+                            </div>
+                            <div>
+                                <label>Quantity</label>
+                                <input
+                                    type="number"
+                                    name="quantity"
+                                    onChange={updateQuantity}
+                                    value={quantity}
+                                ></input>
+                            </div>
+                            <div>
+                                <label>Description</label>
+                                <input
+                                    type="text"
+                                    name="description"
+                                    onChange={updateDescription}
+                                    value={description}
+                                ></input>
+                            </div>
+                            <div>
+                                <label>{`Photo Url `}</label>
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={updateImage}
+                                ></input>
+                            </div>
+                        </div>
+                        <div className="button-div">
+                            <button type="submit">Add Product</button>
+                        </div>
+                    </form>
                 </div>
             }
         </div>

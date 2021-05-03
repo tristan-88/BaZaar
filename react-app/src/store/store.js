@@ -1,11 +1,11 @@
-const GET_STORE = 'session/GET_STORE';
+const LOAD_STORE = 'session/LOAD_STORE';
 const REMOVE_STORE = 'session/REMOVE_STORE';
 
 
 //Actions
-const getStore = (store) => ({
-    type: GET_STORE,
-        payload: store
+const loadStore = (store) => ({
+    type: LOAD_STORE,
+    payload: store
 })
 
 const dropStore = () => ({
@@ -15,14 +15,13 @@ const dropStore = () => ({
 
 //THUNKS
 
-export const gettingStore = () => async (dispatch) => {
+export const getStore = () => async (dispatch) => {
     const response = await fetch(`/api/stores/mystore`)
     const store = await response.json()
     if (store.errors) {
         return store
     }
-    dispatch(getStore(store))
-
+    dispatch(loadStore(store))
 }
 
 
@@ -41,7 +40,7 @@ export const createStore = (name, address, user_id, description, image) => async
 
     if (response.ok) {
         const data = await response.json();
-        dispatch(getStore(data))
+        dispatch(loadStore(data))
     }
 }
 
@@ -57,7 +56,7 @@ const initialState = null
 
 export default function storeReducer(state = initialState, action) {
     switch (action.type) {
-        case GET_STORE:
+        case LOAD_STORE:
             return action.payload
         case REMOVE_STORE:
             return null;
