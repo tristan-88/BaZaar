@@ -41,10 +41,11 @@ const NavBar = () => {
           <NavLink to='/store' >
             <i class="fas fa-store-alt" style={{ fontSize: '1.5em', color: 'darkorange' }}></i>
           </NavLink>
-          <LogoutButton />
+          
           <NavLink to='/cart'>
             <i class="fad fa-shopping-cart fa-4x" style={{ fontSize: '1.5em', color: 'darkorange' }}></i> <div>{cart?.length}</div>
           </NavLink>
+          <LogoutButton />
         </div>
       </div>
     </nav>

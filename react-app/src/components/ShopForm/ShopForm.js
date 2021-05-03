@@ -34,7 +34,10 @@ const ShopForm = () => {
     }
 
     return (
-        <form onSubmit={shopCreate}>
+        <div className="form-body">
+            <div className="form-container">
+                <form onSubmit={shopCreate}>
+                    <div className="form-inputs">
             <div>
                 <label>Name</label>
                 <input
@@ -69,9 +72,14 @@ const ShopForm = () => {
                 accept="image/*"
                 onChange={updateImage}
                 ></input>
+                        </div>
+                    </div>
+                        <div className="button-div">
+                        <button type="submit">Create Shop</button>
+                   </div> 
+            </form>
             </div>
-            <button type="submit">Create Shop</button>
-        </form>
+        </div>
     )
 }
 

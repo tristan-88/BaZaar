@@ -12,7 +12,10 @@ const LogoutButton = () => {
   const onLogout = async (e) => {
     await dispatch(logout());
   };
-
+  if (!user) {
+   return null
+  }
+  
   return(
     <div
      onClick={onLogout}>

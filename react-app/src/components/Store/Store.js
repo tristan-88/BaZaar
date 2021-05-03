@@ -12,29 +12,25 @@ const Store = () => {
 
 
 	let sessionLinks;
-	if (store) {
-		sessionLinks = (
-			<>
-				<h2 className="shop-title">My Shop!</h2>
-				<div className="border-line"></div>
-				<h1>Add Product</h1>
-				<ProductForm />
-			</>
-		)
-	} else {
-		sessionLinks = (
+
+	if (!store) {
+		return (
 			<>
 				<h1>Would you like to create a shop?</h1>
 				<ShopForm />
 			</>
 		)
 	}
-	if (!store) return null
+
 
 	return (
 		<>
 			{store &&
 				<div>
+					<h2 className="shop-title">My Shop!</h2>
+					<div className="border-line"></div>
+					<h1>Add Product</h1>
+					<ProductForm />
 					<div className="store-page">
 						<div className="store-info">
 							<div className="store-img">
