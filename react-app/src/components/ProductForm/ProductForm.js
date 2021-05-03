@@ -50,10 +50,13 @@ const ProductForm = () => {
 
 
     return (
-        <>
+        <div className="form-body">
             {store_id &&
-            <form onSubmit={productCreate}>
-                <div>
+                <div className="form-container">
+                <form onSubmit={productCreate}>
+                <div className="form-inputs">
+
+                <div className="product-name">
                     <label>Name</label>
                     <input
                     type="text"
@@ -90,17 +93,21 @@ const ProductForm = () => {
                     ></input>
                 </div>
                 <div>
-                    <label>Photo Url</label>
+                    <label>{`Photo Url `}</label>
                     <input
                     type="file"
                     accept="image/*"
                     onChange={updateImage}
                     ></input>
                 </div>
-                <button type="submit">Add Product</button>
+            </div>
+                    <div className="button-div">
+                        <button type="submit">Add Product</button>
+                    </div>
             </form>
+                </div>
             }
-        </>
+        </div>
     )
 }
 

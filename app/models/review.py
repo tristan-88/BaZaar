@@ -23,6 +23,6 @@ class Review(db.Model):
             "username": self.users.username,
         }
 
-    users = db.relationship("User", back_populates="reviews", cascade="all, delete")
+    users = db.relationship("User", back_populates="reviews")
     products = db.relationship(
-        "Product", back_populates="reviews", cascade="all, delete")
+        "Product", back_populates="reviews")

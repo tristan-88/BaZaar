@@ -1,20 +1,13 @@
-// const GET_REVIEWS = 'session/GET_REVIEWS'
-// const GET_REVIEW = 'session/GET_REVIEW'
-// const POST_REVIEW = 'session/POST_REVIEW'
-// const DELETE_REVIEW = 'session/DELETE_REVIEW'
-// const EDIT_REVIEW = 'session/EDIT_REVIEW'
+import {loadSingleProduct} from './product'
 
-// //actions
-// const getReviews = (reviews) => ({
-//     type: GET_REVIEWS,
-//         payload: reviews
-// })
 
-// const postReview = () => ({
-//     type: POST_REVIEW,
-// })
 
-// //THUNKS
+//actions
+
+//payload is needed to update state and needs to be passed in action
+
+
+//THUNKS
 
 // export const gettingReview = () => async (dispatch) => {
 //     const response = await fetch(`/api/reviews`)
@@ -25,30 +18,59 @@
 //     dispatch(getReviews(reviews))
 // }
 
-// export const postingReview = (content, user_id) => async (dispatch) => {
-//     const formData = new FormData();
-//     formData.append('content', content)
+export const postingReview = ({ content, productId }) => async (dispatch) => {
+    const response = await fetch(`/api/reviews/`, {
+        headers: { "Content-Type": 'application/json' }, //find right headers
+        body: JSON.stringify({      //changes content to JSON to be able to passed around
+            productId,
+            content
+        }),
+        method: "POST"
+    })
+    if (response.ok) {
+        const data = await response.json();
+        await dispatch(loadSingleProduct(data.product_id))
+    }
+}
 
-//     const response = await fetch(`/api/reviews/${user_id}`, {
-//         method: 'POST',
-//         body: formData
-//     })
+export const editingReview = ({content, reviewId}) => async (dispatch) => {
+	const response = await fetch(`/api/reviews/`, {
+		headers: { "Content-Type": "application/json" }, //find right headers
+		body: JSON.stringify({
+			//changes content to JSON to be able to passed around
+            reviewId, //camelcase matches in the routes that is corresponding to this one
+			content,
+		}),
+		method: "PATCH",
+	});
+	if (response.ok) {
+		const data = await response.json();
+		await dispatch(loadSingleProduct(data.product_id));
+	}
+};
 
-//     if (response.ok) {
-//         const data = await response.json();
-//         dispatch(postReview(data))
-//     }
-// }
+export const deletingReview = ( reviewId ) => async (dispatch) => {
+	const response = await fetch(`/api/reviews/`, {
+		headers: { "Content-Type": "application/json" }, //find right headers
+		body: JSON.stringify({
+			//changes content to JSON to be able to passed around
+			reviewId, //if deleting only need the reference id
+		}),
+		method: "DELETE",
+	});
+	if (response.ok) {
+		const data = await response.json();
+		await dispatch(loadSingleProduct(data.product_id)); //make sure you passing product_id  since the thunk expecting product id make sure the thunks and route is getting the same information 
+	}
+};
 
-// //Reducer
+//Reducer
 
-// const initialState = {
-//     Reviews:[]
-// }
+// const initialState = {}
 
 // export default function reviewReducer(state = initialState, action) {
 //     switch (action.type) {
-//         case GET_REVIEWS:
+//         case POST_REVIEW:
 //             return { ...state, Reviews:[...action.payload] }
 //         default:
 //             return state
