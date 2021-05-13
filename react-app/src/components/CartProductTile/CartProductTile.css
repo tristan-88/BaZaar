@@ -103,7 +103,7 @@
   box-sizing: border-box;
   width: 600px;
   max-width: 25%;
-  min-height: 95%;
+  min-height: 600px;
 
 }
 
@@ -126,7 +126,7 @@
   border-radius: 9px;
 }
 
-.sidenav a {
+#checkout-btn {
   padding: 6px 8px 6px 16px;
   text-decoration: none;
   font-size: 21px;
@@ -139,7 +139,7 @@
   transition: 400ms linear;
 }
 
-.sidenav a:hover {
+#checkout-btn:hover {
   color: #f1f1f1;
   transform: scale(1.02);
   background-color: green;

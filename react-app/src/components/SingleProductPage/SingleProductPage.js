@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useParams, useHistory } from 'react-router-dom'
 import { loadSingleProduct } from '../../store/product'
@@ -12,55 +12,57 @@ import ReviewForm from '../ReviewForm/ReviewForm'
 
 
 const SingleProductPage = (props) => {
-  const history = useHistory()
-  const dispatch = useDispatch()
-  let buttonText = 'Add to Cart'
-  const { id } = useParams()
-  const product_id = parseInt(id)
+	const history = useHistory()
+	const dispatch = useDispatch()
+	let buttonText = 'Add to Cart'
+	const { id } = useParams()
+	const product_id = parseInt(id)
 
 
-  let cart = useSelector(state => state.cart)
-  let product = useSelector(state => state.products.products)
-  let user = useSelector(state => state.session.user)
+	let cart = useSelector(state => state.cart)
+	let product = useSelector(state => state.products.products)
+	let user = useSelector(state => state.session.user)
 
-  const [isShown, setShown] = useState(false)
+	const [isShown, setShown] = useState(false)
 
-  useEffect(() => {
-    if (!isShown) return
+	useEffect(() => {
+		if (!isShown) return
 
-    const closeShown = () => {
-      setShown(false)
-    }
+		const closeShown = () => {
+			setShown(false)
+		}
 
-    document.addEventListener("submit", closeShown);
-    return () => document.removeEventListener("submit", closeShown)
+		document.addEventListener("submit", closeShown);
+		return () => document.removeEventListener("submit", closeShown)
 
-  }, [isShown])
+	}, [isShown])
 
-  useEffect(() => {
-     dispatch(loadSingleProduct(product_id))
-  }, [dispatch, product.length])
+	useEffect(() => {
+		dispatch(loadSingleProduct(product_id))
+	}, [dispatch, product.length])
 
-  if (product.length) {
-    product = product[0]
-  }
+	if (product.length) {
+		product = product[0]
+	}
 
-  const addOneToCart = () => {
-    if (cart?.id) {
-      let btn = window.document.getElementById('add-btn')
-      btn.innerText = "Thank you!"
-      dispatch(addToCart(cart.id, product_id))
-      return history.push('/cart')
+	const addOneToCart = () => {
+		if (cart?.id) {
+			let btn = window.document.getElementById('add-btn')
+			btn.innerText = "Thank you!"
+			dispatch(addToCart(cart.id, product_id))
+			setTimeout(() => {
 
-    }
-    return history.push('/login')
-  }
+				return history.push('/')
+			}, 1000);
+		}
+		return history.push('/login')
+	}
 
-  const handleSubmit = () => {
-    setShown(true)
- }
+	const handleSubmit = () => {
+		setShown(true)
+	}
 
-  return (
+	return (
 		<>
 			{product.name && (
 				<div className="product-page-wrapper">
