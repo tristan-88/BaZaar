@@ -40,12 +40,7 @@ function Cart() {
 		}
 
 		cartItems = Object.values(uniqueProduct)
-		console.log(uniqueProduct)
-		console.log(sortedProducts)
 
-		// cartItems = cart.products?.map(product => (
-		//     product.product
-		// ))
 	}
 
 	const completeOrder = async () => {

@@ -36,9 +36,6 @@ const filteredProducts = (products) => ({
     payload: products
 })
 
-//we need to get all photos of one product
-//we need a thunk to store photos for one product
-
 const featureProducts = (products) => ({
     type: FEATURE_PRODUCTS,
     payload: products
@@ -47,7 +44,6 @@ const featureProducts = (products) => ({
 
 //Thunks
 export const addProductPhotos = (image, product_id) => async (dispatch) => {
-    console.log(image)
     const formData = new FormData();
     formData.append('image', image)
     formData.append('product_id', product_id)
