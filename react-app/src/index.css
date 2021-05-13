@@ -18,4 +18,5 @@ body {
     font-family: 'Playfair';
     color: var(--text);
     text-align: center;
+    overflow-x: hidden; /* Hide horizontal scrollbar */
 }

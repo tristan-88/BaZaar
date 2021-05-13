@@ -2,13 +2,20 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  padding: 5px
 }
 
 .filtered-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
 }
+
+.filtered-container div {
+  animation: fade-in 600ms linear;
+}
+  
 
 .banner-img{
   height: 100%;
