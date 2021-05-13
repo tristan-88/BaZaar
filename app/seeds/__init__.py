@@ -19,16 +19,16 @@ seed_commands = AppGroup('seed')
 @seed_commands.command('all')
 def seed():
     # Add seed functions here
+    seed_tags()
     seed_users()
+    seed_carts()
     seed_stores()
     seed_products()
-    seed_tags()
-    seed_reviews()
-    seed_Favorites()
-    seed_Product_Tags()
-    seed_carts()
     seed_Cart_Products()
+    seed_Favorites()
     seed_photos()
+    seed_Product_Tags()
+    seed_reviews()
 # Creates the `flask seed undo` command
 
 

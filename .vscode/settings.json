@@ -1,4 +1,4 @@
 {
-    "python.pythonPath": "/home/troy/.virtualenvs/BaZaar-yvHYynnA/bin/python"
+    "python.pythonPath": ".venv/bin/python3.8"
 }
 
