@@ -15,32 +15,33 @@ import './HomePage.css'
 
 function HomePage() {
 	const dispatch = useDispatch()
+	// allows access to the redux store
 	const user = useSelector(state => state.session.user)
+	// sets user to equal the {session {user}}
 	const [loaded, setLoaded] = useState(false)
 
 	useEffect(() => {
-		if (user) {
-			dispatch(getStore())
-			dispatch(loadProducts())
-			dispatch(createCart())
-			setLoaded(true)
+		if (user) { // if a user exists do these things
+			dispatch(getStore()) // load the store
+			dispatch(loadProducts()) // load all products
+			dispatch(createCart()) // load a cart
+			setLoaded(true) // load the state
 		} else {
-			dispatch(loadProducts())
-			dispatch(createCart())
-			setLoaded(true)
+			dispatch(loadProducts()) // load products
+			dispatch(createCart()) // create cart
+			setLoaded(true) // load the state
 		}
 	}, [dispatch, setLoaded])
 
-	const products = useSelector(state => state.products)
-	const filteredProducts = useSelector(state => state.products.filteredProducts)
+	const products = useSelector(state => state.products) // set products to equal the products value in the state
+	const filteredProducts = useSelector(state => state.products.filteredProducts) // set filtered products to equal the filtered products slice
 	if (!products) {
-		return null
+		return null //guard clause if the product does not exsist
 	}
 
-	const setFilter = async (tagId) => {
+	const setFilter = async (tagId) => { //
 		await dispatch(loadFilteredProducts(Number(tagId)))
-	}
-
+	} // load the filter dispatch by passing in the id on line 58-68
 	return (
 		<>
 			<div className="banner-div">
