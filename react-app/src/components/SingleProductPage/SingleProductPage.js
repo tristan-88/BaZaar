@@ -27,14 +27,11 @@ const SingleProductPage = (props) => {
 
   useEffect(() => {
     if (!isShown) return
-
-    const closeShown = () => {
+	const closeShown = () => {
       setShown(false)
     }
-
-    document.addEventListener("submit", closeShown);
+	document.addEventListener("submit", closeShown);
     return () => document.removeEventListener("submit", closeShown)
-
   }, [isShown])
 
   useEffect(() => {
