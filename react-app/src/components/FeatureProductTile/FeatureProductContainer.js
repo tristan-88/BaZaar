@@ -25,12 +25,20 @@ const FeatureProductContainer = () => {
 
   return (
     <>
-      {topProducts &&
-        topProducts.map(product => (
-          <FeatureProductTile product={product} key={product.id} />
-        ))
-      }
+      <div className="feature-title">
+        <h1>Featured Products</h1>
+      </div>
+      <div className="feature-product">
+        {topProducts &&
+
+          topProducts.map(product => (
+            <FeatureProductTile product={product} key={product.id} />
+          )).slice(0, 4)
+
+        }
+      </div>
     </>
+
   )
 }
 

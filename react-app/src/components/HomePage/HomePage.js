@@ -45,7 +45,7 @@ function HomePage() {
 		<>
 			<div className="banner-div">
 				<img
-					src="https://github.com/Drewthurm21/portfolio/blob/main/images/homepage-banner.jpeg?raw=true"
+					src="https://github.com/tristan-88/BaZaar/blob/main/react-app/public/images/banner.png?raw=true"
 					alt="👽"
 					className="banner-img"
 				/>
