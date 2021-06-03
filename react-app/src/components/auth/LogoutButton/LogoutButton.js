@@ -15,12 +15,12 @@ const LogoutButton = () => {
   if (!user) {
    return null
   }
-  
+
   return(
     <div
      onClick={onLogout}>
      {/* <button type='submit'>LogOut</button> */}
-     {user && <i class="fad fa-sign-out fa-5x" style={{fontSize:'1.5em', color:'darkorange'}}></i>}
+     {user && <i className="fad fa-sign-out fa-5x" style={{fontSize:'1.5em', color:'darkorange'}}></i>}
     </div>
 
   )

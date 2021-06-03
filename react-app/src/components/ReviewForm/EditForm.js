@@ -35,10 +35,10 @@ const EditForm = ({ reviewId }) => {
 							value={content}
 						></input>
 					</div>
-					<div class="button-div"><button type="submit">submit</button>
+					<div className="button-div"><button type="submit">submit</button>
 					</div>
 				</form>
-				<div class="button-div"><button onClick={() => deleteReview(reviewId)}>Delete</button></div>
+				<div className="button-div"><button onClick={() => deleteReview(reviewId)}>Delete</button></div>
 
 			</div>
 		</div>
