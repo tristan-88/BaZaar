@@ -1,6 +1,6 @@
 .fpt-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-around;
   padding: 5px
 }
@@ -15,7 +15,7 @@
 .filtered-container div {
   animation: fade-in 600ms linear;
 }
-  
+
 
 .banner-img{
   height: 100%;
