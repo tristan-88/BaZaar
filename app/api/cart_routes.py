@@ -26,7 +26,7 @@ def check_create_cart(id):
 
 
 @cart_routes.route('', methods=["GET", "POST"])
-@login_required
+# @login_required
 def assign_cart():
     return check_create_cart(current_user.id)
 
@@ -98,7 +98,6 @@ def remove_item(cart_id, product_id):
 @login_required
 def close_cart(cart_id):
     cart = Cart.query.get(cart_id)
-<<<<<<< HEAD
     order = Order(
         user_id=current_user.id,
         cart_id=cart_it
@@ -107,14 +106,6 @@ def close_cart(cart_id):
     cart_items = Cart_Listing.query.filter_by(cart_id=cart_id).all()
 
     cart.order_id = order_id
-=======
-    # order = Order(
-    #     user_id=current_user.id,
-    #     cart_id=cart_id,
-    # )
-    #db.session.add(demo)
-    cart.order_id = 1
->>>>>>> main
     db.session.commit()
     return cart.to_dict()
 

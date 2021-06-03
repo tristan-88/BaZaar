@@ -28,7 +28,6 @@ function HomePage() {
 			setLoaded(true) // load the state
 		} else {
 			dispatch(loadProducts()) // load products
-			dispatch(createCart()) // create cart
 			setLoaded(true) // load the state
 		}
 	}, [dispatch, setLoaded])
@@ -72,7 +71,7 @@ function HomePage() {
 			</div>
 			<div>
 			</div>
-			<div classname='filtered-products-wrapper'>
+			<div className='filtered-products-wrapper'>
 				<FilteredProductsContainer products={products} />
 			</div>
 			<ProductCardContainer />

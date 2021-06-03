@@ -23,27 +23,27 @@ const NavBar = () => {
     <nav>
       <div className='navigation-bar-container'>
         <NavLink to="/" exact={true} >
-          <i class="fad fa-home-lg fa-4x" style={{ fontSize: '1.5em', color: 'darkorange' }}></i>
+          <i className="fad fa-home-lg fa-4x" style={{ fontSize: '1.5em', color: 'darkorange' }}></i>
         </NavLink>
         <Search />
         <div className='interface-buttons'>
           <div className='login-button'>
             {!user && <NavLink to="/login" exact={true} activeClassName="active">
-              <i class="fad fa-sign-in fa-4x" style={{ fontSize: '1.5em', color: 'darkorange' }}></i>
+              <i className="fad fa-sign-in fa-4x" style={{ fontSize: '1.5em', color: 'darkorange' }}></i>
             </NavLink>}
           </div>
           {!user && <NavLink to="/sign-up" exact={true} activeClassName="active">
-            <i class="fad fa-user-plus fa-4x" style={{ fontSize: '1.5em', color: 'darkorange' }}></i>
+            <i className="fad fa-user-plus fa-4x" style={{ fontSize: '1.5em', color: 'darkorange' }}></i>
           </NavLink>}
           <NavLink to="/users" exact={true} activeClassName="active">
-            {user && <i class="fad fa-users fa-4x" style={{ fontSize: '1.5em', color: 'darkorange' }}></i>}
+            {user && <i className="fad fa-users fa-4x" style={{ fontSize: '1.5em', color: 'darkorange' }}></i>}
           </NavLink>
-          <NavLink to='/store' >
-            <i class="fas fa-store-alt" style={{ fontSize: '1.5em', color: 'darkorange' }}></i>
+          <NavLink to='/store'>
+            <i className="fas fa-store-alt" style={{ fontSize: '1.5em', color: 'darkorange' }}></i>
           </NavLink>
 
           <NavLink to='/cart'>
-            <i class="fad fa-shopping-cart fa-4x" style={{ fontSize: '1.5em', color: 'darkorange' }}></i> <div>{cart?.length}</div>
+            <i className="fad fa-shopping-cart fa-4x" style={{ fontSize: '1.5em', color: 'darkorange' }}></i> <div>{cart?.length}</div>
           </NavLink>
           <LogoutButton />
         </div>

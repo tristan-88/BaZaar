@@ -26,7 +26,7 @@ function Search() {
                 />
                 <button onClick={(e) => handleSubmit(e)} style={{
                     background:"#edf6f9", borderRadius:"50%", height:"30px", width:"30px", outline:'none'}}
-                    type="submit"><i class="fas fa-search" id="fas fa-search" style={{color:'#f58a07', border:'none',outline:'none'}}></i>
+                    type="submit"><i className="fas fa-search" id="fas fa-search" style={{color:'#f58a07', border:'none',outline:'none'}}></i>
                     </button>
             </form>
         </div>

@@ -81,7 +81,7 @@ function Cart() {
 							))}
 						</div>
 						<div className="sidebar-main-wrapper">
-							<div class="sidenav">
+							<div className="sidenav">
 								<div className="sb-item-total">{`Total Items: ${cart.products.length}`}</div>
 								<div className="sb-shipping">
 									Shipping:</div>
