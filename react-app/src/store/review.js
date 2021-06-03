@@ -1,44 +1,28 @@
-import {loadSingleProduct} from './product'
+import { loadSingleProduct } from './product'
 
 
-
-//actions
-
-//payload is needed to update state and needs to be passed in action
-
-
-//THUNKS
-
-// export const gettingReview = () => async (dispatch) => {
-//     const response = await fetch(`/api/reviews`)
-//     const reviews = await response.json()
-//     if (reviews.errors) {
-//         return reviews
-//     }
-//     dispatch(getReviews(reviews))
-// }
 
 export const postingReview = ({ content, productId }) => async (dispatch) => {
-    const response = await fetch(`/api/reviews/`, {
-        headers: { "Content-Type": 'application/json' }, //find right headers
-        body: JSON.stringify({      //changes content to JSON to be able to passed around
-            productId,
-            content
-        }),
-        method: "POST"
-    })
-    if (response.ok) {
-        const data = await response.json();
-        await dispatch(loadSingleProduct(data.product_id))
-    }
+	const response = await fetch(`/api/reviews/`, {
+		headers: { "Content-Type": 'application/json' }, //find right headers
+		body: JSON.stringify({      //changes content to JSON to be able to passed around
+			productId,
+			content
+		}),
+		method: "POST"
+	})
+	if (response.ok) {
+		const data = await response.json();
+		await dispatch(loadSingleProduct(data.product_id))
+	}
 }
 
-export const editingReview = ({content, reviewId}) => async (dispatch) => {
+export const editingReview = ({ content, reviewId }) => async (dispatch) => {
 	const response = await fetch(`/api/reviews/`, {
 		headers: { "Content-Type": "application/json" }, //find right headers
 		body: JSON.stringify({
 			//changes content to JSON to be able to passed around
-            reviewId, //camelcase matches in the routes that is corresponding to this one
+			reviewId, //camelcase matches in the routes that is corresponding to this one
 			content,
 		}),
 		method: "PATCH",
@@ -49,7 +33,7 @@ export const editingReview = ({content, reviewId}) => async (dispatch) => {
 	}
 };
 
-export const deletingReview = ( reviewId ) => async (dispatch) => {
+export const deletingReview = (reviewId) => async (dispatch) => {
 	const response = await fetch(`/api/reviews/`, {
 		headers: { "Content-Type": "application/json" }, //find right headers
 		body: JSON.stringify({

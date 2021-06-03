@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { createCart } from '../../store/cart'
+import { Redirect, useHistory } from 'react-router-dom'
+import { createCart, completeOrder } from '../../store/cart'
 import SmallProductTile from '../SmallProductTile/SmallProductTile'
 import CartProductTile from '../CartProductTile/CartProductTile'
 import './Cart.css'
@@ -8,13 +9,9 @@ import './Cart.css'
 
 function Cart() {
 	const dispatch = useDispatch()
+	const history = useHistory()
 	const cart = useSelector(state => state.cart)
 	const user = useSelector(state => state.session.user)
-
-
-	const completeOrder = async (id) => {
-
-	}
 
 	//look at when ever something here changes reload this component
 	useEffect(() => {
@@ -24,6 +21,7 @@ function Cart() {
 	if (!cart.products) {
 		return null
 	}
+
 	let cartItems;
 	if (cart) {
 		const uniqueProduct = {}
@@ -42,12 +40,13 @@ function Cart() {
 		}
 
 		cartItems = Object.values(uniqueProduct)
-		console.log(uniqueProduct)
-		console.log(sortedProducts)
 
-		// cartItems = cart.products?.map(product => (
-		//     product.product
-		// ))
+	}
+
+	const completeOrder = async () => {
+		let btn = window.document.getElementById('checkout-btn')
+		btn.innerText = "Thank you!"
+		return <Redirect path='/home' />
 	}
 
 	return (
@@ -86,14 +85,14 @@ function Cart() {
 								<div className="sb-item-total">{`Total Items: ${cart.products.length}`}</div>
 								<div className="sb-shipping">
 									Shipping:</div>
-									<div className="radio-shipping">
-										<input type="radio" value="Standard" name="shipping" /> Standard Shipping: Free
+								<div className="radio-shipping">
+									<input type="radio" value="Standard" name="shipping" /> Standard Shipping: Free
 										<input type="radio" value="Express" name="shipping" /> Express: $10.00
 										<input type="radio" value="OverNight" name="shipping" /> Over Night: $20.00
-									
+
 								</div>
 								<div className="sb-total">Total:$55.09</div>
-								<a href="#">Proceed to Checkout</a>
+								<div id='checkout-btn' onClick={completeOrder}>Proceed to Checkout</div>
 							</div>
 						</div>
 					</div>

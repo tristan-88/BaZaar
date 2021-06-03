@@ -8,8 +8,10 @@ cart_routes = Blueprint('carts', __name__)
 
 # ---POST--- http://localhost:/5000 api/carts
 
+
 def check_create_cart(id):
     carts = Cart.query.order_by(desc(Cart.created_at)).filter_by(user_id=id)
+    # check if the cart exsists
     user_carts = [cart.to_dict() for cart in carts]
     try:
         cart = user_carts[0]
@@ -22,12 +24,13 @@ def check_create_cart(id):
     db.session.commit()
     return new_cart.to_dict()
 
+
 @cart_routes.route('', methods=["GET", "POST"])
 @login_required
 def assign_cart():
     return check_create_cart(current_user.id)
 
-    
+
 # ---GET--- http://localhost:5000/api/carts/:id
 
 # @cart_routes.route('/<int:id>')
@@ -45,7 +48,7 @@ def assign_cart():
 @cart_routes.route('/<int:id>', methods=["PATCH"])
 def edit_cart(id):
     cart = Cart.get(id)
-    # too tired to think
+    # too tired to think/ grabbing cart by id
     cart = Cart.query.get(id)
     if cart:
         content = request.json['content']
@@ -63,15 +66,16 @@ def delete_cart(id):
     return jsonify('Cart was succefully deleted!' if remove_cart else "Could not delete cart")
 
 
+# add a product
 @cart_routes.route('/<int:cart_id>/add/<int:product_id>')
 @login_required
 def add_item(cart_id, product_id):
-    
+
     cart_entry = Cart_Product(
         product_id=product_id,
         cart_id=cart_id
     )
-    
+
     db.session.add(cart_entry)
     db.session.commit()
     return cart_entry.to_dict()
@@ -81,7 +85,8 @@ def add_item(cart_id, product_id):
 @login_required
 def remove_item(cart_id, product_id):
     try:
-        remove_entry = Cart_Product.query.order_by(desc(Cart_Product.id)).filter_by(cart_id=cart_id, product_id=product_id).first()
+        remove_entry = Cart_Product.query.order_by(desc(Cart_Product.id)).filter_by(
+            cart_id=cart_id, product_id=product_id).first()
         db.session.delete(remove_entry)
         db.session.commit()
         return 'Yeet!'
@@ -89,10 +94,28 @@ def remove_item(cart_id, product_id):
         return 'Nah bruh...'
 
 
-@cart_routes.route('/<int:cart_id>/close/<int:order_id>')
-def close_cart(cart_id, order_id):
+@cart_routes.route('/<int:cart_id>/close/')
+@login_required
+def close_cart(cart_id):
     cart = Cart.query.get(cart_id)
+<<<<<<< HEAD
+    order = Order(
+        user_id=current_user.id,
+        cart_id=cart_it
+    )
+
+    cart_items = Cart_Listing.query.filter_by(cart_id=cart_id).all()
 
     cart.order_id = order_id
+=======
+    # order = Order(
+    #     user_id=current_user.id,
+    #     cart_id=cart_id,
+    # )
+    #db.session.add(demo)
+    cart.order_id = 1
+>>>>>>> main
     db.session.commit()
     return cart.to_dict()
+
+    # grab cart by id, create new order, give it user id and cart it, cart order =
