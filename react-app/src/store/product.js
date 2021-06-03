@@ -117,6 +117,7 @@ export const addProduct = (name, store_id, price, quantity, description, image) 
 }
 
 
+//Hello guys <3
 
 export const removeProducts = () => async (dispatch) => {
     dispatch(clearProducts())
