@@ -12,38 +12,33 @@ function Cart() {
 	const history = useHistory()
 	const cart = useSelector(state => state.cart)
 	const user = useSelector(state => state.session.user)
+	const [total, setTotal] = useState(0)
+	const [errors, setErrors] = useState([])
 
 	//look at when ever something here changes reload this component
 	useEffect(() => {
 		dispatch(createCart())
 	}, [dispatch])
 
+	useEffect(() => {
+
+	}, [errors])
+
+
 	if (!cart.products) {
 		return null
 	}
 
-	let cartItems;
-	if (cart) {
-		const uniqueProduct = {}
-		const sortedProducts = {}
-		// const sortedProducts = JSON.parse(JSON.stringify(cart.products))
-		// sortedProducts.sort((a,b) => a.product_id - b.product_id)
-		for (const product of cart.products) {
-			uniqueProduct[product.product.id] = product.product;
-			if (!sortedProducts[product.product_id]) {
-				sortedProducts[product.product_id] = 0
+	if (cart.products) {
+		cart.products.forEach(product => {
+			if (product.quantity > product.product.quantity && !errors.includes(`You have too many ${product.product.name.split(' ').slice(0, 6).join(' ')} in your cart.`)) {
+				errors.push(`You have too many ${product.product.name.split(' ').slice(0, 6).join(' ')} in your cart.`)
 			}
-			sortedProducts[product.product_id]++
-		}
-		for (const key in uniqueProduct) {
-			uniqueProduct[key].cartQty = sortedProducts[key]
-		}
-
-		cartItems = Object.values(uniqueProduct)
-
+		})
 	}
 
-	const completeOrder = async () => {
+	const confirmOrder = async () => {
+
 		let btn = window.document.getElementById('checkout-btn')
 		btn.innerText = "Thank you!"
 		return <Redirect path='/home' />
@@ -51,7 +46,7 @@ function Cart() {
 
 	return (
 		<>
-			{cartItems && (
+			{cart && (
 				<div>
 					<div className="cart-title">
 						<h1>{`Welcome, ${user.username}!`}</h1>
@@ -62,21 +57,10 @@ function Cart() {
 					<br></br>
 					<div className="span-divider"></div>
 					<div className="cart-items-wrapper">
-						{/* <div className="cart-items">
-								{cart.products.map((product, i) => (
-									<div key={i} className="cit-tile-wrapper" id={`item-${i}`}>
-										<CartProductTile
-											cartId={cart.id}
-											product={product.product}
-											id={i}
-										/>
-									</div>
-								))}
-							</div> */}
 						<div className="cart-items">
-							{cartItems.map((product, i) => (
+							{cart.products.map((product, i) => (
 								<div key={i} className="cit-tile-wrapper" id={`item-${i}`}>
-									<CartProductTile cartId={cart.id} product={product} id={i} />
+									<CartProductTile cartId={cart.id} qty={product.quantity} setTotal={setTotal} total={total} product={product.product} id={i} />
 								</div>
 							))}
 						</div>
@@ -91,8 +75,16 @@ function Cart() {
 										<input type="radio" value="OverNight" name="shipping" /> Over Night: $20.00
 
 								</div>
-								<div className="sb-total">Total:$55.09</div>
-								<div id='checkout-btn' onClick={completeOrder}>Proceed to Checkout</div>
+
+								<div className="sb-total">Grand Total: ${total.toFixed(2)}</div>
+								{errors.length > 0 &&
+									<ul>
+										{errors.map(error => <li>{error}</li>)}
+									</ul>
+								}
+								{!errors.length &&
+									<div id='checkout-btn' onClick={completeOrder}>Proceed to Checkout</div>
+								}
 							</div>
 						</div>
 					</div>

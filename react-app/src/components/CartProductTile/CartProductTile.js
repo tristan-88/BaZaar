@@ -3,9 +3,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import './CartProductTile.css'
 
-const CartProductTile = ({ product, id, cartId }) => {
+const CartProductTile = ({ product, id, cartId, qty, setTotal, total }) => {
 
-
+	useEffect(() => {
+		setTotal(total + product.price * qty)
+	}, [])
 
 	const removeItem = async (id) => {
 		let item = document.getElementById(id)
@@ -14,6 +16,7 @@ const CartProductTile = ({ product, id, cartId }) => {
 			item.remove()
 		}
 	}
+
 
 	return (
 		<div className="cit-cart-item">
@@ -25,7 +28,7 @@ const CartProductTile = ({ product, id, cartId }) => {
 					></img>
 				</NavLink>
 			</div>
-			<div className="cit-item-name">{`${product.name}`}</div>
+			<div className="cit-item-name">{`${product.name.split(' ').slice(0, 6).join(' ')}`}</div>
 			<div className="cit-right-attributes">
 				<div className="cit-item-price-X">
 					<div
@@ -37,11 +40,19 @@ const CartProductTile = ({ product, id, cartId }) => {
 							Remove
 					</i>
 					</div>
+					<div className="">
+
+						{`In Stock: ${product.quantity}`}
+					</div>
 					<div className="cit-qty">
-						{`Quantity: ${product.cartQty}  `}
+						{`In Cart: ${qty}  `}
+					</div>
+
+					<div className="cit-price">
+						{`Price: $${product.price.toFixed(2)}`}
 					</div>
 					<div className="cit-price">
-						{`Price: $${product.price}`}
+						{`Total: $${product.price.toFixed(2) * qty}`}
 					</div>
 				</div>
 			</div>
