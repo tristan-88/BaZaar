@@ -19,6 +19,8 @@ function HomePage() {
 	const user = useSelector(state => state.session.user)
 	// sets user to equal the {session {user}}
 	const [loaded, setLoaded] = useState(false)
+	const [category, setCategory] = useState(1)
+
 
 	useEffect(() => {
 		if (user) { // if a user exists do these things
@@ -32,15 +34,28 @@ function HomePage() {
 		}
 	}, [dispatch, setLoaded])
 
+	useEffect(() => {
+		console.log(category)
+	}, [category])
+
 	const products = useSelector(state => state.products) // set products to equal the products value in the state
 	const filteredProducts = useSelector(state => state.products.filteredProducts) // set filtered products to equal the filtered products slice
+
 	if (!products) {
 		return null //guard clause if the product does not exsist
 	}
 
+
 	const setFilter = async (tagId) => { //
 		await dispatch(loadFilteredProducts(Number(tagId)))
+		const currentTag = document.getElementById(category)
+		currentTag.classList.remove('selected')
+		setCategory(tagId)
+		const newTag = document.getElementById(tagId)
+		newTag.classList.add('selected')
 	} // load the filter dispatch by passing in the id on line 58-68
+
+
 	return (
 		<>
 			<div className="banner-div">
@@ -54,17 +69,17 @@ function HomePage() {
 				<FeatureProductContainer />
 			</div>
 			<div className="tags-div">
-				<div onClick={(e) => setFilter(e.target.id)} id='1' className='sports-tag-div'>Sports</div>
-				<div onClick={(e) => setFilter(e.target.id)} id='2' className='gardening-tag-div'>Home & Gardening</div>
-				<div onClick={(e) => setFilter(e.target.id)} id='3' className='jewelry-tag-div'>Jewelry</div>
-				<div onClick={(e) => setFilter(e.target.id)} id='4' className='clothing-tag-div'>Clothing</div>
-				<div onClick={(e) => setFilter(e.target.id)} id='5' className='kitchen-tag-div'>Kitchen</div>
-				<div onClick={(e) => setFilter(e.target.id)} id='6' className='collectibles-tag-div'>Collectibles</div>
-				<div onClick={(e) => setFilter(e.target.id)} id='7' className='craft-tag-div'>Arts & Crafts</div>
-				<div onClick={(e) => setFilter(e.target.id)} id='8' className='decor-tag-div'>Home Decor</div>
-				<div onClick={(e) => setFilter(e.target.id)} id='9' className='art-tag-div'>Art</div>
-				<div onClick={(e) => setFilter(e.target.id)} id='10' className='misc-tag-div'>Misc</div>
-				<div onClick={(e) => setFilter(e.target.id)} id='11' className='home-tag-div'>Home & Living</div>
+				<div onClick={(e) => setFilter(e.target.id)} id='1' className='sports'>Sports</div>
+				<div onClick={(e) => setFilter(e.target.id)} id='2' className='gardening'>Home & Gardening</div>
+				<div onClick={(e) => setFilter(e.target.id)} id='3' className='jewelry'>Jewelry</div>
+				<div onClick={(e) => setFilter(e.target.id)} id='4' className='clothing'>Clothing</div>
+				<div onClick={(e) => setFilter(e.target.id)} id='5' className='kitchen'>Kitchen</div>
+				<div onClick={(e) => setFilter(e.target.id)} id='6' className='collectibles'>Collectibles</div>
+				<div onClick={(e) => setFilter(e.target.id)} id='7' className='craft'>Arts & Crafts</div>
+				<div onClick={(e) => setFilter(e.target.id)} id='8' className='decor'>Home Decor</div>
+				<div onClick={(e) => setFilter(e.target.id)} id='9' className='art'>Art</div>
+				<div onClick={(e) => setFilter(e.target.id)} id='10' className='misc'>Misc</div>
+				<div onClick={(e) => setFilter(e.target.id)} id='11' className='home'>Home & Living</div>
 			</div>
 			<div className="filtered-container">
 				{filteredProducts && filteredProducts.map(product => <SmallProductTile product={product} />)}
