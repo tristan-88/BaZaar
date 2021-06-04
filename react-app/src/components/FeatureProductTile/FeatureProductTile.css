@@ -13,14 +13,23 @@
   border: 1px solid black;
   flex-direction: column;
   justify-content: center;
-  border: 1px outset;
-  width: 400px;
-  height: 400px;
+  border: 1px solid rgba(0,0,0,0.2);
+  width: 20.3rem;
+  min-width: 14rem;
+  height: 25rem;
   margin: 5px;
   padding: 30px;
   opacity: 1;
   animation: fade-in 1s linear;
+  box-shadow: -8px 17px 9px -7px rgba(0,0,0,0.2);
+  transform: scale(1); 
 }
+
+.fpt-wrapper:hover {
+  transform: scale(1.01);
+  box-shadow: -8px 17px 9px -7px rgba(0,0,0,0.2)
+}
+
 .small-img-div {
   display: flex;
   justify-content: space-evenly;
@@ -64,4 +73,6 @@
 .feature-product {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
