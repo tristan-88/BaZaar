@@ -32,7 +32,13 @@ export const removeCart = () => async (dispatch) => {
 }
 
 export const addToCart = (cart_id, product_id) => async (dispatch) => {
-    const res = await fetch(`/api/carts/${cart_id}/add/${product_id}`)
+    const formData = new FormData()
+    formData.append('cart_id', cart_id)
+    formData.append('product_id', product_id)
+    const res = await fetch(`/api/carts/${cart_id}/add/${product_id}`, {
+        method: 'POST',
+        body: formData
+    })
     let data = await res.json()
     if (data) {
         dispatch(setCart(data))

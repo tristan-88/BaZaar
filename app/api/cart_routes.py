@@ -59,7 +59,7 @@ def edit_cart(id):
 # ---DELETE --- http://localhost:5000/api/cart/:id
 
 
-@cart_routes.route('/<int:id>', methods=["Post"])
+@cart_routes.route('/<int:id>', methods=["POST"])
 def delete_cart(id):
     remove_cart = Cart.query.filter(Cart.id == id).delete()
     db.session.commit()
@@ -67,18 +67,25 @@ def delete_cart(id):
 
 
 # add a product
-@cart_routes.route('/<int:cart_id>/add/<int:product_id>')
+@cart_routes.route('/<int:cart_id>/add/<int:product_id>', methods=['POST'])
 @login_required
 def add_item(cart_id, product_id):
-
-    cart_entry = Cart_Product(
-        product_id=product_id,
-        cart_id=cart_id
-    )
-
-    db.session.add(cart_entry)
-    db.session.commit()
-    return cart_entry.to_dict()
+    cur_entry = Cart_Product.query.filter_by(cart_id=cart_id, product_id=product_id).first()
+    if not cur_entry == None:
+        cur_entry.quantity += 1
+        db.session.add(cur_entry)        
+        db.session.commit()
+        return cur_entry.to_dict()
+    else:
+        new_entry = Cart_Product(
+            product_id=product_id,
+            cart_id=cart_id,
+            quantity=1
+        )
+        db.session.add(new_entry)        
+        db.session.commit()
+        return new_entry.to_dict()
+        
 
 
 @cart_routes.route('/<int:cart_id>/remove/<int:product_id>')
