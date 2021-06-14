@@ -1,13 +1,7 @@
 /* body{
     background-color: aliceblue;
-<<<<<<< HEAD
-} */
-
-.product-card {
-
-=======
 }
-
+*/
 .product-img{
     height: 160px;
     width: 160px;
@@ -30,5 +24,4 @@
 
 .product-card:hover {
     box-shadow: -8px 17px 9px -7px rgba(0,0,0,0.2);
->>>>>>> main
 }
