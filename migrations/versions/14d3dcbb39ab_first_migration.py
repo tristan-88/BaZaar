@@ -1,7 +1,7 @@
 """first migration
 
 Revision ID: 14d3dcbb39ab
-Revises: 
+Revises:
 Create Date: 2021-05-13 11:38:40.656440
 
 """
@@ -69,7 +69,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(), nullable=False),
     sa.Column('store_id', sa.Integer(), nullable=True),
-    sa.Column('price', sa.String(length=10), nullable=False),
+    sa.Column('price', sa.String(length=50), nullable=False),
     sa.Column('quantity', sa.Integer(), nullable=False),
     sa.Column('description', sa.String(), nullable=False),
     sa.ForeignKeyConstraint(['store_id'], ['stores.id'], ),
