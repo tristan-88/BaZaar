@@ -31,14 +31,38 @@ export const removeCart = () => async (dispatch) => {
     dispatch(deleteCart())
 }
 
-const initialState = {}
+export const addToCart = (cart_id, product_id) => async (dispatch) => {
+    const formData = new FormData()
+    formData.append('cart_id', cart_id)
+    formData.append('product_id', product_id)
+    const res = await fetch(`/api/carts/${cart_id}/add/${product_id}`, {
+        method: 'POST',
+        body: formData
+    })
+    let data = await res.json()
+    if (data) {
+        dispatch(setCart(data))
+    }
+}
+
+export const completeOrder = (cart_id) => async (dispatch) => {
+    const res = await fetch(`/api/carts/${cart_id}/close`)
+    let data = await res.json()
+    if (res.ok) {
+        dispatch(setCart(data))
+    }
+}
+
+const initialState = {
+
+}
 
 export default function cartReducer(state = initialState, action) {
     switch (action.type) {
         case SET_CART:
             return { ...action.payload }
         case REMOVE_CART:
-            return {};
+            return null;
         default:
             return state
     }

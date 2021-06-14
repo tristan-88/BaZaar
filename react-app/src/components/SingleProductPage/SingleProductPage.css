@@ -1,0 +1,121 @@
+.product-page-wrapper {
+  /* box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 40% 1fr 40%;
+  grid-template-rows: 3fr 40px 60px 500px; */
+  display:flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.photo-gallery {
+  /* grid-column: 1 / 4;
+  grid-row: 1/2;
+  display: flex;
+  margin: 27px;
+  max-width: 40vw;
+  max-width: 40vw;
+ */
+ flex:2;
+ margin: 20px;
+ width: 300px;
+ transition: 100ms;
+  transform: translateZ(5px);
+  box-shadow: 2px 2px 2px rgba(0,0,0,0);
+}
+
+.main-img {
+  max-width: 40vw;
+   transition: 100ms;
+  transform: translateZ(5px);
+  box-shadow: 0 17px 9px -7px rgba(0,0,0,0.35);
+  margin: 5px
+}
+
+.small-img {
+  max-width: 160px;
+  max-height: 160px;
+  box-shadow: 0 17px 9px -7px rgba(0,0,0,0.35);
+  margin: 5px;
+}
+
+.product-description {
+  flex:1;
+  margin:30px;
+  font-weight: bolder;
+  font-family: monospace;
+   position: relative;
+    width: 250px;
+    height: 100%;
+    padding: 20px;
+    font-size: large;
+}
+
+.store-div {
+  /* grid-row: 3;
+  grid-column: 1 / 4; */
+  flex:1;
+  border: 2px solid black;
+}
+
+.reviews-container {
+  /* grid-row: 4;
+  grid-column: 1 / 4; */
+  margin-left: 15em;
+  /* margin-bottom: 20px;
+  margin-top: 40px; */
+  font-size: large;
+  width: 600px;
+  display: flex;
+  flex-direction: column-reverse;
+  margin-bottom: 20px;
+}
+
+.picture_desc{
+  display: flex;
+}
+
+#add-btn, 
+.post-btn{
+    outline: none;
+    text-decoration: none;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    text-transform: uppercase;
+    height: 60px;
+    width: 210px;
+    opacity: 1;
+    background-color: aliceblue;
+    border: 3px outset #006d77;
+    color: #f58a07;
+    font-size: 12px;
+    font-weight: bolder;
+    letter-spacing: 0.7px;
+}
+
+.button-add-cart{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.user_created{
+  margin: 20px;
+}
+
+
+/*
+ Removed Button 
+
+#add-btn{
+  background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+} */

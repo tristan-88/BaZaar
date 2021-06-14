@@ -1,0 +1,12 @@
+.sb-shipping,
+.sb-item-total,
+.sb-total{
+   font-size: larger;
+}
+
+.radio-shipping{
+    display: inline;
+    flex-direction: column;
+    width: 350px;
+    margin-top: -5px;
+}

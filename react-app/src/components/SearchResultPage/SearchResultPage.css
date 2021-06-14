@@ -1,0 +1,10 @@
+.products-div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.stores-div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}

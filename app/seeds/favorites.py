@@ -18,7 +18,7 @@ def seed_Favorites():
     db.session.add(favorite1)
 
     favorite2 = Favorites(
-        product_id=42,
+        product_id=20,
         user_id=3
     )
 
@@ -32,21 +32,21 @@ def seed_Favorites():
     db.session.add(favorite3)
 
     favorite4 = Favorites(
-        product_id=46,
+        product_id=4,
         user_id=5
     )
 
     db.session.add(favorite4)
 
     favorite5 = Favorites(
-        product_id=33,
+        product_id=3,
         user_id=4
     )
 
     db.session.add(favorite5)
 
     favorite6 = Favorites(
-        product_id=36,
+        product_id=3,
         user_id=5
     )
 
@@ -102,7 +102,7 @@ def seed_Favorites():
     db.session.add(favorite13)
 
     favorite14 = Favorites(
-        product_id=40,
+        product_id=14,
         user_id=4
     )
 
@@ -116,21 +116,21 @@ def seed_Favorites():
     db.session.add(favorite15)
 
     favorite16 = Favorites(
-        product_id=40,
+        product_id=24,
         user_id=5
     )
 
     db.session.add(favorite16)
 
     favorite17 = Favorites(
-        product_id=48,
+        product_id=8,
         user_id=1
     )
 
     db.session.add(favorite17)
 
     favorite18 = Favorites(
-        product_id=41,
+        product_id=1,
         user_id=1
     )
 
@@ -144,21 +144,21 @@ def seed_Favorites():
     db.session.add(favorite19)
 
     favorite20 = Favorites(
-        product_id=33,
+        product_id=13,
         user_id=3
     )
 
     db.session.add(favorite20)
 
     favorite21 = Favorites(
-        product_id=28,
+        product_id=16,
         user_id=1
     )
 
     db.session.add(favorite21)
 
     favorite22 = Favorites(
-        product_id=44,
+        product_id=14,
         user_id=2
     )
 
@@ -186,7 +186,7 @@ def seed_Favorites():
     db.session.add(favorite25)
 
     favorite26 = Favorites(
-        product_id=27,
+        product_id=20,
         user_id=1
     )
 
@@ -228,21 +228,21 @@ def seed_Favorites():
     db.session.add(favorite31)
 
     favorite32 = Favorites(
-        product_id=39,
+        product_id=9,
         user_id=5
     )
 
     db.session.add(favorite32)
 
     favorite33 = Favorites(
-        product_id=35,
+        product_id=5,
         user_id=5
     )
 
     db.session.add(favorite33)
 
     favorite34 = Favorites(
-        product_id=31,
+        product_id=1,
         user_id=5
     )
 
@@ -270,7 +270,7 @@ def seed_Favorites():
     db.session.add(favorite37)
 
     favorite38 = Favorites(
-        product_id=39,
+        product_id=9,
         user_id=1
     )
 
@@ -284,25 +284,25 @@ def seed_Favorites():
     db.session.add(favorite39)
 
     favorite40 = Favorites(
-        product_id=43,
+        product_id=3,
         user_id=3
     )
 
     db.session.add(favorite40)
 
     favorite41 = Favorites(
-        product_id=37,
+        product_id=7,
         user_id=2
     )
 
     db.session.add(favorite41)
 
-    favorite42 = Favorites(
+    favorite20 = Favorites(
         product_id=19,
         user_id=3
     )
 
-    db.session.add(favorite42)
+    db.session.add(favorite20)
 
     favorite43 = Favorites(
         product_id=3,
@@ -319,7 +319,7 @@ def seed_Favorites():
     db.session.add(favorite44)
 
     favorite45 = Favorites(
-        product_id=42,
+        product_id=20,
         user_id=3
     )
 
@@ -333,28 +333,28 @@ def seed_Favorites():
     db.session.add(favorite46)
 
     favorite47 = Favorites(
-        product_id=47,
+        product_id=17,
         user_id=4
     )
 
     db.session.add(favorite47)
 
     favorite48 = Favorites(
-        product_id=31,
+        product_id=11,
         user_id=5
     )
 
     db.session.add(favorite48)
 
     favorite49 = Favorites(
-        product_id=35,
+        product_id=15,
         user_id=4
     )
 
     db.session.add(favorite49)
 
     favorite50 = Favorites(
-        product_id=48,
+        product_id=18,
         user_id=3
     )
 

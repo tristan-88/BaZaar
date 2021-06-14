@@ -8,6 +8,7 @@ import './SignUpForm.css';
 const SignUpForm = () => {
   const dispatch = useDispatch()
   const user = useSelector(state => state.session.user)
+  const [image, setImage] = useState(null);
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [username, setUsername] = useState("");
@@ -15,12 +16,13 @@ const SignUpForm = () => {
   const [address, setAddress] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
-  const [photo, setPhoto] = useState("");
+
 
   const onSignUp = async (e) => {
     e.preventDefault();
+
     if (password === repeatPassword) {
-      await dispatch(signUp(firstname, lastname, username, email, photo, password, address));
+      await dispatch(signUp(firstname, lastname, username, email, image, password, address));
       await dispatch(createCart())
     }
   };
@@ -53,8 +55,9 @@ const SignUpForm = () => {
     setAddress(e.target.value)
   }
 
-  const updatePhotourl = (e) => {
-    setPhoto(e.target.value)
+  const updateImage = (e) => {
+    const file = e.target.files[0];
+    setImage(file);
   }
 
   if (user) {
@@ -62,7 +65,10 @@ const SignUpForm = () => {
   }
 
   return (
-    <form onSubmit={onSignUp}>
+    <div className="form-body">
+      <div className="form-container">
+        <form onSubmit={onSignUp}>
+          <div className="form-inputs">
       <div>
         <label>First Name</label>
         <input
@@ -111,10 +117,9 @@ const SignUpForm = () => {
       <div>
         <label>Photo Url</label>
         <input
-          type="text"
-          name="photo_url"
-          onChange={updatePhotourl}
-          value={photo}
+          type="file"
+          accept="image/*"
+          onChange={updateImage}
         ></input>
       </div>
       <div>
@@ -135,9 +140,14 @@ const SignUpForm = () => {
           value={repeatPassword}
           required={true}
         ></input>
+          </div>
+          </div>
+          <div className="button-div">
+            <button type="submit">Sign Up</button>
+          </div>
+        </form>
       </div>
-      <button type="submit">Sign Up</button>
-    </form>
+    </div>
   );
 };
 

@@ -1,23 +1,21 @@
 from flask import Blueprint
-# we will need to import our products model and store model if we want to search stores as well
-# from app.models import Product, Store
 from app.forms import SearchForm
-from app.models import User
+from app.models import User, Product, Store
 
 search_routes = Blueprint('search', __name__)
 
+@search_routes.route('/<string:squery>')
+def search(squery):
 
-# @search_routes.route('')
-# def search():
-#     # return 'INSIDE ROUTE'
-#     form = SearchForm()
-#     return form['search']
-#     # if form.is_submitted():
-#     # # searchValue = form['input'] OR form.search?
-#     #     queryProduct = User.query.filter(User.username.like(searchValue))
-#     # # if queryProduct:
-#     #     return queryProduct
-#     # #     #render the new page here
-#     # # elif:
-#     # #     queryStore = Store.query.filter(Store.name.like(searchValue))
-#     # #     #render the new page here
+    search_result = {
+        'Products': [],
+        'Stores': []
+    }
+
+    product_results = Product.query.filter(Product.name.ilike(f'%{squery}%')).all()
+    store_results = Store.query.filter(Store.name.ilike(f'%{squery}%')).all()
+
+    search_result['Products'] = [product.to_dict() for product in product_results]
+    search_result['Stores'] = [store.to_dict() for store in store_results]
+
+    return search_result

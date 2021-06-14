@@ -1,41 +1,55 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, {useEffect, useState}from 'react';
+import { NavLink, Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux'
 import LogoutButton from './../auth/LogoutButton/LogoutButton';
 import Search from '../Search/Search';
 import './NavBar.css'
+import createCart from '../../store/cart'
+
 
 const NavBar = () => {
+  const dispatch = useDispatch()
+  const cart = useSelector(state => state.cart?.products)
+
+  const user = useSelector(state => state.session?.user)
+
+      const [loaded, setLoaded] = useState(false)
+  useEffect(() => {
+     dispatch(createCart)
+    },[dispatch])
+
   return (
+
     <nav>
-      <ul>
-        <li>
-          <NavLink to="/" exact={true} activeClassName="active">
-            Home
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/login" exact={true} activeClassName="active">
-            Login
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/sign-up" exact={true} activeClassName="active">
-            Sign Up
-          </NavLink>
-        </li>
-        <li>
+      <div className='navigation-bar-container'>
+        <NavLink to="/" exact={true} >
+          <i className="fad fa-home-lg fa-4x" style={{ fontSize: '1.5em', color: 'darkorange' }}></i>
+        </NavLink>
+        <Search />
+        <div className='interface-buttons'>
+          <div className='login-button'>
+            {!user && <NavLink to="/login" exact={true} activeClassName="active">
+              <i className="fad fa-sign-in fa-4x" style={{ fontSize: '1.5em', color: 'darkorange' }}></i>
+            </NavLink>}
+          </div>
+          {!user && <NavLink to="/sign-up" exact={true} activeClassName="active">
+            <i className="fad fa-user-plus fa-4x" style={{ fontSize: '1.5em', color: 'darkorange' }}></i>
+          </NavLink>}
           <NavLink to="/users" exact={true} activeClassName="active">
-            Users
+            {user && <i className="fad fa-users fa-4x" style={{ fontSize: '1.5em', color: 'darkorange' }}></i>}
           </NavLink>
-        </li>
-        <li>
+          <NavLink to='/store'>
+            <i className="fas fa-store-alt" style={{ fontSize: '1.5em', color: 'darkorange' }}></i>
+          </NavLink>
+
+          <NavLink to='/cart'>
+            <i className="fad fa-shopping-cart fa-4x" style={{ fontSize: '1.5em', color: 'darkorange' }}></i> <div>{cart?.length}</div>
+          </NavLink>
           <LogoutButton />
-        </li>
-        <li>
-          <Search />
-        </li>
-      </ul>
+        </div>
+      </div>
     </nav>
+
   );
 }
 

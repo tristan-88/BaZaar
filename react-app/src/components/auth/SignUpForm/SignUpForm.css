@@ -1,0 +1,60 @@
+.form-container{
+      margin:20px;
+      box-shadow: 0 17px 9px -7px rgba(0,0,0,0.35);
+      display:flex;
+      width: 500px;
+      padding: 20px;
+      display: inline-block;
+      background-color: #006d77;
+}
+
+label{
+    margin: 1px;
+}
+
+button{
+    /* removes outline on button*/
+    outline: none;
+    border: none;
+    text-decoration: none;
+    border-radius: 50px;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    cursor: pointer;
+    text-transform: uppercase;
+    opacity: 1;
+    color: #2b2d42;
+    font-size: medium;
+    font-weight: bolder;
+    letter-spacing: 0.7px;
+    font-family: Plaything;
+    display: inline;
+    
+}
+
+form{
+    border: 1px solid #2b2d42;
+    padding: 10px;
+    width: 450px;
+    /* height: 450px; */
+    display: inline-block;
+    margin: 10px;
+    text-align: -webkit-right;
+
+}
+
+.form-inputs{
+    padding: 5px;
+    margin: 5px;
+    font-size: x-large;
+}
+
+input{
+    display:inline-block;
+}
+
+.button-div {
+    mix-blend-mode: darken;
+    font-size: medium;
+}

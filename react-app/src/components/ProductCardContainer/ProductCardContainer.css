@@ -1,0 +1,32 @@
+.product-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-x: none;
+    max-width: 60vw;
+    margin-left: 20%;
+}
+
+.product-card-container{
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+    background-position: 50%;
+    display: inline-block;
+}
+
+.divider-line {
+    opacity: 1;
+    animation: fade-in 5s linear;
+}
+
+
+@keyframes fade-in {
+    from {
+      transition: oppacity 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+}

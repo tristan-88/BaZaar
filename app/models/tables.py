@@ -37,12 +37,11 @@ class Product_Tag(db.Model):
     product_id = db.Column(db.Integer, db.ForeignKey('products.id'), nullable=False)
     tag_id = db.Column(db.Integer, db.ForeignKey('tags.id'), nullable=False)
 
+    def get_product(self):
+        return self.products.to_dict()
+
     def to_dict(self):
-         return {
-            "id": self.id,
-            "product_id": self.product_id,
-            "tag_id": self.tag_id,
-        }
+         return self.tag_id
 
     tags = db.relationship("Tag", back_populates="")
     products = db.relationship("Product", back_populates="tags")
@@ -54,13 +53,16 @@ class Cart_Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     product_id = db.Column(db.Integer, db.ForeignKey("products.id"), nullable=False)
     cart_id = db.Column(db.Integer, db.ForeignKey("carts.id"), nullable=False)
+    quantity = db.Column(db.Integer, nullable=False)
 
     def to_dict(self):
         return {
             "id": self.id,
             "product_id": self.product_id,
             "cart_id": self.cart_id,
+            "product": self.products.to_cart_dict(),
+            "quantity": self.quantity
         }
 
-    carts = db.relationship("Cart", back_populates="products", cascade="all, delete")
-    products = db.relationship("Product", back_populates="carts", cascade="all, delete")
+    carts = db.relationship("Cart", back_populates="products")
+    products = db.relationship("Product", back_populates="carts")

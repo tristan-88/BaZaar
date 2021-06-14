@@ -1,1 +1,22 @@
 /* TODO Add site wide styles */
+
+@font-face {
+    font-family: "Playfair";
+    src: local('Playfair'), url(./fonts/playfair/PlayfairDisplay-Medium.ttf) format('truetype');
+}
+
+:root {
+    --text: #2b2d42;
+    --background: #edf6f9;
+    --secondary: #006d77;
+    --accent1: #83c5be;
+    --accent2: #f58a07;
+}
+
+body {
+    background-color: var(--background);
+    font-family: 'Playfair';
+    color: var(--text);
+    text-align: center;
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+}

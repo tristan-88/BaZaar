@@ -1,0 +1,22 @@
+.single-review{
+    font-family: 'Playfair';
+    display:inline-block;
+     
+}
+
+.top{
+      font-size: medium;
+      color:darkgrey;
+}
+
+.name{
+    text-decoration: underline;
+  
+    display: inline;
+    margin-right: 10px;
+}
+
+.content{
+   font-weight: bolder;
+    font-size: larger; 
+}
