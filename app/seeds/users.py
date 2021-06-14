@@ -11,7 +11,8 @@ def seed_users():
         email='demo@aa.io',
         username='Demo',
         address='3343 Breanne Green Apt. 660',
-        password='password'
+        password='password',
+        photo_url='https://bazaar-python-project.s3.us-east-2.amazonaws.com/noun_User_3918328.png'
     )
 
     db.session.add(demo)
