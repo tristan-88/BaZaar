@@ -11,6 +11,8 @@ const LoginForm = () => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const demoEmail = "demo@aa.io";
+	const demoPassword = "password";
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -20,6 +22,12 @@ const LoginForm = () => {
       setErrors(data.errors);
     }
   };
+
+    const handleDemoLogin = (e) => {
+			e.preventDefault();
+			dispatch(login(demoEmail, demoPassword));
+		};
+
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
@@ -34,44 +42,49 @@ const LoginForm = () => {
   }
 
   return (
-    <div className="form-body">
-    <div className="form-container">
-      <form onSubmit={onLogin} className="login-form">
-        <div className="form-inputs">
-        <div>
-          {errors.map((error) => (
-            <div>{error}</div>
-          ))}
-        </div>
-        <h1>Welcome!</h1>
-        <div>
-          <label htmlFor="email">Email</label>
-          <input
-            name="email"
-            type="text"
-            placeholder="Email"
-            value={email}
-            onChange={updateEmail}
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
-            name="password"
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={updatePassword}
-            />
-          </div>
-        </div>
-          <div className="button-div">
-            <button type="submit">Login</button>
-        </div>
-      </form>
-    </div>
-    </div>
-  );
+		<div className="form-body">
+			<div className="form-container">
+				<form onSubmit={onLogin} className="login-form">
+					<div className="form-inputs">
+						<div>
+							{errors.map((error) => (
+								<div>{error}</div>
+							))}
+						</div>
+						<h1>Welcome!</h1>
+						<div>
+							<label htmlFor="email">Email</label>
+							<input
+								name="email"
+								type="text"
+								placeholder="Email"
+								value={email}
+								onChange={updateEmail}
+							/>
+						</div>
+						<div>
+							<label htmlFor="password">Password</label>
+							<input
+								name="password"
+								type="password"
+								placeholder="Password"
+								value={password}
+								onChange={updatePassword}
+							/>
+						</div>
+					</div>
+					<div className="button-div">
+						<button type="submit">Login</button>
+					</div>
+				</form>
+				<form onSubmit={handleDemoLogin}>
+					<button className="demo-btn" type="submit">
+						Demo User
+					</button>
+				</form>
+			</div>
+		</div>
+	);
 };
 
 export default LoginForm;
