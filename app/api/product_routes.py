@@ -21,7 +21,7 @@ tests = {'Message': 'Hello'}
 # ---GET--- http://localhost:5000/api/products/ ---TESTED---
 
 
-@product_routes.route('/')
+@product_routes.route('')
 def all_products():
     products = Product.query.all()
     return jsonify([product.to_dict() for product in products])
