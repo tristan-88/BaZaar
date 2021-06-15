@@ -11,8 +11,10 @@ const LoginForm = () => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const demoEmail = "demo@aa.io";
 	const demoPassword = "password";
+
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -23,10 +25,11 @@ const LoginForm = () => {
     }
   };
 
-    const handleDemoLogin = (e) => {
-			e.preventDefault();
-			dispatch(login(demoEmail, demoPassword));
-		};
+
+  const handleDemoLogin = (e) => {
+    e.preventDefault();
+    dispatch(login(demoEmail, demoPassword))
+  }
 
 
   const updateEmail = (e) => {
@@ -42,6 +45,7 @@ const LoginForm = () => {
   }
 
   return (
+
 		<div className="form-body">
 			<div className="form-container">
 				<form onSubmit={onLogin} className="login-form">
