@@ -174,32 +174,32 @@ const randomNumber = (num) => Math.floor(Math.random() * Math.floor(num) + 1)
 
 // seed_review(5)
 
-const seed_favorite = (num) => {
-  let i = 0
-  console.log(`
-def seed_Favorites():`)
-  while (i <= num) {
-    const string = `
-    favorite${i} = Favorites(
-        product_id= ${randomNumber(49)},
-        user_id= ${randomNumber(5)}
-    )`
-    console.log(string)
-    console.log("")
-    console.log(`
-    db.session.add(favorite${i})`)
-    console.log("")
-    console.log("")
-    i++
-  }
-  console.log(`
-    db.session.commit()`)
-  console.log("")
-  console.log("")
-  console.log(`
-def undo_Favorites():
-    db.session.execute('TRUNCATE favorite RESTART IDENTITY CASCADE;')
-    db.session.commit()`)
-}
+// const seed_favorite = (num) => {
+//   let i = 0
+//   console.log(`
+// def seed_Favorites():`)
+//   while (i <= num) {
+//     const string = `
+//     favorite${i} = Favorites(
+//         product_id= ${randomNumber(49)},
+//         user_id= ${randomNumber(5)}
+//     )`
+//     console.log(string)
+//     console.log("")
+//     console.log(`
+//     db.session.add(favorite${i})`)
+//     console.log("")
+//     console.log("")
+//     i++
+//   }
+//   console.log(`
+//     db.session.commit()`)
+//   console.log("")
+//   console.log("")
+//   console.log(`
+// def undo_Favorites():
+//     db.session.execute('TRUNCATE favorite RESTART IDENTITY CASCADE;')
+//     db.session.commit()`)
+// }
 
-seed_favorite(50)
+// seed_favorite(50)

@@ -34,9 +34,6 @@ function HomePage() {
 		}
 	}, [dispatch, setLoaded])
 
-	useEffect(() => {
-		console.log(category)
-	}, [category])
 
 	const products = useSelector(state => state.products) // set products to equal the products value in the state
 	const filteredProducts = useSelector(state => state.products.filteredProducts) // set filtered products to equal the filtered products slice
