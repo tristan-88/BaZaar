@@ -17,5 +17,3 @@ def seed_Cart_Products():
 def undo_Cart_Products():
     db.session.execute('''TRUNCATE cart_products RESTART IDENTITY CASCADE;''')
     db.session.commit()
-
-
