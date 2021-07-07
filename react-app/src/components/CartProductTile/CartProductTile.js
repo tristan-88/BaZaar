@@ -5,9 +5,9 @@ import './CartProductTile.css'
 
 const CartProductTile = ({ product, id, cartId, qty, setTotal, total }) => {
 
-	useEffect(() => {
-		setTotal(total + product.price * qty)
-	}, [])
+	// useEffect(() => {
+	// 	setTotal(total + product.price * qty)
+	// }, [])
 
 	const removeItem = async (id) => {
 		let item = document.getElementById(id)
