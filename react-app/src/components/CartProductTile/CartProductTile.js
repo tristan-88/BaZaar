@@ -52,7 +52,7 @@ const CartProductTile = ({ product, id, cartId, qty, setTotal, total }) => {
 						{`Price: $${product.price.toFixed(2)}`}
 					</div>
 					<div className="cit-price">
-						{`Total: $${product.price.toFixed(2) * qty}`}
+						{`Total: $${(product.price * qty).toFixed(2)}`}
 					</div>
 				</div>
 			</div>
