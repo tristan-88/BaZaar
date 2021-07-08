@@ -13,6 +13,7 @@ function Cart() {
   const user = useSelector((state) => state.session.user);
   const [total, setTotal] = useState(0);
   const [errors, setErrors] = useState([]);
+  const [cartChange, setCartChange] = useState(false);
 
   //look at when ever something here changes reload this component
   useEffect(() => {
@@ -21,10 +22,9 @@ function Cart() {
 
   useEffect(() => {}, [errors]);
 
-  
   useEffect(() => {
     if (cart.products) {
-      let sum = 0.00
+      let sum = 0.0;
       cart.products.forEach((product) => {
         sum += product.quantity * product.product.price;
 
@@ -44,12 +44,12 @@ function Cart() {
               .join(" ")} in your cart.`
           );
         }
-	  })
-		setTotal(sum.toFixed(2))
+      });
+      setTotal(sum.toFixed(2));
     }
-  }, [cart.products]);
-	
-	if (!cart.products) {
+  }, [cart.products, cartChange]);
+
+  if (!cart.products) {
     return null;
   }
 
@@ -82,6 +82,8 @@ function Cart() {
                     total={total}
                     product={product.product}
                     id={i}
+                    cartChange={cartChange}
+                    setCartChange={setCartChange}
                   />
                 </div>
               ))}

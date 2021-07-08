@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import './CartProductTile.css'
+import { decrementItemCount, incrementItemCount } from "../../store/cart";
 
-const CartProductTile = ({ product, id, cartId, qty, setTotal, total }) => {
-
+const CartProductTile = ({ product, id, cartId, qty, setTotal, total, setCartChange, cartChange }) => {
+	const dispatch = useDispatch()
 	// useEffect(() => {
 	// 	setTotal(total + product.price * qty)
 	// }, [])
@@ -15,6 +16,16 @@ const CartProductTile = ({ product, id, cartId, qty, setTotal, total }) => {
 		if (item) {
 			item.remove()
 		}
+	}
+
+	const decrementProduct = async () => {
+		await dispatch(decrementItemCount(cartId, product.id))
+		setCartChange(!cartChange)
+	}
+
+	const incrementProduct=  async () => {
+		await dispatch(incrementItemCount(cartId ,product.id))
+		setCartChange(!cartChange);
 	}
 
 
@@ -45,6 +56,8 @@ const CartProductTile = ({ product, id, cartId, qty, setTotal, total }) => {
 						{`In Stock: ${product.quantity}`}
 					</div>
 					<div className="cit-qty">
+						<button disabled={qty === 0 } onClick={decrementProduct}>-</button>
+						<button disabled={qty === product.quantity } onClick={incrementProduct}>+</button>
 						{`In Cart: ${qty}  `}
 					</div>
 
