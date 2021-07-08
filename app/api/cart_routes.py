@@ -45,16 +45,16 @@ def assign_cart():
 # ---PATCH--- http://localhost:5000/api/carts/:id
 
 
-@cart_routes.route('/<int:id>', methods=["PATCH"])
-def edit_cart(id):
-    cart = Cart.get(id)
-    # too tired to think/ grabbing cart by id
-    cart = Cart.query.get(id)
-    if cart:
-        content = request.json['content']
-        cart.content = content
-        db.session.commit()
-    return jsonify(cart.to_dict() if cart else 'Failed to update users cart')
+# @cart_routes.route('/<int:id>', methods=["PATCH"])
+# def edit_cart(id):
+#     cart = Cart.get(id)
+#     # too tired to think/ grabbing cart by id
+#     cart = Cart.query.get(id)
+#     if cart:
+#         content = request.json['content']
+#         cart.content = content
+#         db.session.commit()
+#     return jsonify(cart.to_dict() if cart else 'Failed to update users cart')
 
 # ---DELETE --- http://localhost:5000/api/cart/:id
 
@@ -67,7 +67,7 @@ def delete_cart(id):
 
 
 # add a product
-@cart_routes.route('/<int:cart_id>/add/<int:product_id>', methods=['POST'])
+@cart_routes.route('/<int:cart_id>/add/<int:product_id>', methods=['POST', "PUT"])
 @login_required
 def add_item(cart_id, product_id):
     cur_entry = Cart_Product.query.filter_by(cart_id=cart_id, product_id=product_id).first()
@@ -96,9 +96,25 @@ def remove_item(cart_id, product_id):
             cart_id=cart_id, product_id=product_id).first()
         db.session.delete(remove_entry)
         db.session.commit()
-        return 'Yeet!'
+        return {"result": "this item"}
     except:
-        return 'Nah bruh...'
+        return {"result": "nah this does not work"}
+
+#Decrement route
+@cart_routes.route('/<int:cart_id>/remove/<int:product_id>', methods=["PUT"])
+@login_required
+def decrement_item(cart_id, product_id):
+    try:
+        remove_entry = Cart_Product.query.order_by(desc(Cart_Product.id)).filter_by(
+            cart_id=cart_id, product_id=product_id).first()
+        remove_entry.quantity -= 1
+        if remove_entry.quantity == 0:
+            db.session.delete(remove_entry)
+        db.session.commit()
+        return {"result": "item count decremented"}
+    except:
+        return {"result": "nah this does not work"}
+    #cannot just return a string!!!
 
 
 @cart_routes.route('/<int:cart_id>/close/')

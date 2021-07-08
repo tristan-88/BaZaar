@@ -22,6 +22,7 @@ def seed_reviews():
             content=faker.sentences(3),
             created_at=faker.date_time_this_year()
         )
+        print(demo)
         db.session.add(demo)
     db.session.commit()
 

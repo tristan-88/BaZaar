@@ -8,6 +8,8 @@ import ReviewCard from '../ReviewCard/ReviewCard'
 import './SingleProductPage.css'
 import { postingReview } from '../../store/review'
 import ReviewForm from '../ReviewForm/ReviewForm'
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from "react-responsive-carousel";
 // import { useDispatch } from 'react-redux'
 
 
@@ -67,20 +69,21 @@ const SingleProductPage = (props) => {
 			{product.name && (
 				<div className="product-page-wrapper">
 					<div className="picture_desc">
-						<div className="photo-gallery">
-							<div>
-								<img
-									src={product.photos[0].photo_url}
-									className="main-img"
-									alt="nope"
-								></img>
-							</div>
-							<div>
-								{product.photos.map((photo) => (
-									<img src={photo.photo_url} className="small-img"></img>
+						<Carousel>
+						{/* <div className="photo-gallery">
+							<div> */}
+								
+							{/* </div> */}
+							{/* <div> */}
+							{product.photos.map((photo) => (
+								
+									<img src={photo.photo_url} className="single-page-pics">
+									</img>
+									
 								))}
-							</div>
-						</div>
+							{/* </div>
+							</div> */}
+						</Carousel>
 						<div className="product-description">
 							<h2>{product.name}</h2>
 							{<p>{product.description}</p>}
@@ -99,7 +102,9 @@ const SingleProductPage = (props) => {
 					<button onClick={handleSubmit} className="post-btn">POST REVIEW</button>
 					<div className="reviews-container">
 						{product.reviews?.map((review) => (
-							<ReviewCard review={review} user={user} />
+							<ReviewCard review={review} user={user}/>
+							
+					
 						))}
 						{isShown && <ReviewForm />}
 					</div>
