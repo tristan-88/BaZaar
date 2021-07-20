@@ -96,6 +96,8 @@
   font-size: 12px;
   font-weight: bolder;
   letter-spacing: 0.7px;
+  align-self: center;
+  margin: 0 0 3em 0;
 }
 
 .button-add-cart {
